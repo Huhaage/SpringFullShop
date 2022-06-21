@@ -27,18 +27,18 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		Category smartphone = categoryRepository.save(new Category(null,"Smartphone",null));
-        Category tablet = categoryRepository.save(new Category(null,"Tablet",null)); 
-        Category pc = categoryRepository.save(new Category(null,"PC",null));
-		Category logicielCategory = categoryRepository.save(new Category(null,"logiciel",null));
+		// Category smartphone = categoryRepository.save(new Category(null,"Smartphone",null));
+        // Category tablet = categoryRepository.save(new Category(null,"Tablet",null)); 
+        // Category pc = categoryRepository.save(new Category(null,"PC",null));
+		// Category logicielCategory = categoryRepository.save(new Category(null,"logiciel",null));
 		
-//		articleRepository.save(new Article(null,"S8","SamSung",350,smartphone));
-//		articleRepository.save(new Article(null,"S10","SamSung",400,smartphone));
-//		articleRepository.save(new Article(null,"S11","SamSung",420,smartphone));
-//		articleRepository.save(new Article(null,"SE","iPhone",650,smartphone));
-//		articleRepository.save(new Article(null,"Redmi Go","Xiaomi",200,smartphone));
-//		articleRepository.save(new Article(null,"Mate X","Huawei",180,smartphone));
-//		articleRepository.save(new Article(null,"Redmi9A","Xiaomi",150,smartphone));
+		// articleRepository.save(new Article(null,"S8","SamSung",350,"unknown.png", smartphone));
+		// articleRepository.save(new Article(null,"S10","SamSung",400,"unknown.png",smartphone));
+		// articleRepository.save(new Article(null,"S11","SamSung",420,"unknown.png",smartphone));
+		// articleRepository.save(new Article(null,"SE","iPhone",650,"unknown.png",tablet));
+		// articleRepository.save(new Article(null,"Redmi Go","Xiaomi",200,"unknown.png",smartphone));
+		// articleRepository.save(new Article(null,"Mate X","Huawei",180,	"unknown.png",logicielCategory));
+		// articleRepository.save(new Article(null,"Redmi9A","Xiaomi",150,"unknown.png",pc));
 
 		
 		
