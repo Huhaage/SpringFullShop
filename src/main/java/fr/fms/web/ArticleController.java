@@ -41,7 +41,7 @@ public class ArticleController {
 	}
 	
 	//lien vers la liste des formations
-	@GetMapping("/trainings")
+	@GetMapping("/articles")
 	public String articles(Model model, @RequestParam(name="page", defaultValue = "0") int page,
 										@RequestParam(name="keyword", defaultValue = "") String kw) {
 		Page<Article> articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page, 5)); //récup tous les articles
