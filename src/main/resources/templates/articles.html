@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes articles</title>
+    <title>Les articles</title>
 </head>
 
 <body>
@@ -42,9 +42,6 @@
                                             <p class="price-container" th:text="${a.price}">
                                                 <span>price €</span>
                                             </p>
-                                            <a class="x-del"  th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}"><img th:src="@{/img/x-button.png}" alt="delete"></a>
-                                            <!-- Button trigger modal -->
-                                            <a class="" th:href="@{/editArticle(id=${a.id})}"><img class="x-edit" th:src="@{/img/edit.png}" alt="edit"></a>
                                         </div>
                                         <div class="description" th:text="${a.description}">
                                             <h6>description</h6>
