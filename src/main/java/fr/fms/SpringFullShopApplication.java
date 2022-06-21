@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
-import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
 
