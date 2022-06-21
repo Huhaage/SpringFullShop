@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{index.html}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les categories</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container">
+            <!-- <ul class="d-flex justify-content-between" >
+                <a type="button" class="btn btn-outline-info" th:text="${c.name}" th:each="c:${listCategories}"
+                    th:href="@{/categoryArticles(id=${c.id})}"></a>
+            </ul> -->
+            <div class="categorie-card">
+                <div class="panel-heading  p-2">
+                    <h4 class="panelTitle">Liste des categories</h4>
+                </div>
+                <div class="panel-body p-2">
+                    <table class="table">
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr th:each="c:${listCategories}">
+                            <td th:text="${c.id}"></td>
+                            <td th:text="${c.name}"></td>
+                            <td th:text="${c.description}"></td>
+                        </tr>
+                    </table>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item" th:each="page,status:${pages}">
+                            <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
+                                th:href="@{/categories(page=${status.index})}" th:text="${status.index}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

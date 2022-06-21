@@ -1295,3 +1295,9 @@ p {
   border: 1px solid coral;
    box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }
+
+/* ******category    */
+
+.categorie-card {
+  box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
+}
