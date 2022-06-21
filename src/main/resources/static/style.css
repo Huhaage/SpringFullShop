@@ -9,7 +9,7 @@ li {
 
 .home {
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
-  background-image: url('/assets/img/desktop.jpg');
+  background-image: url('/img/desktop.jpg');
   background-position: center;
   height: 600px;
 }

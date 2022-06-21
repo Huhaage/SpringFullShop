@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import fr.fms.entities.Category;
  * @author CHJCS
  *
  */
+@Controller
 public class ArticleController {
 	@Autowired
 	ArticleRepository articleRepository;
@@ -47,8 +49,8 @@ public class ArticleController {
 	}
 	
 	//lien vers l'index
-	@GetMapping("/index")
-	public String index(Model model, @RequestParam(name="page", defaultValue = "0") int page,
+	@GetMapping("/articles")
+	public String articles(Model model, @RequestParam(name="page", defaultValue = "0") int page,
 										@RequestParam(name="keyword", defaultValue = "") String kw) {
 		Page<Article> articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page, 5)); //récup tous les articles
 		List<Category> categories = categoryRepository.findAll();
@@ -60,6 +62,6 @@ public class ArticleController {
 		
 		model.addAttribute("listCategories", categories);
 		
-		return "articles/articles"; //cette méthode retourne au dispacterServlet une vue
+		return "articles"; //cette méthode retourne au dispacterServlet une vue
 	}
 }
