@@ -15,13 +15,12 @@ li {
 }
 
 /* not found 404 ********************** */
-.error {
+.error{
   background-image: url("/assets/img/404.jpg");
   background-position: center;
   height: 400px;
 }
-
-.errorMessage {
+.errorMessage{
   font-size: 40px;
   color: yellow;
   background-color: red;
@@ -197,13 +196,11 @@ li {
   border: 1px solid coral;
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }
-
 .cat-name {
   text-decoration: underline;
   margin-left: 20px;
   color: red;
 }
-
 /* bouton ajout panier ****************************/
 
 .cart-button {
@@ -399,7 +396,8 @@ li {
 }
 
 .shopping-cart>table>thead,
-.shopping-cart>table>tbody {
+.shopping-cart>table>tbody
+{
   border-bottom: coral;
 }
 
@@ -1247,7 +1245,7 @@ p {
   position: fixed;
   z-index: 1;
   left: 25%;
-  top: 15%;
+  top: 15%; 
   border: 3px solid coral;
   width: 50%;
   overflow: visible;
@@ -1293,13 +1291,9 @@ p {
 .payMethod p {
   color: black;
 }
-
-#orderCard,
-#customerNotes,
-#shippingInfo,
-#payInfo {
+#orderCard,#customerNotes,#shippingInfo,#payInfo{
   border: 1px solid coral;
-  box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
+   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }
 
 /* ******category    */
@@ -1311,7 +1305,6 @@ p {
   font-style: italic;
   text-decoration: underline;
 }
-
 .categorie-card {
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }

@@ -22,8 +22,8 @@
 
 	<!--  nav -->
 	<nav id="header" class="navbar navbar-expand-sm navbar-light">
-		<a th:href="@{/home}" class="navbar-brand"><img
-			src="../assets/img/programming-code-signs.png" alt="" class="logo">HOME
+		<a th:href="@{/}" class="navbar-brand"><img
+			th:src="@{img/programming-code-signs.png}" alt="" class="logo">HOME
 			TRAININGS</a>
 		<ul class="navbar-nav">
 			<li class="nav-item"><a th:href="@{/trainings}" class="nav-link">Liste
@@ -37,10 +37,10 @@
 
 		<!-- avatar -->
 		<div class="col-md-4 welcome">
-			Bienvenue {{name}} <img src="../img/avatar.png">
+			Bienvenue {{name}} <img th:src="@{img/avatar.png}">
 		</div>
 		<div id="Caddy" class="cart d-flex align-items-center">
-			<a href="/caddy"><img src="../img/cart.png" alt="Panier"
+			<a th:href="@{/caddy}"><img th:src="@{img/cart.png}" alt="Panier"
 				class="img_cart"></a>
 			<h3 id="qty-cart">0</h3>
 		</div>
