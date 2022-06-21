@@ -1295,3 +1295,16 @@ p {
   border: 1px solid coral;
    box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }
+
+/* ******category    */
+/* page category */
+.catName {
+  margin-left: 50px;
+  color: blueviolet;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+}
+.categorie-card {
+  box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
+}
