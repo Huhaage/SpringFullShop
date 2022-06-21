@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{index.html}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes articles</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container">
+            <div class="panel">
+                <div class="panel-heading p-2">
+                    <h4 class="panelTitle">Liste des articles</h4>
+                </div>
+                <div class="panel-body p-2">
+                    <form th:action="@{/articles}" method="get">
+                        <label for="">Keyword</label>
+                        <input type="text" name="keyword" th:value="${keyword}">
+                        <button type="submit" class="btn btn-success">Search</button>
+                    </form>
+
+                    <!-- //////////////// -->
+                    <div class="md-6 d-flex flex-wrap listAdmin">
+                        <!-- product -->
+                        <div th:each="a:${listArticle}">
+                            <div class="product-content product-wrap">
+                                <div class="row">
+                                    <div class="col-md-5 col-sm-12 col-xs-12">
+                                        <div class="product-image">
+                                            <img th:src="@{/img/${a.imgUrl}}" alt="194x228" class="img-responsive">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-12 col-xs-12">
+                                        <div class="product-deatil">
+                                            <h4 class="name" th:text="${a.brand}">
+                                                brand
+                                            </h4>
+                                            <p class="price-container" th:text="${a.price}">
+                                                <span>price €</span>
+                                            </p>
+                                            <a class="x-del"  th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}"><img th:src="@{/img/x-button.png}" alt="delete"></a>
+                                            <!-- Button trigger modal -->
+                                            <a class="" th:href="@{/editArticle(id=${a.id})}"><img class="x-edit" th:src="@{/img/edit.png}" alt="edit"></a>
+                                        </div>
+                                        <div class="description" th:text="${a.description}">
+                                            <h6>description</h6>
+                                        </div>
+                                        <div class="cat-name" th:text="${a.Category.name}">
+                                            <h6>nom de la categorie</h6>
+                                        </div>
+                                        <div class="product-info smart-form">
+                                            <div class="row">
+                                                <div class="sold_stars ml-auto"> <i class="fa-solid fa-star"></i> <i
+                                                        class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+                                                </div>
+                                                <button class="cart-button">
+                                                    <!-- a tester ou modifier -->
+                                                    <!-- Add to cart  -->
+                                                    <span class=" add-to-cart">Add
+                                                        to
+                                                        cart</span>
+                                                    <span class="added">Item
+                                                        added</span> <i class="fa fa-plus"></i> <i
+                                                        class="fa fa-circle-thin"></i> <i class="fa fa-check"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end product -->
+                    </div>
+
+
+                    <!-- ////////////
+                    <table class="table">
+                        <tr>
+                            <th>Id</th>
+                            <th>Brand</th>
+                            <th>Description</th>
+                            <th>Prix</th>
+                            <th>Categorie</th>
+                        </tr>
+                        <tr th:each="a:${listArticle}">
+                            <td th:text="${a.id}"></td>
+                            <td th:text="${a.brand}"></td>
+                            <td th:text="${a.description}"></td>
+                            <td th:text="${a.unitaryPrice}"></td>
+                            <td th:text="${a.Category.name}"></td>
+                            <td>
+                                <a class="" href=""><img class="img_cart" th:src="@{/img/panier.png}" alt=""></a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger"
+                                    th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">Delete</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-info" th:href="@{/editArticle(id=${a.id})}">Edit</a>
+                            </td>
+                        </tr>
+                    </table> -->
+
+
+
+
+                    <!-- les boutons de pagination -->
+                    <ul class="nav nav-pills">
+                        <li class="nav-item" th:each="page,status:${pages}">
+                            <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
+                                th:href="@{/articles(page=${status.index},keyword=${keyword})}"
+                                th:text="${status.index}"></a>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+<script src=""></script>
+</body>
+
+</html>
