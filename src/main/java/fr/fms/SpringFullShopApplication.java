@@ -30,8 +30,7 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //        Category pc = categoryRepository.save(new Category(null,"PC",null));
 //		Category logicielCategory = categoryRepository.save(new Category(null,"logiciel",null));
 		
-		Category smartphone = categoryRepository.findByDescription("smartphone");
-		System.out.println(smartphone);
+		
 		
 //		articleRepository.save(new Article(null,"S8","SamSung",350,smartphone));
 //		articleRepository.save(new Article(null,"S10","SamSung",400,smartphone));
