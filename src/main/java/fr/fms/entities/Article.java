@@ -33,6 +33,7 @@ public class Article {
 	@DecimalMin("50")
 	private double price;
 	
+	@NotNull
 	private String imgUrl;
 	
 	@ManyToOne

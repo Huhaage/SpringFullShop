@@ -22,39 +22,41 @@
                         <div class="loginbox-social">
                             <div class="social-title ">
                                 <!-- img "unknown" par défaut à récup dans le controleur -->
-                                <!-- <img th:src="{{data.imgURL}}" alt="194x228" class="img-responsive"> -->
+                                <img th:src="@{/img/new.png}" alt="194x228" class="img-responsive">
                             </div>
                         </div>
                         <form th:action="@{/save}" method="post" th:object="${article}">
                             <div class="loginbox-textbox">
                                 <label class="control-label">Brand : </label>
-                                <input class="form-control" type="text" name="brand" th:value="${article.brand}" required>
+                                <input class="form-control" type="text" name="brand" th:value="${article.brand}"
+                                    required>
                             </div>
                             <div class="loginbox-textbox">
                                 <label class="control-label">Description : </label>
-                                <input class="form-control" type="text" name="description" th:value="${article.description}"required>
+                                <input class="form-control" type="text" name="description"
+                                    th:value="${article.description}" required>
                                 <span th:errors="${article.description}"></span>
                             </div>
                             <div class="loginbox-textbox">
                                 <label class="control-label">Price : </label>
-                                <input class="form-control" type="text" name="unitaryPrice" th:value="${article.unitaryPrice}"required>
-                                <span th:errors="${article.unitaryPrice}"></span>
+                                <input class="form-control" type="text" name="price" th:value="${article.price}"
+                                    required>
+                                <span th:errors="${article.price}"></span>
                             </div>
                             <div class="loginbox-textbox">
                                 <label class="control-label">Img url : </label>
-                                <input type="text" name="imgURL" class="form-control" placeholder="imgURL"
-                                    th:value="${article.imgUrl}" required>
+                                <input type="text" name="imgUrl" class="form-control" placeholder="unknown.jpg"
+                                  th:value="${article.imgUrl}" required>
                             </div>
                             <div class="loginbox-textbox">
                                 <label class="control-label">Categorie : </label>
                                 <select class="form-control" name="Category">
-                                    <option th:each="c:${listCategories}" th:value="${c.id}" th:text="${c.name}">
+                                    <option th:each="c:${listCategories}" th:value="${c.id}" th:text="${c.description}" th:selected="${article.category}">
                                     </option>
                                 </select>
                             </div>
                             <div class="loginbox-submit">
-                                <button type="submit" class="btn btn-success btn-block"
-                                    id="modal-btn">
+                                <button type="submit" class="btn btn-success btn-block" id="modal-btn">
                                     <span>Submit</span>
                                     <div class="success">
                                         <svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
@@ -76,51 +78,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-            <!-- //////////////////// -->
-            <div class="col-md4 col-xs-8">
-                <div class="panel ">
-                    <div class="panel-heading">
-                        <h4 class="panelTitle p-2">Saisir un article</h4>
-                        <div class="panel-body">
-                            <form th:action="@{/save}" method="post" th:object="${article}">
-                                <div class="form-group">
-                                    <label for="" class="control-label">Brand : </label>
-                                    <input class="form-control" type="text" name="brand" th:value="${article.brand}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="control-label">Description : </label>
-                                    <input class="form-control" type="text" name="description"
-                                        th:value="${article.description}">
-                                    <span th:errors="${article.description}"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="control-label">Unitary price : </label>
-                                    <input class="form-control" type="text" name="unitaryPrice"
-                                        th:value="${article.unitaryPrice}">
-                                    <span th:errors="${article.unitaryPrice}"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Category" class="control-label">Category : </label>
-                                    <select class="form-control" name="Category">
-                                        <option th:each="c:${listCategories}" th:value="${c.id}" th:text="${c.name}">
-                                        </option>
-                                    </select>
-                                </div>
-
-                                <button class="btn btn-primary" type="submit">Save</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <!-- ////////////////////// -->
 
         </div>
 
