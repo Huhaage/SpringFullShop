@@ -43,6 +43,11 @@
                                     required>
                                 <span th:errors="${article.price}"></span>
                             </div>
+                                <div class="loginbox-textbox">
+                                    <label class="control-label">Quantity : </label>
+                                    <input class="form-control" type="text" name="quantity" th:value="${article.quantity}" disabled>
+                                    <span th:errors="${article.quantity}"></span>
+                                </div>
                             <div class="loginbox-textbox">
                                 <label class="control-label">Img url : </label>
                                 <input type="text" name="imgUrl" class="form-control" placeholder="unknown.jpg"

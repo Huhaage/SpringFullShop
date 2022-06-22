@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -39,7 +40,6 @@ public class Article {
 	@ManyToOne
 	private Category category;
 	
-	@NotNull
-	@Size(min=1)
-	private double quantity;
+	@Min(1)
+	private int quantity=1;
 }
