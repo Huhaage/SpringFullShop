@@ -1,5 +1,7 @@
 package fr.fms;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -63,11 +65,15 @@ public class SpringFullShopApplication implements CommandLineRunner {
 		articleRepository.save(new Article(null,"Studio 24 plus","Pinnacle",126,"unknown.png",logiciel,1));
 		articleRepository.save(new Article(null,"Platinium unlimlited","Nero",99.99,"unknown.png",logiciel,1));
 		articleRepository.save(new Article(null,"Studio 25 ultimate","Pinnacle",129.99,"unknown.png",logiciel,1));
-		articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"unknown.png",logiciel,1));
+		articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"unknown.pngc",logiciel,1));
 		
 
 
-
+		List<Article> articles =articleRepository.findByCategory(categoryRepository.findById((long) 3).get());
+		
+	
+	
+		
 		
 		
 	}

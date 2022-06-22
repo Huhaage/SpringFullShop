@@ -12,7 +12,7 @@
 
 <body>
 	<div layout:fragment="content">
-		<div class="container padding-bottom-3x mb-1">
+		<div th:if="${caddySize!=0}" class="container padding-bottom-3x mb-1">
 
  
 			<!--<div *ngIf="display else elseBlock">
@@ -46,7 +46,7 @@
 											</div>
 										</div>
 									</td>
-									<td class="text-center" t:text="${a.qty}">qty</td>
+									<td class="text-center" t:text="${a.quantity}">qty</td>
 									<td class="text-center text-lg text-medium"
 										th:text="${a.price}">price €</td>
 									<td class="text-center"><a class="delete"
@@ -73,18 +73,18 @@
 					</div>
 					<div class="shopping-cart-footer">
 						<div class="column">
-							<a class="btn btn-outline-secondary" th:href="/articles"><i
+							<a class="btn btn-outline-secondary" th:href="@{/article}"><i
 								class="icon-arrow-left"></i>&nbsp;Back to Shopping</a>
 						</div>
 						<div class="column">
-							<a class="btn btn-success" th:href="/order">Checkout</a>
+							<a class="btn btn-success" th:href="@{/order}">Checkout</a>
 						</div>
 					</div>
 
 				</div>
 			</div>
 			<!-- adapter la condition -->
-			<div #elseBlock>
+			<div th:unless="${caddySize!=0}">
 				<div class="container-fluid  mt-100">
 					<div class="row">
 						<div class="col-md-12">
@@ -101,7 +101,7 @@
 										</h3>
 										<h4>Add something to make me happy :)</h4>
 										<div class="column">
-											<a class="btn btn-outline-secondary" th:href="/articles"><i
+											<a class="btn btn-outline-secondary" th:href="@{/articles}"><i
 												class="icon-arrow-left"></i>&nbsp;Back to Shopping</a>
 										</div>
 									</div>
