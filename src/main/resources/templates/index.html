@@ -11,9 +11,9 @@
 	integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!--  lien du css à faire -->
-<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+<link rel="stylesheet" href="/css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}">
-<link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+<link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
 <title>Document</title>
 </head>
 
@@ -22,12 +22,11 @@
 
 	<!--  nav -->
 	<nav id="header" class="navbar navbar-expand-sm navbar-light">
-		<a th:href="@{/home}" class="navbar-brand"><img
-			src="../assets/img/programming-code-signs.png" alt="" class="logo">HOME
-			TRAININGS</a>
+		<a th:href="@{/}" class="navbar-brand"><img
+			th:src="@{img/logo_g-c.png}" alt="" class="logo">GEEK & SpringFullShopping</a>
 		<ul class="navbar-nav">
-			<li class="nav-item"><a th:href="@{/trainings}" class="nav-link">Liste
-					des formations.</a></li>
+			<li class="nav-item"><a th:href="@{/articles}" class="nav-link">Liste
+					des articles.</a></li>
 			<li class="nav-item"><a th:href="@{/register}" class="nav-link">S'enregistrer.</a>
 			</li>
 			<li class="nav-item"><a th:href="@{/login}" class="nav-link">Se
@@ -37,10 +36,10 @@
 
 		<!-- avatar -->
 		<div class="col-md-4 welcome">
-			Bienvenue {{name}} <img src="../img/avatar.png">
+			Bienvenue {{name}} <img th:src="@{img/avatar.png}">
 		</div>
 		<div id="Caddy" class="cart d-flex align-items-center">
-			<a href="/caddy"><img src="../img/cart.png" alt="Panier"
+			<a th:href="@{/caddy}"><img th:src="@{img/cart.png}" alt="Panier"
 				class="img_cart"></a>
 			<h3 id="qty-cart">0</h3>
 		</div>

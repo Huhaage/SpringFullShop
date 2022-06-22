@@ -1,111 +1,126 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{index.html}">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{index.html}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caddy</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caddy</title>
 </head>
 
 <body>
+	<div layout:fragment="content">
+		<div class="container padding-bottom-3x mb-1">
 
-    <div class="container padding-bottom-3x mb-1">
+ 
+			<!--<div *ngIf="display else elseBlock">
+				<div *ngIf="listCaddy"> -->
 
-        <div *ngIf="display else elseBlock">
-        <div *ngIf="listCaddy">
+					<!-- Shopping Cart-->
+					<div class="table-responsive shopping-cart">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Products</th>
+									<th class="text-center">Quantity</th>
+									<th class="text-center">Price</th>
 
-        <!-- Shopping Cart-->
-        <div class="table-responsive shopping-cart">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Products</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-center">Price</th>
+									<!-- ajout fonction suppression du caddy -->
+									<th class="text-center"><a
+										class="btn btn-sm btn-outline-danger">Clear Cart</a></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="a:${listCaddy}">
+									<td>
+										<div class="product-item">
+											<a class="product-thumb" href="#"><img
+												th:src="${a.imgURL}" alt="Product"></a>
+											<div class="product-info">
+												<h6 class="product-title" th:text="${a.brand}">description</h6>
+											</div>
+											<div class="product-info">
+												<h6 class="product-title" th:text="${a.description}">description</h6>
+											</div>
+										</div>
+									</td>
+									<td class="text-center" t:text="${a.qty}">qty</td>
+									<td class="text-center text-lg text-medium"
+										th:text="${a.price}">price €</td>
+									<td class="text-center"><a class="delete"
+										th:href="/delToCaddy/id" data-original-title="Remove item"><i
+											class="fa-solid fa-trash-can"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-                        <!-- ajout fonction suppression du caddy -->
-                        <th class="text-center"><a class="btn btn-sm btn-outline-danger">Clear Cart</a></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="a:${listCaddy}">
-                        <td>
-                            <div class="product-item">
-                                <a class="product-thumb" href="#"><img th:src="${a.imgURL}" alt="Product"></a>
-                                <div class="product-info">
-                                    <h6 class="product-title" th:text="${a.brand}">description</h6>
-                                </div>
-                                <div class="product-info">
-                                    <h6 class="product-title" th:text="${a.description}">description</h6>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-center" th:text="${a.qty}">qty </td>
-                        <td class="text-center text-lg text-medium" th:text="${a.price}">price €</td>
-                        <td class="text-center"><a class="delete" th:href="/delToCaddy/id"
-                                data-original-title="Remove item"><i class="fa-solid fa-trash-can"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+					<div class="shopping-cart-footer">
+						<div class="column">
+							<form class="coupon-form" method="post">
+								<input class="form-control form-control-sm" type="text"
+									placeholder="Coupon code" required="">
+								<button class="btn btn-outline-primary btn-sm" type="submit">Apply
+									Coupon</button>
+							</form>
+						</div>
+						<div class="column text-lg">
+							Total: <span class="text-medium" th:text="${totalCaddy}">1000
+								€</span>
+						</div>
+					</div>
+					<div class="shopping-cart-footer">
+						<div class="column">
+							<a class="btn btn-outline-secondary" th:href="/articles"><i
+								class="icon-arrow-left"></i>&nbsp;Back to Shopping</a>
+						</div>
+						<div class="column">
+							<a class="btn btn-success" th:href="/order">Checkout</a>
+						</div>
+					</div>
 
-        <div class="shopping-cart-footer">
-            <div class="column">
-                <form class="coupon-form" method="post">
-                    <input class="form-control form-control-sm" type="text" placeholder="Coupon code" required="">
-                    <button class="btn btn-outline-primary btn-sm" type="submit">Apply Coupon</button>
-                </form>
-            </div>
-            <div class="column text-lg">Total: <span class="text-medium" th:text="${totalCaddy}">1000 €</span></div>
-        </div>
-        <div class="shopping-cart-footer">
-            <div class="column"><a class="btn btn-outline-secondary" th:href="/articles"><i
-                        class="icon-arrow-left"></i>&nbsp;Back to
-                    Shopping</a></div>
-            <div class="column"><a class="btn btn-success" th:href="/order">Checkout</a>
-            </div>
-        </div>
-
-    </div>
-    </div>
-<!-- adapter la condition -->
-    <div #elseBlock>
-        <div class="container-fluid  mt-100">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card" id="emptyCard">
-                        <div class="card-header">
-                            <h5>Cart</h5>
-                        </div>
-                        <div class="card-body cart">
-                            <div class="col-sm-12 empty-cart-cls text-center">
-                                <img src="@{/img/dCdflKN.png}" width="130" height="130"
-                                    class="img-fluid mb-4 mr-3">
-                                <h3><strong>Votre panier est vide</strong></h3>
-                                <h4>Add something to make me happy :)</h4>
-                                <div class="column"><a class="btn btn-outline-secondary" th:href="/articles"><i
-                                            class="icon-arrow-left"></i>&nbsp;Back to
-                                        Shopping</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+				</div>
+			</div>
+			<!-- adapter la condition -->
+			<div #elseBlock>
+				<div class="container-fluid  mt-100">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card" id="emptyCard">
+								<div class="card-header">
+									<h5>Cart</h5>
+								</div>
+								<div class="card-body cart">
+									<div class="col-sm-12 empty-cart-cls text-center">
+										<img src="@{/img/dCdflKN.png}" width="130" height="130"
+											class="img-fluid mb-4 mr-3">
+										<h3>
+											<strong>Votre panier est vide</strong>
+										</h3>
+										<h4>Add something to make me happy :)</h4>
+										<div class="column">
+											<a class="btn btn-outline-secondary" th:href="/articles"><i
+												class="icon-arrow-left"></i>&nbsp;Back to Shopping</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
-    <!-- <div *ngIf="problemOrder" class=" alert alert-danger mt-5 col-md-3">
+			<!-- <div *ngIf="problemOrder" class=" alert alert-danger mt-5 col-md-3">
         Pour commander connectez-vous, ou créer un compte.
         <a class="btn btn-outline-secondary" routerLink="/login">Se connecter</a>
     </div> -->
-    </div>
-
-
+    
+    <!--  
+		</div>
+	</div>-->
 
 </body>
 

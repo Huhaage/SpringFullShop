@@ -49,19 +49,18 @@ public class ArticleController {
 //	}
 	
 	//lien vers l'index
-//	@GetMapping("/index")
-//	public String index(Model model, @RequestParam(name="page", defaultValue = "0") int page,
-//										@RequestParam(name="keyword", defaultValue = "") String kw) {
-//		Page<Article> articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page, 5)); //récup tous les articles
-//		List<Category> categories = categoryRepository.findAll();
-//		
-//		model.addAttribute("listArticle", articles.getContent()); //insert les articles dans le model
-//		model.addAttribute("pages", new int[articles.getTotalPages()]);
-//		model.addAttribute("currentPage", page);
-//		model.addAttribute("keyword", kw);
-//		
-//		model.addAttribute("listCategories", categories);
-//		
-//		return "articles/articles"; //cette méthode retourne au dispacterServlet une vue
-//	}
+	@GetMapping("/articles")
+	public String articles(Model model, @RequestParam(name="page", defaultValue = "0") int page,
+										@RequestParam(name="keyword", defaultValue = "") String kw) {
+		Page<Article> articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page, 6)); //récup tous les articles
+		List<Category> categories = categoryRepository.findAll();
+		
+		model.addAttribute("listArticle", articles.getContent()); //insert les articles dans le model
+		model.addAttribute("pages", new int[articles.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("keyword", kw);
+		
+		model.addAttribute("listCategories", categories);
+		return "articles"; //cette méthode retourne au dispacterServlet une vue
+	}
 }

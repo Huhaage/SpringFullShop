@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
-import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
 
@@ -27,6 +26,7 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		Category smartphone = categoryRepository.save(new Category(null,"Smartphone",null));
         Category tablet = categoryRepository.save(new Category(null,"Tablet",null)); 
         Category pc = categoryRepository.save(new Category(null,"PC",null));
@@ -65,6 +65,21 @@ public class SpringFullShopApplication implements CommandLineRunner {
 		articleRepository.save(new Article(null,"Studio 25 ultimate","Pinnacle",129.99,"",logiciel));
 		articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"",logiciel));
 		
+=======
+		// Category smartphone = categoryRepository.save(new Category(null,"Smartphone",null));
+        // Category tablet = categoryRepository.save(new Category(null,"Tablet",null)); 
+        // Category pc = categoryRepository.save(new Category(null,"PC",null));
+		// Category logicielCategory = categoryRepository.save(new Category(null,"logiciel",null));
+		
+		// articleRepository.save(new Article(null,"S8","SamSung",350,"unknown.png", smartphone));
+		// articleRepository.save(new Article(null,"S10","SamSung",400,"unknown.png",smartphone));
+		// articleRepository.save(new Article(null,"S11","SamSung",420,"unknown.png",smartphone));
+		// articleRepository.save(new Article(null,"SE","iPhone",650,"unknown.png",tablet));
+		// articleRepository.save(new Article(null,"Redmi Go","Xiaomi",200,"unknown.png",smartphone));
+		// articleRepository.save(new Article(null,"Mate X","Huawei",180,	"unknown.png",logicielCategory));
+		// articleRepository.save(new Article(null,"Redmi9A","Xiaomi",150,"unknown.png",pc));
+
+>>>>>>> d0313c9083fe6e9e2b2ca70c759b3bc592a0dd3f
 		
 		
 	}

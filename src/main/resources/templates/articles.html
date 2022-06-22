@@ -12,21 +12,31 @@
 <body>
     <div layout:fragment="content">
         <div class="container">
+            <ul class="d-flex justify-content-between">
+                <a type="button" class="btn btn-outline-info" th:text="${c.description}" th:each="c:${listCategories}"
+                    th:href="@{/categoryArticles(id=${c.id})}"></a>
+            </ul>
             <div class="panel">
                 <div class="panel-heading p-2">
                     <h4 class="panelTitle">Liste des articles</h4>
                 </div>
-                <ul class="d-flex justify-content-between">
-                    <a type="button" class="btn btn-outline-info" th:text="${c.name}" th:each="c:${listCategories}"
-                        th:href="@{/categoryArticles(id=${c.id})}"></a>
-                </ul>
+
                 <div class="panel-body p-2">
-                    <form th:action="@{/articles}" method="get">
+                    <div class="d-flex justify-content-between">
+                        <form th:action="@{/articles}" method="get">
                         <label for="">Keyword</label>
                         <input type="text" name="keyword" th:value="${keyword}">
                         <button type="submit" class="btn btn-success">Search</button>
                     </form>
-
+                    <ul class="nav nav-pills">
+                        <li class="nav-item" th:each="page,status:${pages}">
+                            <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
+                                th:href="@{/articles(page=${status.index},keyword=${keyword})}"
+                                th:text="${status.index}"></a>
+                        </li>
+                    </ul>  
+                    </div>
+                  
                     <!-- //////////////// -->
                     <div class="md-6 d-flex flex-wrap listAdmin">
                         <!-- product -->
@@ -35,7 +45,8 @@
                                 <div class="row">
                                     <div class="col-md-5 col-sm-12 col-xs-12">
                                         <div class="product-image">
-                                            <img th:src="@{/img/${a.imgUrl}}" alt="194x228" class="img-responsive">
+                                            <img th:src="@{/img/}+${a.imgUrl}" alt="194x228" class="img-responsive">
+                                            <p th:text="${a.imgUrl}"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-sm-12 col-xs-12">
@@ -50,7 +61,7 @@
                                         <div class="description" th:text="${a.description}">
                                             <h6>description</h6>
                                         </div>
-                                        <div class="cat-name" th:text="${a.Category.name}">
+                                        <div class="cat-name" th:text="${a.Category.description}">
                                             <h6>nom de la categorie</h6>
                                         </div>
                                         <div class="product-info smart-form">
@@ -77,49 +88,6 @@
                         </div>
                         <!-- end product -->
                     </div>
-
-
-                    <!-- ////////////
-                    <table class="table">
-                        <tr>
-                            <th>Id</th>
-                            <th>Brand</th>
-                            <th>Description</th>
-                            <th>Prix</th>
-                            <th>Categorie</th>
-                        </tr>
-                        <tr th:each="a:${listArticle}">
-                            <td th:text="${a.id}"></td>
-                            <td th:text="${a.brand}"></td>
-                            <td th:text="${a.description}"></td>
-                            <td th:text="${a.unitaryPrice}"></td>
-                            <td th:text="${a.Category.name}"></td>
-                            <td>
-                                <a class="" href=""><img class="img_cart" th:src="@{/img/panier.png}" alt=""></a>
-                            </td>
-                            <td>
-                                <a class="btn btn-danger"
-                                    th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">Delete</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-info" th:href="@{/editArticle(id=${a.id})}">Edit</a>
-                            </td>
-                        </tr>
-                    </table> -->
-
-
-
-
-                    <!-- les boutons de pagination -->
-                    <ul class="nav nav-pills">
-                        <li class="nav-item" th:each="page,status:${pages}">
-                            <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
-                                th:href="@{/articles(page=${status.index},keyword=${keyword})}"
-                                th:text="${status.index}"></a>
-                        </li>
-                    </ul>
-
-
                 </div>
             </div>
 
