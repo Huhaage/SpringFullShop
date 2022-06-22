@@ -40,13 +40,11 @@ public class ArticleController {
 		return "home";
 	}
 	
-	//lien vers la page article
-//	@GetMapping("/article")
-//	public String article(Model model) {
-//		model.addAttribute("article", new Article());
-//		
-//		return "articles/article";
-//	}
+	//lien vers la page 403    //// test
+	@GetMapping("/403")
+	public String error() {
+		return "403";
+	}
 	
 	//lien vers l'index
 	@GetMapping("/articles")
