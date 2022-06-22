@@ -16,7 +16,7 @@
                 <div class="container">
                     <div class="row justify-content-center text-center mb-4">
                         <div class="col-xl-6 col-lg-8 col-sm-10">
-                            <h2 class="font-weight-bold">Administration <br>HOME TRAININGS</h2>
+                            <h2 class="font-weight-bold">Administration <br>GEEK & SpringFullShopping</h2>
                             <p class="text-muted mb-0">C'est de là que commence toutes choses....</p>
                         </div>
                     </div>
@@ -25,24 +25,26 @@
                         data-aos="fade-up">
         
                         <div class="col my-3">
-                            <div class="card border-hover-primary hover-scale" id="adminCard" (click)="addTraining()">
+                            <!-- ajout lien -->
+                            <div class="card border-hover-primary hover-scale" id="adminCard">
                                 <div class="card-body">
-                                    <div class="text-primary mb-5">
-                                        <img th:src="@{/img/add.png}" alt="">
-                                    </div>
-                                    <h6 class="font-weight-bold mb-3">Ajouter une formation</h6>
+                                     <a th:href="@{/addArticle}"><div class="text-primary mb-5">
+                                 <img th:src="@{/img/add.png}" alt="">
+                                    </div></a>
+                                    <h6 class="font-weight-bold mb-3">Ajouter un article</h6>
                                     <p class="text-muted mb-0">Pour l'ajouter à notre catalogue</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col my-3">
-                            <div class="card border-hover-primary hover-scale" id="adminCard" (click)=" showTrainings()">
+                            <!-- ajout lien -->
+                         <div class="card border-hover-primary hover-scale" id="adminCard">
                                 <div class="card-body">
-                                    <div class="text-primary mb-5">
-                                        <img src="@{/img/bullet-list.png}" alt="">
-                                    </div>
-                                    <h6 class="font-weight-bold mb-3">Listes des formations</h6>
-                                    <p class="text-muted mb-0">Ensemble de nos formations</p>
+                                       <a th:href="@{/adminListArticles}"><div class="text-primary mb-5">
+                                        <img th:src="@{/img/bullet-list.png}" alt="">
+                                    </div></a>
+                                    <h6 class="font-weight-bold mb-3">Listes des articles</h6>
+                                    <p class="text-muted mb-0">Ensemble de nos articles</p>
                                 </div>
                             </div>
                         </div>
@@ -50,10 +52,10 @@
                             <div class="card border-hover-primary hover-scale" id="adminCard">
                                 <div class="card-body">
                                     <div class="text-primary mb-5">
-                                        <img src="@{/img/category_list.png}" alt="">
+                                        <img th:src="@{/img/category_list.png}" alt="">
                                     </div>
                                     <h6 class="font-weight-bold mb-3">Listes des categories</h6>
-                                    <p class="text-muted mb-0">Prochainement...</p>
+                                    <p class="text-muted mb-0">Emsemble de nos catégories</p>
                                 </div>
                             </div>
                         </div>
@@ -61,10 +63,10 @@
                             <div class="card border-hover-primary hover-scale" id="adminCard">
                                 <div class="card-body">
                                     <div class="text-primary mb-5">
-                                        <img src="@{/img/add_category.png}" alt="">
+                                        <img th:src="@{/img/add_category.png}" alt="">
                                     </div>
                                     <h6 class="font-weight-bold mb-3">Ajouter une categorie</h6>
-                                    <p class="text-muted mb-0">Prochainement</p>
+                                    <p class="text-muted mb-0">Pour l'ajouter à nos catégories</p>
                                 </div>
                             </div>
                         </div>
