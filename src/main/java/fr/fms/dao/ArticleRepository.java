@@ -14,5 +14,6 @@ import fr.fms.entities.Category;
 public interface ArticleRepository extends JpaRepository<Article,Long> {
 	Page<Article> findByDescriptionContains(String description, Pageable pageable);
 
+	Page<Article> findByCategoryId(Long categoryId, Pageable pageable);
 	List<Article> findByCategory(Category category);
 }

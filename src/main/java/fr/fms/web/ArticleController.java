@@ -93,7 +93,7 @@ public class ArticleController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("keyword", kw);
 			
-		model.addAttribute("listCategory", categories);
+		model.addAttribute("listCategories", categories);
 		
 		return "articles"; //cette méthode retourne au dispacterServlet une vue
 	}
