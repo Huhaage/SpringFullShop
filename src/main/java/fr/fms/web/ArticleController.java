@@ -4,6 +4,7 @@
 package fr.fms.web;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -86,12 +87,14 @@ public class ArticleController {
 		Page<Article> articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page, 6)); //récup tous les articles
 		List<Category> categories = categoryRepository.findAll();
 		
+		
 		model.addAttribute("listArticle", articles.getContent()); //insert les articles dans le model
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("keyword", kw);
+			
+		model.addAttribute("listCategory", categories);
 		
-		model.addAttribute("listCategories", categories);
 		return "articles"; //cette méthode retourne au dispacterServlet une vue
 	}
 }

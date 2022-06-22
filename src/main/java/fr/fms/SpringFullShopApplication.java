@@ -1,5 +1,7 @@
 package fr.fms;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -67,7 +69,11 @@ public class SpringFullShopApplication implements CommandLineRunner {
 		
 
 
-
+		//List<Article> articles =articleRepository.findByCategory(categoryRepository.findById((long) 3).get());
+		
+	
+	
+		
 		
 		
 	}
