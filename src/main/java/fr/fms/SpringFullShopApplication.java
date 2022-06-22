@@ -26,8 +26,8 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 //		Category smartphone = categoryRepository.save(new Category(null,"Smartphone",null));
-//        Category tablet = categoryRepository.save(new Category(null,"Tablet",null)); 
-//        Category pc = categoryRepository.save(new Category(null,"PC",null));
+//      Category tablet = categoryRepository.save(new Category(null,"Tablet",null)); 
+//      Category pc = categoryRepository.save(new Category(null,"PC",null));
 //		Category logicielCategory = categoryRepository.save(new Category(null,"logiciel",null));
 		
 		

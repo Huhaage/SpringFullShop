@@ -37,4 +37,8 @@ public class Article {
 	
 	@ManyToOne
 	private Category category;
+	
+	@NotNull
+	@Size(min=1)
+	private double quantity;
 }
