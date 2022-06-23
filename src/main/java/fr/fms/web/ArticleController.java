@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
@@ -74,12 +75,14 @@ public class ArticleController {
 		
 		//List<Category> categories = categoryRepository.findAll();
 		
+		/////////récupérer l'article pour la modal de l'update
+		Article article = articleRepository.findById((long) 1).get();
+		model.addAttribute("article", article);
+		
 		model.addAttribute("listArticle", articles.getContent()); //insert les articles dans le model
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("keyword", kw);
-		
-
 		
 //		model.addAttribute("listCategories", categories);
 		
@@ -94,22 +97,25 @@ public class ArticleController {
 	}
 	
 	@PostMapping("/updateArticle")
-	public String updateArticle(Model model, @Valid Long id, BindingResult bindingResult){
-		//if(bindingResult.hasErrors()) return "article";
-		
-		Article articleToEdit = articleRepository.findById(id).get();
-		
-		model.addAttribute("articleToEdit", articleToEdit);
-		
-		articleRepository.save(articleToEdit);
+	public String updateArticle(Article article, BindingResult bindingResult){
+		if(bindingResult.hasErrors()) return "adminListArticles";
+
+		if(article.getId() != null) {
+			articleRepository.save(article);
+		}
 		
 		return "redirect:/adminListArticles";
 	}
 	
-//	@GetMapping("/editArticle")
-//	public String editArticle(Model model, @Valid Long id, BindingResult bindingResult){
-//		
-//		
-//		return "adminListArticles";
-//	}
+	@GetMapping("/editArticle")
+	public String editArticle(Model model, @Valid Long id){		
+		Article articleToEdit = articleRepository.findById(id).get();
+		model.addAttribute("articleToEdit", articleToEdit);
+		
+		List<Category> categories = categoryRepository.findAll();
+		model.addAttribute("listCategories", categories);
+		
+		return "editArticle";
+	}
+
 }
