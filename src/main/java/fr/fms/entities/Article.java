@@ -36,11 +36,11 @@ public class Article {
 	
 	@NotNull
 	private String imgUrl;
-	
+
 	@ManyToOne
 	private Category category;
 	
 
 	@Min(1)
-	private int quantity;
+	private int quantity=1;
 }

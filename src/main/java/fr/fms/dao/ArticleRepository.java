@@ -10,9 +10,8 @@ import org.springframework.stereotype.Repository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
-@Repository
 public interface ArticleRepository extends JpaRepository<Article,Long> {
 	Page<Article> findByDescriptionContains(String description, Pageable pageable);
-
-	List<Article> findByCategory(Category category);
+	List<Article> findByCategoryId(Long id);
+	Page<Article> findByCategoryId(Long categoryId, Pageable pageable);
 }

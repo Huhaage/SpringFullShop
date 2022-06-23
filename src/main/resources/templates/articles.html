@@ -14,7 +14,7 @@
         <div class="container">
             <ul class="d-flex justify-content-between">
                 <a type="button" class="btn btn-outline-info" th:text="${c.description}" th:each="c:${listCategories}"
-                    th:href="@{/categoryArticles(id=${c.id})}"></a>
+                    th:href="@{/articlesByCategory(id=${c.id})}"></a>
             </ul>
             <div class="panel">
                 <div class="panel-heading p-2">

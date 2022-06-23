@@ -41,7 +41,13 @@ public class CaddyControler {
 
 		return "redirect:/articles?page="+page+"&keyword="+keyword;
 
+	}
 
+	// lien de la page order
+	@GetMapping("/order")
+	public String order(Model model) {
+
+		return "order";
 	}
 
 }
