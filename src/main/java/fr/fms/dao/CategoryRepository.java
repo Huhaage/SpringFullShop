@@ -5,9 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import fr.fms.entities.Category;
 
-@Repository
 public interface CategoryRepository extends JpaRepository<Category,Long> {
-
-	Category findByDescription(String string);
 
 }
