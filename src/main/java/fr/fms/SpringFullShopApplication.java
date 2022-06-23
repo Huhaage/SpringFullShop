@@ -1,6 +1,7 @@
 package fr.fms;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,19 +28,19 @@ public class SpringFullShopApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Category smartphone = categoryRepository.save(new Category(null,"Smartphone",null));
-        Category tablet = categoryRepository.save(new Category(null,"Tablet",null)); 
-        Category pc = categoryRepository.save(new Category(null,"PC",null));
-		Category logiciel = categoryRepository.save(new Category(null,"logiciel",null));
-		
-		articleRepository.save(new Article(null,"S8","SamSung",350,smartphone));
-		articleRepository.save(new Article(null,"S10","SamSung",400,smartphone));
-		articleRepository.save(new Article(null,"S11","SamSung",420,smartphone));
-		articleRepository.save(new Article(null,"SE","iPhone",650,smartphone));
-		articleRepository.save(new Article(null,"Redmi Go","Xiaomi",200,smartphone));
-		articleRepository.save(new Article(null,"Mate X","Huawei",180,smartphone));
-		articleRepository.save(new Article(null,"Redmi9A","Xiaomi",150,smartphone));
-		
+//		Category smartphone = categoryRepository.save(new Category(null,"Smartphone",null));
+//        Category tablet = categoryRepository.save(new Category(null,"Tablet",null)); 
+//        Category pc = categoryRepository.save(new Category(null,"PC",null));
+//		Category logiciel = categoryRepository.save(new Category(null,"logiciel",null));
+//		
+//		articleRepository.save(new Article(null,"S8","SamSung",350,smartphone));
+//		articleRepository.save(new Article(null,"S10","SamSung",400,smartphone));
+//		articleRepository.save(new Article(null,"S11","SamSung",420,smartphone));
+//		articleRepository.save(new Article(null,"SE","iPhone",650,smartphone));
+//		articleRepository.save(new Article(null,"Redmi Go","Xiaomi",200,smartphone));
+//		articleRepository.save(new Article(null,"Mate X","Huawei",180,smartphone));
+//		articleRepository.save(new Article(null,"Redmi9A","Xiaomi",150,smartphone));
+//		
 //		articleRepository.save(new Article(null,"Predator PO3","Acer",1899.99,"  ",pc));
 //		articleRepository.save(new Article(null,"SK15","Skillkorp",1199.99,"  ",pc));
 //		articleRepository.save(new Article(null,"SK45","Skillkorp",1599.99,"  ",pc));
@@ -68,9 +69,12 @@ public class SpringFullShopApplication implements CommandLineRunner {
 		for(Article article : articleRepository.findAll())
 			System.out.println(article);
 		
-		for(Article article : articleRepository.findByCategoryId((long)2)) 
-			System.out.println(article);
+//		for(Article article : articleRepository.findByCategoryId((long)2)) 
+//			System.out.println(article);
 		
+
+
+		//List<Article> articles =articleRepository.findByCategory(categoryRepository.findById((long) 3).get());	
 	}
 
 }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{index.html}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="login-container">
+				<div class="loginbox bg-white" id="logCard">
+					<div class="loginbox-title">CONNECTION</div>
+					<div class="loginbox-social">
+						<div class="social-title ">Connection depuis un réseau social.</div>
+						<div class="social-buttons">
+							<a href="#" class="button-facebook">
+								<i class="social-icon fa-brands fa-facebook-f"></i>
+							</a>
+							<a href="#" class="button-twitter">
+								<i class="social-icon fa-brands fa-twitter"></i>
+							</a>
+							<a href="#" class="button-google">
+								<i class="social-icon fa-brands fa-google-plus-g"></i>
+							</a>
+						</div>
+					</div>
+					<div class="loginbox-or">
+						<div class="or-line"></div>
+						<div class="or">OR</div>
+					</div>
+					<form  >
+						<div class="loginbox-textbox">
+							<input type="text" class="form-control" placeholder="Email" name="email"
+								formControlName="email" required="">
+							<div id="emailHelp" class="form-text">Ne partagez votre email avec personne.</div>
+						</div>
+						<div class="loginbox-textbox">
+							<input type="password" class="form-control" name="password" placeholder="Password"
+								formControlName="password" required="">
+						</div>
+						<div class="loginbox-submit">
+							<button type="submit" class="btn btn-success btn-block"
+								id="modal-btn">
+								<span>Submit</span>
+								<div class="success">
+									<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+										viewBox="0 0 29.756 29.756" style="enable-background:new 0 0 29.756 29.756;"
+										xml:space="preserve">
+										<path
+											d="M29.049,5.009L28.19,4.151c-0.943-0.945-2.488-0.945-3.434,0L10.172,18.737l-5.175-5.173   c-0.943-0.944-2.489-0.944-3.432,0.001l-0.858,0.857c-0.943,0.944-0.943,2.489,0,3.433l7.744,7.752   c0.944,0.943,2.489,0.943,3.433,0L29.049,8.442C29.991,7.498,29.991,5.953,29.049,5.009z" />
+									</svg>
+								</div>
+							</button>
+						</div>
+					</form>
+					<!-- <div *ngIf="display" class=" alert alert-success col-md-12">
+						Utilisateur connecté.
+					</div>
+
+					<div *ngIf="problemLogin" class=" alert alert-danger col-md-12">
+						Vérifiez vos identifiants.
+					</div> -->
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

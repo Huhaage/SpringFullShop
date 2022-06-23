@@ -14,21 +14,14 @@ li {
   height: 600px;
 }
 
-/* not found 404 ********************** */
+/* not found 403 ********************** */
 .error {
-  background-image: url("/assets/img/404.jpg");
-  background-position: center;
-  height: 400px;
+  background-image: url("/img/403.png");
+  /* background-position: center; */
+  width: 1000px;
+  height: 500px;
 }
 
-.errorMessage {
-  font-size: 40px;
-  color: yellow;
-  background-color: red;
-  position: relative;
-  top: 240px;
-  text-align: center;
-}
 
 /* ******************************* */
 .img_cart {
@@ -98,7 +91,9 @@ li {
 .sold_stars i {
   color: orange;
 }
-
+.img-article{
+  width: 128px;
+}
 /* ******************************* */
 /* ********* s'enrgister ******** */
 .row {
@@ -1240,7 +1235,7 @@ li {
 
 #modal-confirm-container>h1,
 p {
-  color: white;
+  color: #21c2f8;
 }
 
 /* The Modal (background) */

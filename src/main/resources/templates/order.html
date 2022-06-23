@@ -10,147 +10,147 @@
 </head>
 
 <body>
+    <div layout:fragment="content">
+        <div class="container">
+            <!-- Title -->
+            <div class="d-flex justify-content-between align-items-center py-3">
+                <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> Order #16123222</h2>
+            </div>
+            <!-- Main content -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Details -->
+                    <div class="card mb-4 " id="orderCard">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex justify-content-between">
+                                <div>
+                                    <span class="me-3">06/21/2048</span>
+                                    <span class="me-3">#16123222</span>
+                                    <span class="me-3">Visa -1234</span>
+                                    <span class="badge rounded-pill bg-info">SHIPPING</span>
+                                </div>
+                            </div>
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr th:each="a:${listCaddy}">
+                                        <td>
+                                            <div class="d-flex mb-2">
+                                                <div class="flex-shrink-0">
+                                                    <img th:src="${a.imgURL}" alt="" width="35" class="img-fluid">
+                                                </div>
+                                                <div class="flex-lg-grow-1 ms-3">
+                                                    <h6 class="small mb-0"><a class="text-reset"
+                                                            th:text="${a.brand}">brand</a></h6>
+                                                    <span class="small" th:text="${a.description}">description</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td th:text="${a.qty}">qty</td>
+                                        <td class="text-end" th:text="${a.price}">price €</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2">Shipping</td>
+                                        <td class="text-end">$20.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">Discount (Code: NEWYEAR)</td>
+                                        <td class="text-danger text-end">-$10.00</td>
+                                    </tr>
+                                    <tr class="fw-bold">
+                                        <td colspan="2">TOTAL</td>
+                                        <td class="text-end" th:text="${totalCaddy}">1000 €</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Payment -->
+                    <div class="card mb-4" id="payInfo">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6 payMethod">
+                                    <h3 class="h6">Payment Method</h3>
+                                    <p>Visa -1234</p> <br>
+                                    <p th:text="${totalCaddy}"> Total: 1000 € </p>
 
-    <div class="container">
-        <!-- Title -->
-        <div class="d-flex justify-content-between align-items-center py-3">
-            <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> Order #16123222</h2>
-        </div>
-        <!-- Main content -->
-        <div class="row">
-            <div class="col-lg-8">
-                <!-- Details -->
-                <div class="card mb-4 " id="orderCard">
-                    <div class="card-body">
-                        <div class="mb-3 d-flex justify-content-between">
-                            <div>
-                                <span class="me-3">06/21/2048</span>
-                                <span class="me-3">#16123222</span>
-                                <span class="me-3">Visa -1234</span>
-                                <span class="badge rounded-pill bg-info">SHIPPING</span>
+                                    <!-- function valider order -->
+                                    <button class="btn btn-success" style="max-width: 200px;">Paid</button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h3 class="h6">Billing address</h3>
+                                    <!-- <address th:object="${user}">
+                                        <strong th:text="${user.name}">nom</strong><br>
+                                        <strong th:text="${user.firstname}">prénom</strong><br>
+                                        <p th:text="${user.adress}">adresse</p><br>
+                                        San Francisco, CA 94103<br>
+                                        <abbr th:text="${user.phone}" title="Phone">P:</abbr> (123)
+                                        <br>
+                                        <p th:text="${user.email}">email</p><br>
+                                    </address> -->
+                                </div>
                             </div>
                         </div>
-                        <table class="table table-borderless">
-                            <tbody>
-                            <tr th:each="a:${listCaddy}">
-                                    <td>
-                                        <div class="d-flex mb-2">
-                                            <div class="flex-shrink-0">
-                                                <img th:src="${a.imgURL}"  alt="" width="35" class="img-fluid">
-                                            </div>
-                                            <div class="flex-lg-grow-1 ms-3">
-                                                <h6 class="small mb-0"><a class="text-reset"th:text="${a.brand}">brand</a></h6>
-                                                <span class="small"th:text="${a.description}">description</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td th:text="${a.qty}">qty</td>
-                                    <td class="text-end"th:text="${a.price}">price €</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="2">Shipping</td>
-                                    <td class="text-end">$20.00</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">Discount (Code: NEWYEAR)</td>
-                                    <td class="text-danger text-end">-$10.00</td>
-                                </tr>
-                                <tr class="fw-bold">
-                                    <td colspan="2">TOTAL</td>
-                                    <td class="text-end"th:text="${totalCaddy}">1000 €</td>
-                                </tr>
-                            </tfoot>
-                        </table>
                     </div>
                 </div>
-                <!-- Payment -->
-                <div class="card mb-4" id="payInfo">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6 payMethod">
-                                <h3 class="h6">Payment Method</h3>
-                                <p>Visa -1234</p> <br>
-                                   <p th:text="${totalCaddy}"> Total: 1000 € </p>
-
-                                   <!-- function valider order -->
-                                <button class="btn btn-success" style="max-width: 200px;"
-                                    >Paid</button>
-                            </div>
-                            <div class="col-lg-6">
-                                <h3 class="h6">Billing address</h3>
-                                <address th:object="${user">
-                                    <strong th:text="${user.name}">nom</strong><br>
-                                    <strong th:text="${user.firstname}">prénom</strong><br>
-                                   <p th:text="${user.adress}">adresse</p><br>
-                                    San Francisco, CA 94103<br>
-                                    <abbr th:text="${user.phone}" title="Phone">P:</abbr> (123)
-                                   <br>
-                                   <p th:text="${user.email}">email</p><br>
-                                </address>
-                            </div>
+                <div class="col-lg-4">
+                    <!-- Customer Notes -->
+                    <div class="card mb-4 " id="customerNotes">
+                        <div class="card-body">
+                            <h3 class="h6">Customer Notes</h3>
+                            <p>En cas d'absence, livrez au relais colis le plus proche.</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4" id="shippingInfo">
+                        <!-- Shipping information -->
+                        <div class="card-body">
+                            <h3 class="h6">Shipping Information</h3>
+                            <strong>FedEx</strong>
+                            <span><a class="text-decoration-underline" target="_blank">FF1234567890</a> <i
+                                    class="bi bi-box-arrow-up-right"></i> </span>
+                            <hr>
+                            <h3 class="h6">Address</h3>
+                            <!-- <address th:object="${user}">
+                                <strong th:text="${user.name}">nom</strong><br>
+                                <strong th:text="${user.firstname}">prénom</strong><br>
+                                <p th:text="${user.adress}">adresse</p><br>
+                                San Francisco, CA 94103<br>
+                                <abbr th:text="${user.phone}" title="Phone">P:</abbr> (123)
+                                <br>
+                                <p th:text="${user.email}">email</p><br>
+                            </address> -->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <!-- Customer Notes -->
-                <div class="card mb-4 " id="customerNotes">
-                    <div class="card-body">
-                        <h3 class="h6">Customer Notes</h3>
-                        <p>En cas d'absence, livrez au relais colis le plus proche.</p>
-                    </div>
-                </div>
-                <div class="card mb-4" id="shippingInfo">
-                    <!-- Shipping information -->
-                    <div class="card-body">
-                        <h3 class="h6">Shipping Information</h3>
-                        <strong>FedEx</strong>
-                        <span><a class="text-decoration-underline" target="_blank">FF1234567890</a> <i
-                                class="bi bi-box-arrow-up-right"></i> </span>
-                        <hr>
-                        <h3 class="h6">Address</h3>
-                        <address th:object="${user">
-                            <strong th:text="${user.name}">nom</strong><br>
-                            <strong th:text="${user.firstname}">prénom</strong><br>
-                            <p th:text="${user.adress}">adresse</p><br>
-                            San Francisco, CA 94103<br>
-                            <abbr th:text="${user.phone}" title="Phone">P:</abbr> (123)
-                            <br>
-                            <p th:text="${user.email}">email</p><br>
-                        </address>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- <div *ngIf="problemOrder" class=" alert alert-danger mt-5 col-md-3">
+            <!-- <div *ngIf="problemOrder" class=" alert alert-danger mt-5 col-md-3">
             Vous avec été déconnécté,reconnectez-vous.
         </div> -->
 
 
 
-        <!-- modal -->
-        <!-- modal -->
-        <div id="id01" id="modal-confirm">
+            <!-- modal -->
+            <!-- modal -->
+            <div id="modal-confirm">
 
-            <!-- ajout function close modal -->
-            <span class="close" title="Close Modal">&times;</span>
-            <div class="modal-container" id="modal-confirm-container">
-                <h1>Comfirmation de commande</h1>
-                <p>Aujourd'hui c'est gratuit, merci de votre visite :)</p>
-                <div class="clearfix">
+                <!-- ajout function close modal -->
+                <span class="close" title="Close Modal">&times;</span>
+                <div class="modal-container" id="modal-confirm-container">
+                    <h1>Comfirmation de commande</h1>
+                    <p>Aujourd'hui c'est gratuit, merci de votre visite :)</p>
+                    <div class="clearfix">
 
-                    <!-- close modal function -->
-                    <button type="button" class="cancelbtn">Annuler</button>
+                        <!-- close modal function -->
+                        <button type="button" class="cancelbtn">Annuler</button>
 
-                    <!-- confirm function -->
-                    <button type="button" class="confirmbtn">Confirmer</button>
+                        <!-- confirm function -->
+                        <button type="button" class="confirmbtn">Confirmer</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

@@ -14,7 +14,7 @@
         <div class="container">
             <ul class="d-flex justify-content-between">
                 <a type="button" class="btn btn-outline-info" th:text="${c.description}" th:each="c:${listCategories}"
-                    th:href="@{/categoryArticles(id=${c.id})}"></a>
+                    th:href="@{/articlesByCategory(id=${c.id})}"></a>
             </ul>
             <div class="panel">
                 <div class="panel-heading p-2">
@@ -45,24 +45,22 @@
                                 <div class="row">
                                     <div class="col-md-5 col-sm-12 col-xs-12">
                                         <div class="product-image">
-                                            <img th:src="@{/img/}+${a.imgUrl}" alt="194x228" class="img-responsive">
-                                            <p th:text="${a.imgUrl}"></p>
+                                            <img th:src="@{/img/}+${a.imgUrl}" alt="194x228" class="img-article">
+                                          
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-sm-12 col-xs-12">
                                         <div class="product-deatil">
-                                            <h4 class="name" th:text="${a.brand}">
-                                                brand
-                                            </h4>
-                                            <p class="price-container" th:text="${a.price}">
-                                                <span>price €</span>
+                                            <h4 class="name" th:text="${a.brand}"></h4>
+                                            <p class="price-container" >
+                                                <span th:text="${a.price} + €"> </span>
                                             </p>
                                         </div>
-                                        <div class="description" th:text="${a.description}">
-                                            <h6>description</h6>
+                                        <div class="description" >
+                                            <h6 th:text="${a.description}"></h6>
                                         </div>
-                                        <div class="cat-name" th:text="${a.Category.description}">
-                                            <h6>nom de la categorie</h6>
+                                        <div class="cat-name" >
+                                            <h6 th:text="${a.Category.description}"></h6>
                                         </div>
                                         <div class="product-info smart-form">
                                             <div class="row">

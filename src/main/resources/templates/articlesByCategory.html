@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="~{index.html}">
+    layout:decorate="~{index.html}">
 
 <head>
     <meta charset="UTF-8">
@@ -13,16 +13,73 @@ layout:decorate="~{index.html}">
     <div layout:fragment="content">
         <div class="container">
             <ul class="d-flex justify-content-between">
-                <a type="button" class="btn btn-outline-info" th:text="${c.name}" th:each="c:${listCategories}"
-                    th:href="@{/categoryArticles(id=${c.id})}"
-                    ></a>
+                <a type="button" class="btn btn-outline-info" th:text="${c.description}" th:each="c:${listCategories}"
+                    th:href="@{/articlesByCategory(keyword=${c.id})}"></a>
             </ul>
-            <div class="categorie-card">
-                <div class="panel-heading p-2">
-                    <h4 class="panelTitle">Liste des articles de la catégorie <span class="catName" th:text="${catName}"></span></h4>
+            <div class="">
+                <div class="d-flex justify-content-between">
+                    <h4 class="panelTitle">Liste des articles de la catégorie <span class="catName"
+                            th:text="${catName}"></span></h4>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item" th:each="page,status:${pages}">
+                            <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
+                                th:href="@{/articlesByCategory(page=${status.index},keyword=${keyword})}" th:text="${status.index}"></a>
+                        </li>
+                    </ul>
                 </div>
+                <!-- //////////////// -->
+                <!-- //////////////// -->
+                <div class="md-6 d-flex flex-wrap listAdmin">
+                    <!-- product -->
+                    <div th:each="a:${listCategoryArticles}">
+                        <div class="product-content product-wrap">
+                            <div class="row">
+                                <div class="col-md-5 col-sm-12 col-xs-12">
+                                    <div class="product-image">
+                                        <img th:src="@{/img/}+${a.imgUrl}" alt="194x228" class="img-article">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-12 col-xs-12">
+                                    <div class="product-deatil">
+                                        <h4 class="name" th:text="${a.brand}"></h4>
+                                        <p class="price-container">
+                                            <span th:text="${a.price} + €"> </span>
+                                        </p>
+                                    </div>
+                                    <div class="description">
+                                        <h6 th:text="${a.description}"></h6>
+                                    </div>
+                                    <div class="cat-name">
+                                        <h6 th:text="${a.Category.description}"></h6>
+                                    </div>
+                                    <div class="product-info smart-form">
+                                        <div class="row">
+                                            <div class="sold_stars ml-auto"> <i class="fa-solid fa-star"></i> <i
+                                                    class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <button class="cart-button">
+                                                <!-- a tester ou modifier -->
+                                                <!-- Add to cart  -->
+                                                <span class=" add-to-cart">Add
+                                                    to
+                                                    cart</span>
+                                                <span class="added">Item
+                                                    added</span> <i class="fa fa-plus"></i> <i
+                                                    class="fa fa-circle-thin"></i> <i class="fa fa-check"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end product -->
+                </div>
+                <!-- //////////////////// -->
                 <div class="panel-body p-2">
-                    <table class="table">
+                    <!-- <table class="table">
                         <tr>
                             <th>Id</th>
                             <th>Brand</th>
@@ -30,20 +87,19 @@ layout:decorate="~{index.html}">
                             <th>Prix</th>
                         </tr>
                         <tr th:each="a:${listCategoryArticles}">
-                            <td th:text="${a.id}"></td>
+                             <td th:text="${a.id}"></td>
                             <td th:text="${a.brand}"></td>
                             <td th:text="${a.description}"></td>
-                            <td th:text="${a.unitaryPrice}"></td>
-                          
+                            <td th:text="${a.price}"></td>
+
                         </tr>
-                    </table>
-                    <ul class="nav nav-pills">
+                    </table> -->
+                    <!-- <ul class="nav nav-pills">
                         <li class="nav-item" th:each="page,status:${pages}">
                             <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
-                                th:href="@{/articlesByCategory(page=${status.index})}"
-                                th:text="${status.index}"></a>
+                                th:href="@{/articlesByCategory(page=${status.index})}" th:text="${status.index}"></a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
 
