@@ -17,12 +17,19 @@
 					<h4 class="panelTitle">Liste des articles</h4>
 				</div>
 				<div class="panel-body p-2">
-					<form th:action="@{/adminListArticles}" method="get">
-						<label for="">Keyword</label> <input type="text" name="keyword"
-							th:value="${keyword}">
-						<button type="submit" class="btn btn-success">Search</button>
-					</form>
-
+					<div class="d-flex justify-content-between">
+						<form th:action="@{/adminListArticles}" method="get">
+							<label for="">Keyword</label> <input type="text" name="keyword" th:value="${keyword}">
+							<button type="submit" class="btn btn-success">Search</button>
+						</form>
+						<!-- les boutons de pagination -->
+						<ul class="nav nav-pills">
+							<li class="nav-item" th:each="page,status:${pages}"><a
+									th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
+									th:href="@{/adminListArticles(page=${status.index},keyword=${keyword})}"
+									th:text="${status.index}"></a></li>
+						</ul>
+					</div>
 					<!-- //////////////// -->
 					<div class="md-6 d-flex flex-wrap listAdmin">
 						<!-- product -->
@@ -31,8 +38,7 @@
 								<div class="row">
 									<div class="col-md-5 col-sm-12 col-xs-12">
 										<div class="product-image">
-											<img th:src="@{/img/}+${a.imgUrl}" alt="194x228"
-												class="img-responsive">
+											<img th:src="@{/img/}+${a.imgUrl}" alt="194x228" class="img-article">
 										</div>
 									</div>
 									<div class="col-md-7 col-sm-12 col-xs-12">
@@ -49,9 +55,8 @@
 
 											<!-- Update Article -->
 											<a class="" th:href="@{/editArticle(id=${a.id})}">
-												<img class="x-edit" th:src="@{/img/edit.png}"
-													data-bs-toggle="modal" data-bs-target="#updateArticleModal"
-													alt="edit" />
+												<img class="x-edit" th:src="@{/img/edit.png}" data-bs-toggle="modal"
+													data-bs-target="#updateArticleModal" alt="edit" />
 											</a>
 
 										</div>
@@ -78,13 +83,7 @@
 					<!-- end product -->
 				</div>
 
-				<!-- les boutons de pagination -->
-				<ul class="nav nav-pills">
-					<li class="nav-item" th:each="page,status:${pages}"><a
-							th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
-							th:href="@{/adminListArticles(page=${status.index},keyword=${keyword})}"
-							th:text="${status.index}"></a></li>
-				</ul>
+
 
 
 			</div>
@@ -93,8 +92,7 @@
 	</div>
 
 	<!-- JavaScript Bundle with Popper -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
 		crossorigin="anonymous"></script>
 </body>
