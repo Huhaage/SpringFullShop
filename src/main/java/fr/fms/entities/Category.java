@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.websocket.OnError;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

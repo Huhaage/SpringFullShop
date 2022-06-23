@@ -1,4 +1,6 @@
 package fr.fms;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +13,17 @@ import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
-
+@Transactional
 @SpringBootApplication
 public class SpringFullShopApplication implements CommandLineRunner {
 	@Autowired
-	ArticleRepository articleRepository;
-
-	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	ArticleRepository articleRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringFullShopApplication.class, args);
-		
 	}
 
 	@Override
@@ -68,13 +69,7 @@ public class SpringFullShopApplication implements CommandLineRunner {
 		
 
 
-		//List<Article> articles =articleRepository.findByCategory(categoryRepository.findById((long) 3).get());
-		
-	
-	
-		
-		
-		
+		//List<Article> articles =articleRepository.findByCategory(categoryRepository.findById((long) 3).get());	
 	}
 
 }

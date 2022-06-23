@@ -36,7 +36,7 @@ public class Article {
 	
 	@NotNull
 	private String imgUrl;
-	
+
 	@ManyToOne
 	private Category category;
 	

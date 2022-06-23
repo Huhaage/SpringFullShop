@@ -17,8 +17,9 @@
 					<h4 class="panelTitle">Liste des articles</h4>
 				</div>
 				<div class="panel-body p-2">
-					<form th:action="@{/articles}" method="get">
-						<label for="">Keyword</label> <input type="text" name="keyword" th:value="${keyword}">
+					<form th:action="@{/adminListArticles}" method="get">
+						<label for="">Keyword</label> <input type="text" name="keyword"
+							th:value="${keyword}">
 						<button type="submit" class="btn btn-success">Search</button>
 					</form>
 
@@ -30,28 +31,39 @@
 								<div class="row">
 									<div class="col-md-5 col-sm-12 col-xs-12">
 										<div class="product-image">
-											<img th:src="@{/img/${a.imgUrl}}" alt="194x228" class="img-responsive">
+											<img th:src="@{/img/}+${a.imgUrl}" alt="194x228"
+												class="img-responsive">
 										</div>
 									</div>
 									<div class="col-md-7 col-sm-12 col-xs-12">
 										<div class="product-deatil">
 											<h4 class="name" th:text="${a.brand}">brand</h4>
-											<p class="price-container" th:text="${a.price}">
-												<span>price €</span>
-											</p>
-											<a class="x-del"
-												th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}"><img
-													th:src="@{/img/x-button.png}" alt="delete"></a>
 
-											<a class="" th:href="@{/editArticle(id=${a.id})}"><img class="x-edit"
-													th:src="@{/img/edit.png}" alt="edit"></a>
+											<p class="price-container" th:text="${a.price}">price €</p>
+
+											<!-- Delete Article -->
+											<a class="x-del"
+												th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">
+												<img th:src="@{/img/x-button.png}" alt="delete">
+											</a>
+
+											<!-- Update Article -->
+											<a class="" th:href="@{/editArticle(id=${a.id})}">
+												<img class="x-edit" th:src="@{/img/edit.png}"
+													data-bs-toggle="modal" data-bs-target="#updateArticleModal"
+													alt="edit" />
+											</a>
+
 										</div>
+
 										<div class="description" th:text="${a.description}">
 											<h6>description</h6>
 										</div>
-										<div class="cat-name" th:text="${a.Category.name}">
+
+										<div class="cat-name" th:text="${a.Category.description}">
 											<h6>nom de la categorie</h6>
 										</div>
+
 										<div class="product-info smart-form">
 											<div class="row">
 												<div class="col-md-6 col-sm-6 col-xs-6 d-flex"></div>
@@ -60,10 +72,12 @@
 									</div>
 								</div>
 							</div>
+
 						</div>
 					</div>
 					<!-- end product -->
 				</div>
+
 				<!-- les boutons de pagination -->
 				<ul class="nav nav-pills">
 					<li class="nav-item" th:each="page,status:${pages}"><a
@@ -76,92 +90,13 @@
 			</div>
 		</div>
 
-
-		<!-- Modal -->
-		<div class="modal" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content" id="modalSize">
-					<div class="modal-header">
-
-						<!-- bouton pour fermer la modal ajouter la fonction -->
-						<button type="button" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">Edit</h4>
-					</div>
-					<div class="modal-body">
-						<div class="login-container animated fadeInDown bootstrap snippets bootdeys">
-							<div class="loginbox bg-white">
-								<div class="loginbox-social">
-									<div class="social-title ">
-
-										<!-- img de l'article -->
-										<!-- <img src="{{data.imgURL}}" alt="194x228" class="img-responsive"> -->
-									</div>
-								</div>
-								<form th:object="${article}" th:action="@{/updateArticle(id=${idArticle})}"
-									method="post">
-									<div class="loginbox-textbox">
-										<label for="" class="control-label">Brand : </label> <input class="form-control"
-											type="text" name="brand" th:field="*{brand}">
-									</div>
-									<div class="loginbox-textbox">
-										<label for="" class="control-label">Description : </label> <input
-											class="form-control" type="text" name="description"
-											th:field="*{description}"> <span th:errors="${article.description}"></span>
-									</div>
-									<div class="loginbox-textbox">
-										<label for="" class="control-label">Price : </label> <input class="form-control"
-											type="text" name="price" th:field="*{price}"> <span
-											th:errors="${article.price}"></span>
-									</div>
-									<div class="loginbox-textbox">
-										<label class="control-label">Img url : </label> <input type="text" name="imgURL"
-											class="form-control" placeholder="imgURL" th:value="${article.imgUrl}"
-											required>
-									</div>
-									<div class="loginbox-textbox">
-										<label for="" class="control-label">Category : </label> <select
-											class="form-control" name="Category">
-
-											<option th:each="c:${listCategories}" th:text="${c.name}" th:value="${c.id}"
-												th:selected="${c.name.equals(catName)}"></option>
-
-										</select>
-									</div>
-									<div class="loginbox-submit">
-										<button type="submit" class="btn btn-success btn-block" id="modal-btn">
-											<span>Submit</span>
-											<div class="success">
-												<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-													viewBox="0 0 29.756 29.756"
-													style="enable-background: new 0 0 29.756 29.756;"
-													xml:space="preserve">
-
-													<path
-														d="M29.049,5.009L28.19,4.151c-0.943-0.945-2.488-0.945-3.434,0L10.172,18.737l-5.175-5.173   c-0.943-0.944-2.489-0.944-3.432,0.001l-0.858,0.857c-0.943,0.944-0.943,2.489,0,3.433l7.744,7.752   c0.944,0.943,2.489,0.943,3.433,0L29.049,8.442C29.991,7.498,29.991,5.953,29.049,5.009z" />
-												</svg>
-											</div>
-										</button>
-									</div>
-									<!-- <div *ngIf="display" class=" alert alert-success col-md-12">
-                                Formation modifiée.
-                            </div> -->
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- <div *ngIf="problemAdmin" class=" alert alert-danger col-md-12 ">
-        Vous avec été déconnécté, reconnectez-vous.
-    </div> -->
-
-
-		</div>
 	</div>
 
-
+	<!-- JavaScript Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>
