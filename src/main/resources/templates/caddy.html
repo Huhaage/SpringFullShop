@@ -12,7 +12,9 @@
 
 <body>
 	<div layout:fragment="content">
-		<div th:if="${caddySize!=0}" class="container padding-bottom-3x mb-1">
+	<p>Caddy non null</p>
+		<div th:if="${caddy!=null}" class="container padding-bottom-3x mb-1">
+		<p>Caddy non null</p>
 
  
 			<!--<div *ngIf="display else elseBlock">
@@ -84,7 +86,8 @@
 				</div>
 			</div>
 			<!-- adapter la condition -->
-			<div th:unless="${caddySize!=0}">
+			<div th:unless="${caddy!=null}">
+			<p>Caddy null</p>
 				<div class="container-fluid  mt-100">
 					<div class="row">
 						<div class="col-md-12">

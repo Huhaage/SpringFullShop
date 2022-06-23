@@ -97,4 +97,6 @@ public class ArticleController {
 		
 		return "articles"; //cette méthode retourne au dispacterServlet une vue
 	}
+	
+	
 }
