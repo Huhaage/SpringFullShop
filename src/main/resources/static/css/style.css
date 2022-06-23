@@ -14,6 +14,10 @@ li {
   height: 600px;
 }
 
+.btn-theme{
+	background-color: coral;
+}
+
 /* not found 403 ********************** */
 .error {
   background-image: url("/img/403.png");
@@ -929,13 +933,6 @@ li {
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }
 
-.modal-header button {
-  background-color: red;
-  border-radius: 50%;
-  width: 30px;
-  border: red
-}
-
 .login-container {
   position: relative;
   margin: auto;
@@ -1233,10 +1230,12 @@ li {
   text-align: center;
 }
 
+
 #modal-confirm-container>h1,
 p {
   color: #21c2f8;
 }
+
 
 /* The Modal (background) */
 #modal-confirm {
