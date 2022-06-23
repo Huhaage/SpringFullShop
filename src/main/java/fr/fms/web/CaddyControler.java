@@ -13,17 +13,25 @@ import fr.fms.entities.Article;
 
 @Controller
 public class CaddyControler {
-	/*
-	 * @Autowired ArticleRepository articleRepository;
-	 * 
-	 * Map<Integer ,Article> caddy = null; List<Article> ListCaddy = null;
-	 * 
-	 * 
-	 * 
-	 * @GetMapping("/caddy") public String caddy(Model model) {
-	 * 
-	 * model.addAttribute("", model); model.addAttribute("listCaddy", caddy);
-	 * 
-	 * return "caddy"; }
-	 */
+
+	@Autowired
+	ArticleRepository articleRepository;
+
+	// Map<Integer ,Article> caddy = null; List<Article> ListCaddy = null;
+
+	// lien de la page caddy
+	@GetMapping("/caddy")
+	public String caddy(Model model) {
+
+		// model.addAttribute("", model); model.addAttribute("listCaddy", caddy);
+
+		return "caddy";
+	}
+
+	// lien de la page order
+	@GetMapping("/order")
+	public String order(Model model) {
+
+		return "order";
+	}
 }
