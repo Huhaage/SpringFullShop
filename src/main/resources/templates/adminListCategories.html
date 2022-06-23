@@ -16,33 +16,41 @@
                 <a type="button" class="btn btn-outline-info" th:text="${c.name}" th:each="c:${listCategories}"
                     th:href="@{/categoryArticles(id=${c.id})}"></a>
             </ul> -->
-            <div class="categorie-card">
+
+
+            <div class="">
                 <div class="panel-heading  p-2">
                     <h4 class="panelTitle">Liste des categories</h4>
                 </div>
-                <div class="panel-body p-2">
-                    <table class="table">
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                        </tr>
-                        <tr th:each="c:${listCategories}">
-                            <td th:text="${c.id}"></td>
-                            <td th:text="${c.name}"></td>
-                            <td th:text="${c.description}"></td>
-                        </tr>
-                    </table>
-                    <ul class="nav nav-pills">
-                        <li class="nav-item" th:each="page,status:${pages}">
-                            <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
-                                th:href="@{/categories(page=${status.index})}" th:text="${status.index}"></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
+
+                <div class="md-6 d-flex  listAdmin">
+                    <div th:each="c:${listCategories}">
+                        <div class=" margin-30px-bottom card-category">
+                            <a class="" th:href="@{/editCategory(id=${c.id})}">
+                                <img class="x-edit-cat" th:src="@{/img/edit.png}" alt="edit"></a>
+                            <div class="col-md-4 xs-margin-30px-bottom">
+
+                                <a href="#" class="">
+                                    <div class="">
+                                        <img th:src="@{/img/}+${c.imgUrl}" alt="" class="img-category">
+                                        <h5 class="text-info p-2" th:text="${c.description}"></h5>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav nav-pills">
+                    <li class="nav-item" th:each="page,status:${pages}">
+                        <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
+                            th:href="@{/adminListCategories(page=${status.index},keyword=${keyword})}" th:text="${status.index}"></a>
+                    </li>
+                </ul>
+            </div>
         </div>
+
 
     </div>
 

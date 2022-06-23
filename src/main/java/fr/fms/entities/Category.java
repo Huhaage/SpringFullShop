@@ -23,7 +23,11 @@ public class Category {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	private String description;
+
+	@NotNull
+	private String imgUrl;
 	
 	@OneToMany(mappedBy = "category")
 	private Collection<Article> articles;

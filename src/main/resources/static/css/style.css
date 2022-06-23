@@ -94,6 +94,18 @@ li {
 .img-article{
   width: 128px;
 }
+.img-category {
+  width: 200px;
+}
+.card-category {
+  border: 1px solid coral;
+  margin-bottom: 20px;
+  margin-top: 12px;
+  background: #fff;
+  padding: 4px;
+  width: 250px;
+  box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
+}
 /* ******************************* */
 /* ********* s'enrgister ******** */
 .row {
@@ -596,6 +608,13 @@ li {
   right: 5px;
 }
 
+.x-edit-cat {
+  border: 5px solid yellow;
+  cursor: pointer;
+  position: relative;
+  top: 20px;
+  right: -190px;
+}
 .x-edit {
   border: 5px solid yellow;
   cursor: pointer;
