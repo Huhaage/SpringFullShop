@@ -15,32 +15,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.entities.Article;
+
 @Transactional
 @Controller
 public class CaddyControler {
 
-	@Autowired 
+	@Autowired
 	IBusinessImpl iBusinessImpl;
 
-
-
-	@GetMapping("/caddy") public String caddy(Model model) {
-		//		System.out.println(iBusinessImpl.listCaddy());
-		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
+	@GetMapping("/caddy")
+	public String caddy(Model model) {
+		// System.out.println(iBusinessImpl.listCaddy());
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		//		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		//model.addAllAttributes(ListCaddy);
-
-		return "caddy"; 
+		// model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		// model.addAllAttributes(ListCaddy);
+		System.out.println(iBusinessImpl.totalCaddy());
+		return "caddy";
 	}
 
 	@GetMapping("/addToCaddy")
-	public String addToCaddy(Long id, Model model, @RequestParam(name="page", defaultValue = "0") int page,
-			@RequestParam(name="keyword", defaultValue = "") String keyword) {
+	public String addToCaddy(Long id, Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "keyword", defaultValue = "") String keyword) {
 
-		iBusinessImpl.addToCaddy(id);	
+		iBusinessImpl.addToCaddy(id);
 
-		return "redirect:/articles?page="+page+"&keyword="+keyword;
+		return "redirect:/articles?page=" + page + "&keyword=" + keyword;
 
 	}
 
@@ -52,9 +52,9 @@ public class CaddyControler {
 	}
 
 	@GetMapping("/delToCaddy")
-	public String delToCaddy(Model model,Long id) {
+	public String delToCaddy(Model model, Long id) {
 		iBusinessImpl.removeFromCaddy(id);
-		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
 		return "caddy";
 	}
 
