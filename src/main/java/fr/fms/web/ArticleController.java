@@ -8,6 +8,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -32,10 +33,7 @@ public class ArticleController {
 	//IBusinessImpl business = new IBusinessImpl();
 	
 	@Autowired
-	ArticleRepository articleRepository;
-	
-	@Autowired
-	CategoryRepository categoryRepository;
+	private IBusinessImpl business;
 	
 	@GetMapping("/home")
 	public String home() {	
@@ -63,8 +61,7 @@ public class ArticleController {
 	@GetMapping("/addArticle")
 	public String addArticle(Model model, Article article) {
 
-		//List<Category> categories = business.readAllCategories();
-		List<Category> categories = categoryRepository.findAll();
+		List<Category> categories = business.readAllCategories();
 		model.addAttribute("listCategories", categories);
 
 		return "addArticle";
@@ -74,12 +71,12 @@ public class ArticleController {
 	@PostMapping("/save")
 	public String save(Model model, @Valid Article article, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			List<Category> categories = categoryRepository.findAll();
+			List<Category> categories = business.readAllCategories();
 			model.addAttribute("listCategories", categories);
 			return "addArticle";
 		}
 
-		articleRepository.save(article);
+		business.addArticle(article);
 		return "redirect:/articles";
 	}
 
@@ -87,9 +84,8 @@ public class ArticleController {
 	@GetMapping("/articles")
 	public String articles(Model model, @RequestParam(name="page", defaultValue = "0") int page,
 										@RequestParam(name="keyword", defaultValue = "") String kw) {
-		//Page<Article> articles = business.readByDescriptionContains(kw, page, 6); //récup tous les articles
-		Page<Article> articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page, 6)); //récup tous les articles
-		List<Category> categories = categoryRepository.findAll();
+		Page<Article> articles = business.readByDescriptionContains(kw, page, 6); //récup tous les articles
+		List<Category> categories = business.readAllCategories();
 		
 		model.addAttribute("listArticle", articles.getContent()); //insert les articles dans le model
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
@@ -106,7 +102,7 @@ public class ArticleController {
 	@GetMapping("/adminListArticles")
 	public String articlesAdmin(Model model, @RequestParam(name="page", defaultValue = "0") int page,
 										@RequestParam(name="keyword", defaultValue = "") String kw) {
-		Page<Article> articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page, 6)); //récup tous les articles
+		Page<Article> articles = business.readByDescriptionContains(kw, page, 6); //récup tous les articles
 		
 		model.addAttribute("listArticle", articles.getContent()); //insert les articles dans le model
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
@@ -118,7 +114,7 @@ public class ArticleController {
 	
 	@GetMapping("/delete")
 	public  String delete(Long id, int page, String keyword) {
-		articleRepository.deleteById(id);
+		business.delArticle(id);
 		
 		return "redirect:/adminListArticles?page=" + page + "&keyword=" + keyword;
 	}
@@ -128,7 +124,7 @@ public class ArticleController {
 		if(bindingResult.hasErrors()) return "adminListArticles";
 
 		if(article.getId() != null) {
-			articleRepository.save(article);
+			business.updateArticle(article);
 		}
 		
 		return "redirect:/adminListArticles";
@@ -136,10 +132,10 @@ public class ArticleController {
 	
 	@GetMapping("/editArticle")
 	public String editArticle(Model model, @Valid Long id){		
-		Article articleToEdit = articleRepository.findById(id).get();
+		Article articleToEdit = business.readArticleById(id);
 		model.addAttribute("articleToEdit", articleToEdit);
 		
-		List<Category> categories = categoryRepository.findAll();
+		List<Category> categories = business.readAllCategories();
 		model.addAttribute("listCategories", categories);
 		
 		return "editArticle";

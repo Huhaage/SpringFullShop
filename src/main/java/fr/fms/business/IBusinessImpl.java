@@ -15,16 +15,17 @@ import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
-@Service 
+
+@Service
 public class IBusinessImpl implements IBusiness {
 	private Map<Long ,Article> caddy = new HashMap<Long ,Article>(); 
 	private double total;
 	
 	@Autowired
-	ArticleRepository articleRepository;
+	private ArticleRepository articleRepository;
 	
 	@Autowired
-	CategoryRepository categoryRepository;
+	private CategoryRepository categoryRepository;
 	
 	public Map<Long ,Article> getCaddy(){
 		return caddy;

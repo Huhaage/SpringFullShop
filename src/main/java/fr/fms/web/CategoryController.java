@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
@@ -35,6 +36,9 @@ public class CategoryController {
     private ArticleRepository articleRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    IBusinessImpl iBusinessImpl;
 
     // affiche les catégories coté admin
     @GetMapping("/adminListCategories")
