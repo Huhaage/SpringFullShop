@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -114,12 +115,17 @@ public class IBusinessImpl implements IBusiness {
 
 	@Override
 	public void removeFromCaddy(Long id) {
-		int quantity = caddy.get(id).getQuantity()-1;
-		if(0 < quantity) {
+		int quantity = caddy.get(id).getQuantity() - 1;
+		if (0 < quantity) {
 			caddy.get(id).setQuantity(quantity);
-		}
-		else caddy.remove(id);
-		
+		} else
+			caddy.remove(id);
+
+	}
+	
+	@Override
+	public int sizeCaddy() {
+		return caddy.size();
 	}
 	
 	@Override

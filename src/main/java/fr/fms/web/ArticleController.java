@@ -5,6 +5,7 @@ package fr.fms.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,14 @@ public class ArticleController {
 	private IBusinessImpl business;
 	
 	@GetMapping("/home")
-	public String home() {	
+	public String home(Model model) {
 		return "home";
 	}
 	
 	@GetMapping("/")
-	public String accueil() {	
+	public String accueil(HttpSession session) {
+		int length = business.sizeCaddy();
+		session.setAttribute("caddySize", length);
 		return "home";
 	}
 	
@@ -79,9 +82,12 @@ public class ArticleController {
 	//lien vers la page articles
 	@GetMapping("/articles")
 	public String articles(Model model, @RequestParam(name="page", defaultValue = "0") int page,
-										@RequestParam(name="keyword", defaultValue = "") String kw) {
+										@RequestParam(name="keyword", defaultValue = "") String kw,
+										HttpSession session) {
 		Page<Article> articles = business.readByDescriptionContains(kw, page, 6); //récup tous les articles
 		List<Category> categories = business.findAllCategories();
+		int length = business.sizeCaddy();
+		session.setAttribute("caddySize", length);
 		
 		model.addAttribute("listArticle", articles.getContent()); //insert les articles dans le model
 		model.addAttribute("pages", new int[articles.getTotalPages()]);

@@ -19,6 +19,7 @@ public interface IBusiness {
 	
 	public void addToCaddy (Long id);
 
+	public int sizeCaddy();
 	public void removeFromCaddy(Long id);
 	
 	public List<Category> findAllCategories();
