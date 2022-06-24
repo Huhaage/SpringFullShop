@@ -26,11 +26,12 @@ public class CaddyControler {
 	@GetMapping("/caddy")
 	public String caddy(Model model, HttpSession session) {
 	
-		int length = iBusinessImpl.sizeCaddy();
-		session.setAttribute("caddySize", length);
+		
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		System.out.println(iBusinessImpl.totalCaddy());
+
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
 		return "caddy";
 	}
 
@@ -52,9 +53,13 @@ public class CaddyControler {
 	}
 
 	@GetMapping("/delToCaddy")
-	public String delToCaddy(Model model, Long id) {
+	public String delToCaddy(Model model, Long id, HttpSession session) {
 		iBusinessImpl.removeFromCaddy(id);
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
+		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
 		return "caddy";
 	}
 
