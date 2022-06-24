@@ -28,12 +28,9 @@ public class IBusinessImpl implements IBusiness {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
-<<<<<<< HEAD
-	
+
 	@Autowired
 	OrderDetailRepository orderDetailRepository;
-=======
->>>>>>> 68b31a1dbf76a106024a55277c95019075cec722
 	
 	public Map<Long ,Article> getCaddy(){
 		return caddy;
@@ -64,14 +61,12 @@ public class IBusinessImpl implements IBusiness {
 
 	@Override
 	public void delArticle(Long i) {
-		articleRepository.deleteById(i);
-		
+		articleRepository.deleteById(i);	
 	}
 
 	@Override
 	public void updateArticle(Article article) {
-		articleRepository.save(article);
-		
+		articleRepository.save(article);		
 	}
 
 	@Override
@@ -82,19 +77,16 @@ public class IBusinessImpl implements IBusiness {
 	@Override
 	public void addCategory(Category category) {
 		categoryRepository.save(category);
-		
 	}
 
 	@Override
 	public void delCategory(Long i) {
-		categoryRepository.deleteById(i);
-		
+		categoryRepository.deleteById(i);		
 	}
 
 	@Override
 	public void updateCategory(Category category) {
-		categoryRepository.save(category);
-		
+		categoryRepository.save(category);		
 	}
 
 	@Override
@@ -109,15 +101,12 @@ public class IBusinessImpl implements IBusiness {
 
 	@Override
 	public void addToCaddy(Long id) {
-		
 		if(caddy.containsKey(id)) {
 			Article article = caddy.get(id);
 			caddy.get(article.getId()).setQuantity(article.getQuantity()+1);
-			
 			}else{
 				caddy.put(id, articleRepository.findById(id).get());
 			}
-		
 	}
 
 	@Override
@@ -126,46 +115,36 @@ public class IBusinessImpl implements IBusiness {
 		if(0 < quantity) {
 			caddy.get(id).setQuantity(quantity);
 		}
-		else caddy.remove(id);
-<<<<<<< HEAD
-		
+		else caddy.remove(id);		
 	}
-<<<<<<< HEAD
+
 	@Override
 	public List<OrderDetail> readAllOderDetail() {
 		return orderDetailRepository.findAll();
 	}
+
 	@Override
 	public void addOrderDetail(OrderDetail order) {
-		orderDetailRepository.save(order);
-		
+		orderDetailRepository.save(order);		
 	}
-
-=======
 	
 	@Override
 	public List<Category> readAllCategories() {
-		return categoryRepository.findAll();
-=======
-		
+		return categoryRepository.findAll();		
 	}
 	
 	@Override
 	public Page<Category> readAllCategories(int page,int categoriesByPages) {
 		return categoryRepository.findAll(PageRequest.of(page, categoriesByPages));
->>>>>>> 68b31a1dbf76a106024a55277c95019075cec722
 	}
 	
 	@Override
 	public Page<Article> readByDescriptionContains(String keyword, int page, int articlesByPage) {
 		return articleRepository.findByDescriptionContains(keyword, PageRequest.of(page, articlesByPage));
 	}
-<<<<<<< HEAD
->>>>>>> 3e3c47e16b36a8448863489b3607dd367a0d3f77
-=======
+
 	@Override
 	public List<Category> findAllCategories() {
 		return categoryRepository.findAll();
 	}
->>>>>>> 68b31a1dbf76a106024a55277c95019075cec722
 }

@@ -16,11 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
-<<<<<<< HEAD
-import fr.fms.dao.ArticleRepository;
-import fr.fms.dao.CategoryRepository;
-=======
->>>>>>> 68b31a1dbf76a106024a55277c95019075cec722
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
@@ -31,9 +26,6 @@ import fr.fms.entities.Category;
 
 @Controller
 public class CategoryController {
-
-    @Autowired
-    IBusinessImpl iBusinessImpl;
 
     @Autowired
     IBusinessImpl iBusinessImpl;
