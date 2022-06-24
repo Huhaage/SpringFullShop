@@ -27,6 +27,7 @@ import fr.fms.entities.Category;
  * @author CHJCS
  *
  */
+
 @Controller
 public class CategoryController {
 
@@ -90,7 +91,7 @@ public class CategoryController {
     @GetMapping("/editCategory")
     public String editArticle(Model model, Long id, Category category) {
 
-       Category cat = categoryRepository.findById(id).get();
+        Category cat = categoryRepository.findById(id).get();
 
         model.addAttribute("category", cat);
         model.addAttribute("idCat", cat.getId());
