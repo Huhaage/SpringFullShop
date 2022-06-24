@@ -26,6 +26,8 @@
 							<thead>
 								<tr>
 									<th>Products</th>
+									<th class="text-center">Brand</th>
+									<th class="text-center">Description</th>
 									<th class="text-center">Quantity</th>
 									<th class="text-center">Price</th>
 
@@ -38,22 +40,20 @@
 								<tr th:each="a:${listCaddy}">
 									<td>
 										<div class="product-item">
-<!-- 											<a class="product-thumb" href="#"><img -->
-<!-- 												th:src="@{/img/}+${a.imgUrl}" alt="Product"></a> -->
-											<div class="product-info">
-												<h6 class="product-title" th:text="${a.brand}">description</h6>
-											</div>
-											<div class="product-info">
-												<h6 class="product-title" th:text="${a.description}">description</h6>
-											</div>
+											<a class="product-thumb" href="#"><img
+											th:src="@{/img/}+${a.imgUrl}" alt="Product"></a>
 										</div>
 									</td>
-									<td class="text-center" th:text="${a.quantity}">quantity</td>
+									<td class="text-center" th:text="${a.brand}"></td>
+									<td class="text-center" th:text="${a.description}"></td>
+									<td class="text-center" th:text="${a.quantity}"></td>
 									<td class="text-center text-lg text-medium"
-										th:text="${a.price}">price €</td>
+										th:text="${a.price}">
+									</td>
 									<td class="text-center"><a class="delete"
 										th:href="@{/delToCaddy(id=${a.id})}" data-original-title="Remove item"><i
-											class="fa-solid fa-trash-can"></i></a></td>
+											class="fa-solid fa-trash-can"></i></a>
+										</td>
 								</tr>
 							</tbody>
 						</table>
