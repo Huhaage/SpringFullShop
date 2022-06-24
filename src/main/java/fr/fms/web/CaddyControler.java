@@ -23,6 +23,7 @@ public class CaddyControler {
 	@Autowired
 	IBusinessImpl iBusinessImpl;
 
+<<<<<<< HEAD
 	@GetMapping("/caddy")
 	public String caddy(Model model) {
 		// System.out.println(iBusinessImpl.listCaddy());
@@ -41,14 +42,22 @@ public class CaddyControler {
 		iBusinessImpl.addToCaddy(id);
 
 		return "redirect:/articles?page=" + page + "&keyword=" + keyword;
-
+=======
+	@GetMapping("/caddy") public String caddy(Model model) {
+		//		System.out.println(iBusinessImpl.listCaddy());
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
+		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		
+		return "caddy"; 
 	}
 
-	// lien de la page order
-	@GetMapping("/order")
-	public String order(Model model) {
+	@GetMapping("/addToCaddy")
+	public String addToCaddy(Long id, Model model, @RequestParam(name="page", defaultValue = "0") int page,
+			@RequestParam(name="keyword", defaultValue = "") String keyword) {
+		iBusinessImpl.addToCaddy(id);	
+		return "redirect:/articles?page="+page+"&keyword="+keyword;
+>>>>>>> christophe
 
-		return "order";
 	}
 
 	@GetMapping("/delToCaddy")
@@ -63,5 +72,12 @@ public class CaddyControler {
 		iBusinessImpl.getCaddy().clear();
 
 		return "redirect:/home";
+	}
+
+	// lien de la page order
+	@GetMapping("/order")
+	public String order(Model model) {
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
+		return "order";
 	}
 }
