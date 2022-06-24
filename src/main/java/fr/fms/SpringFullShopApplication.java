@@ -29,7 +29,6 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-
 		// Category smartphone = categoryRepository.save(new Category(null,"Smartphone","smartphone.jpg",null));
         // Category tablet = categoryRepository.save(new Category(null,"Tablet","tablet.jpg",null)); 
         // Category pc = categoryRepository.save(new Category(null,"PC","portable.jpg",null));
@@ -66,5 +65,6 @@ public class SpringFullShopApplication implements CommandLineRunner {
 		// articleRepository.save(new Article(null,"Platinium unlimlited","Nero",99.99,"pinnacle.jpg",logiciel,1));
 		// articleRepository.save(new Article(null,"Studio 25 ultimate","Pinnacle",129.99,"pinnacle.jpg",logiciel,1));
 		// articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"pinnacle.jpg",logiciel,1));
+
 	}
 }
