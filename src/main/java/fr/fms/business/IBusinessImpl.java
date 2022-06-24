@@ -19,8 +19,6 @@ public class IBusinessImpl implements IBusiness {
 	private Map<Long ,Article> caddy = new HashMap<Long ,Article>(); 
 	private double total;
 	
-	
-	
 	@Autowired
 	ArticleRepository articleRepository;
 	
@@ -32,30 +30,26 @@ public class IBusinessImpl implements IBusiness {
 	}
 	public List<Article> listCaddy(){
 		return caddy.values().stream().collect(	Collectors.toCollection(ArrayList::new));
-		
 	}
 	 
 	public double totalCaddy() {
-		
 		caddy.values().forEach((a) -> total += a.getPrice() * a.getQuantity()); 
 		return 0;
-		
 	}
 	
 	@Override
-	public List<Article> readAll() {
+	public List<Article> readAllArticles() {
 		return articleRepository.findAll();
 	}
 
 	@Override
-	public Page<Article> readAllByPage(int i) {
+	public Page<Article> readAllArticlesByPage(int i) {
 		return articleRepository.findAll(PageRequest.of(i-1,5));
 	}
 
 	@Override
 	public void addArticle(Article article) {
 		articleRepository.save(article);
-		
 	}
 
 	@Override
@@ -111,7 +105,6 @@ public class IBusinessImpl implements IBusiness {
 			}else{
 				caddy.put(article.getId(), article);
 			}
-		
 	}
 
 	@Override
@@ -123,5 +116,14 @@ public class IBusinessImpl implements IBusiness {
 		else caddy.remove(article.getId());
 		
 	}
-
+	
+	@Override
+	public List<Category> readAllCategories() {
+		return categoryRepository.findAll();
+	}
+	
+	@Override
+	public Page<Article> readByDescriptionContains(String keyword, int page, int articlesByPage) {
+		return articleRepository.findByDescriptionContains(keyword, PageRequest.of(page, articlesByPage));
+	}
 }
