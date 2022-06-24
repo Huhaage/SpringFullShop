@@ -28,9 +28,12 @@ public class IBusinessImpl implements IBusiness {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+<<<<<<< HEAD
 	
 	@Autowired
 	OrderDetailRepository orderDetailRepository;
+=======
+>>>>>>> 68b31a1dbf76a106024a55277c95019075cec722
 	
 	public Map<Long ,Article> getCaddy(){
 		return caddy;
@@ -100,8 +103,9 @@ public class IBusinessImpl implements IBusiness {
 	}
 
 	@Override
-	public List<Article> readArticleByCategory(Long i) {
-		return articleRepository.findByCategoryId(i);	}
+	public Page<Article> readArticlesByCategory(Long i,int page, int articlesByPage) {
+		return articleRepository.findByCategoryId(i, PageRequest.of(page, articlesByPage));
+	}
 
 	@Override
 	public void addToCaddy(Long id) {
@@ -123,6 +127,7 @@ public class IBusinessImpl implements IBusiness {
 			caddy.get(id).setQuantity(quantity);
 		}
 		else caddy.remove(id);
+<<<<<<< HEAD
 		
 	}
 <<<<<<< HEAD
@@ -141,11 +146,26 @@ public class IBusinessImpl implements IBusiness {
 	@Override
 	public List<Category> readAllCategories() {
 		return categoryRepository.findAll();
+=======
+		
+	}
+	
+	@Override
+	public Page<Category> readAllCategories(int page,int categoriesByPages) {
+		return categoryRepository.findAll(PageRequest.of(page, categoriesByPages));
+>>>>>>> 68b31a1dbf76a106024a55277c95019075cec722
 	}
 	
 	@Override
 	public Page<Article> readByDescriptionContains(String keyword, int page, int articlesByPage) {
 		return articleRepository.findByDescriptionContains(keyword, PageRequest.of(page, articlesByPage));
 	}
+<<<<<<< HEAD
 >>>>>>> 3e3c47e16b36a8448863489b3607dd367a0d3f77
+=======
+	@Override
+	public List<Category> findAllCategories() {
+		return categoryRepository.findAll();
+	}
+>>>>>>> 68b31a1dbf76a106024a55277c95019075cec722
 }
