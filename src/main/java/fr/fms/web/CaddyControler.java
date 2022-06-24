@@ -26,7 +26,7 @@ public class CaddyControler {
 
 	@GetMapping("/caddy") public String caddy(Model model) {
 //		System.out.println(iBusinessImpl.listCaddy());
-//		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 //		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
 		//model.addAllAttributes(ListCaddy);
 
@@ -38,7 +38,7 @@ public class CaddyControler {
 									  @RequestParam(name="keyword", defaultValue = "") String keyword) {
 		
 		Article article = articleRepository.findById(id).get();
-		iBusinessImpl.addToCaddy(article);
+		iBusinessImpl.addToCaddy(article);	
 		return "redirect:/articles?page="+page+"&keyword="+keyword;
 
 	}
@@ -48,6 +48,11 @@ public class CaddyControler {
 	public String order(Model model) {
 
 		return "order";
+	}
+	
+	@GetMapping("/delToCaddy")
+	public String delToCaddy(Long ArticleId) {
+		return "caddy";
 	}
 
 }
