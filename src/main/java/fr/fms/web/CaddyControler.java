@@ -19,15 +19,16 @@ import fr.fms.entities.Article;
 @Controller
 public class CaddyControler {
 
-	@Autowired ArticleRepository articleRepository;
-	IBusinessImpl iBusinessImpl = new IBusinessImpl();
-	
-	//List<Article> ListCaddy = caddy.;
+	@Autowired 
+	IBusinessImpl iBusinessImpl;
+
+
 
 	@GetMapping("/caddy") public String caddy(Model model) {
-//		System.out.println(iBusinessImpl.listCaddy());
+		//		System.out.println(iBusinessImpl.listCaddy());
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
-//		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		//		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
 		//model.addAllAttributes(ListCaddy);
 
 		return "caddy"; 
@@ -35,10 +36,10 @@ public class CaddyControler {
 
 	@GetMapping("/addToCaddy")
 	public String addToCaddy(Long id, Model model, @RequestParam(name="page", defaultValue = "0") int page,
-									  @RequestParam(name="keyword", defaultValue = "") String keyword) {
-		
-		Article article = articleRepository.findById(id).get();
-		iBusinessImpl.addToCaddy(article);	
+			@RequestParam(name="keyword", defaultValue = "") String keyword) {
+
+		iBusinessImpl.addToCaddy(id);	
+
 		return "redirect:/articles?page="+page+"&keyword="+keyword;
 
 	}
@@ -49,10 +50,18 @@ public class CaddyControler {
 
 		return "order";
 	}
-	
+
 	@GetMapping("/delToCaddy")
-	public String delToCaddy(Long ArticleId) {
+	public String delToCaddy(Model model,Long id) {
+		iBusinessImpl.removeFromCaddy(id);
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		return "caddy";
 	}
 
+	@GetMapping("/clearCaddy")
+	public String clearCaddy() {
+		iBusinessImpl.getCaddy().clear();
+
+		return "redirect:/home";
+	}
 }

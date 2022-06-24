@@ -30,8 +30,8 @@
 									<th class="text-center">Price</th>
 
 									<!-- ajout fonction suppression du caddy -->
-									<th class="text-center"><a
-										class="btn btn-sm btn-outline-danger">Clear Cart</a></th>
+									<th class="text-center"><a class="btn btn-sm btn-outline-danger"
+										th:href ="@{/clearCaddy}">Clear Cart</a></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -52,7 +52,7 @@
 									<td class="text-center text-lg text-medium"
 										th:text="${a.price}">price €</td>
 									<td class="text-center"><a class="delete"
-										th:href="@{/delToCaddy(id=a.id)}" data-original-title="Remove item"><i
+										th:href="@{/delToCaddy(id=${a.id})}" data-original-title="Remove item"><i
 											class="fa-solid fa-trash-can"></i></a></td>
 								</tr>
 							</tbody>
@@ -69,8 +69,7 @@
 							</form>
 						</div>
 						<div class="column text-lg">
-							Total: <span class="text-medium" th:text="${totalCaddy}">1000
-								€</span>
+							Total: <span class="text-medium" th:text="${totalCaddy}"></span>
 						</div>
 					</div>
 					<div class="shopping-cart-footer">

@@ -17,8 +17,8 @@ public interface IBusiness {
 	public Page<Article> readAllArticlesByPage(int i);
 	public List<Article> readArticleByCategory(Long i);
 	
-	public void addToCaddy (Article article);
-	public void removeFromCaddy(Article article);
+	public void addToCaddy (Long id);
+	public void removeFromCaddy(Long id);
 	
 	public List<Category> readAllCategories();
 	public void addCategory(Category category);
