@@ -95,8 +95,9 @@ public class IBusinessImpl implements IBusiness {
 	}
 
 	@Override
-	public List<Article> readArticleByCategory(Long i) {
-		return articleRepository.findByCategoryId(i);	}
+	public Page<Article> readArticlesByCategory(Long i,int page, int articlesByPage) {
+		return articleRepository.findByCategoryId(i, PageRequest.of(page, articlesByPage));
+	}
 
 	@Override
 	public void addToCaddy(Long id) {
@@ -122,12 +123,16 @@ public class IBusinessImpl implements IBusiness {
 	}
 	
 	@Override
-	public List<Category> readAllCategories() {
-		return categoryRepository.findAll();
+	public Page<Category> readAllCategories(int page,int categoriesByPages) {
+		return categoryRepository.findAll(PageRequest.of(page, categoriesByPages));
 	}
 	
 	@Override
 	public Page<Article> readByDescriptionContains(String keyword, int page, int articlesByPage) {
 		return articleRepository.findByDescriptionContains(keyword, PageRequest.of(page, articlesByPage));
+	}
+	@Override
+	public List<Category> findAllCategories() {
+		return categoryRepository.findAll();
 	}
 }

@@ -8,9 +8,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
-import fr.fms.dao.ArticleRepository;
-import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
@@ -61,7 +57,7 @@ public class ArticleController {
 	@GetMapping("/addArticle")
 	public String addArticle(Model model, Article article) {
 
-		List<Category> categories = business.readAllCategories();
+		List<Category> categories = business.findAllCategories();
 		model.addAttribute("listCategories", categories);
 
 		return "addArticle";
@@ -71,7 +67,7 @@ public class ArticleController {
 	@PostMapping("/save")
 	public String save(Model model, @Valid Article article, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			List<Category> categories = business.readAllCategories();
+			List<Category> categories = business.findAllCategories();
 			model.addAttribute("listCategories", categories);
 			return "addArticle";
 		}
@@ -85,7 +81,7 @@ public class ArticleController {
 	public String articles(Model model, @RequestParam(name="page", defaultValue = "0") int page,
 										@RequestParam(name="keyword", defaultValue = "") String kw) {
 		Page<Article> articles = business.readByDescriptionContains(kw, page, 6); //récup tous les articles
-		List<Category> categories = business.readAllCategories();
+		List<Category> categories = business.findAllCategories();
 		
 		model.addAttribute("listArticle", articles.getContent()); //insert les articles dans le model
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
@@ -135,7 +131,7 @@ public class ArticleController {
 		Article articleToEdit = business.readArticleById(id);
 		model.addAttribute("articleToEdit", articleToEdit);
 		
-		List<Category> categories = business.readAllCategories();
+		List<Category> categories = business.findAllCategories();
 		model.addAttribute("listCategories", categories);
 		
 		return "editArticle";
