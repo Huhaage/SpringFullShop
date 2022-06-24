@@ -12,26 +12,23 @@
 
 <body>
 	<div layout:fragment="content">
-	
 		<div class="container padding-bottom-3x mb-1">
 		
-
- 
-			<!--<div *ngIf="display else elseBlock">
-				<div *ngIf="listCaddy"> -->
-
+				<div th:if="${totalCaddy!=0.0}">
 					<!-- Shopping Cart-->
 					<div class="table-responsive shopping-cart">
 						<table class="table">
 							<thead>
 								<tr>
 									<th>Products</th>
+									<th class="text-center">Brand</th>
+									<th class="text-center">Description</th>
 									<th class="text-center">Quantity</th>
 									<th class="text-center">Price</th>
 
 									<!-- ajout fonction suppression du caddy -->
-									<th class="text-center"><a
-										class="btn btn-sm btn-outline-danger">Clear Cart</a></th>
+									<th class="text-center"><a class="btn btn-sm btn-outline-danger"
+										th:href ="@{/clearCaddy}">Clear Cart</a></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -39,21 +36,19 @@
 									<td>
 										<div class="product-item">
 											<a class="product-thumb" href="#"><img
-												th:src="${a.imgURL}" alt="Product"></a>
-											<div class="product-info">
-												<h6 class="product-title" th:text="${a.brand}">description</h6>
-											</div>
-											<div class="product-info">
-												<h6 class="product-title" th:text="${a.description}">description</h6>
-											</div>
+											th:src="@{/img/}+${a.imgUrl}" alt="Product"></a>
 										</div>
 									</td>
-									<td class="text-center" t:text="${a.quantity}">qty</td>
+									<td class="text-center" th:text="${a.brand}"></td>
+									<td class="text-center" th:text="${a.description}"></td>
+									<td class="text-center" th:text="${a.quantity}"></td>
 									<td class="text-center text-lg text-medium"
-										th:text="${a.price}">price €</td>
+										th:text="${a.price}">
+									</td>
 									<td class="text-center"><a class="delete"
-										th:href="/delToCaddy/id" data-original-title="Remove item"><i
-											class="fa-solid fa-trash-can"></i></a></td>
+										th:href="@{/delToCaddy(id=${a.id})}" data-original-title="Remove item"><i
+											class="fa-solid fa-trash-can"></i></a>
+										</td>
 								</tr>
 							</tbody>
 						</table>
@@ -69,8 +64,7 @@
 							</form>
 						</div>
 						<div class="column text-lg">
-							Total: <span class="text-medium" th:text="${totalCaddy}">1000
-								€</span>
+							Total: <span class="text-medium" th:text="${totalCaddy}"></span>
 						</div>
 					</div>
 					<div class="shopping-cart-footer">
@@ -82,13 +76,9 @@
 							<a class="btn btn-success" th:href="@{/order}">Checkout</a>
 						</div>
 					</div>
-
 				</div>
-			</div>
 			<!-- adapter la condition -->
-			
-			
-				<div class="container-fluid  mt-100">
+				<div th:if="${totalCaddy==0.0}" class="container-fluid  mt-100">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card" id="emptyCard">
@@ -97,7 +87,7 @@
 								</div>
 								<div class="card-body cart">
 									<div class="col-sm-12 empty-cart-cls text-center">
-										<img src="@{/img/dCdflKN.png}" width="130" height="130"
+										<img th:src="@{/img/dCdflKN.png}" width="130" height="130"
 											class="img-fluid mb-4 mr-3">
 										<h3>
 											<strong>Votre panier est vide</strong>
@@ -114,8 +104,6 @@
 					</div>
 				</div>
 			
-
-
 			<!-- <div *ngIf="problemOrder" class=" alert alert-danger mt-5 col-md-3">
         Pour commander connectez-vous, ou créer un compte.
         <a class="btn btn-outline-secondary" routerLink="/login">Se connecter</a>

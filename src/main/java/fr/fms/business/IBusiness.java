@@ -1,29 +1,35 @@
 package fr.fms.business;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.OrderDetail;
 
 public interface IBusiness {
-	public List<Article> readAll();
-	public Page<Article> readAllByPage(int i);
-	public void addToCaddy (Article article);
-	public void removeFromCaddy(Article article);
+	public List<Article> readAllArticles();
 	public void addArticle(Article article);
 	public void delArticle(Long i);
 	public void updateArticle(Article article);
 	public Article readArticleById(Long i);
+	public Page<Article> readByDescriptionContains(String keyword, int page, int articlesByPage);
+	public Page<Article> readAllArticlesByPage(int i);
+	public List<Article> readArticleByCategory(Long i);
+	
+	public void addToCaddy (Long id);
+	public void removeFromCaddy(Long id);
+	
+	public List<Category> readAllCategories();
 	public void addCategory(Category category);
 	public void delCategory(Long i);
 	public void updateCategory(Category category);
 	public Category readCategoryById(Long i);
+<<<<<<< HEAD
 	public List<Article> readArticleByCategory(Long i);
 	public List<OrderDetail> readAllOderDetail();
 	public void addOrderDetail(OrderDetail oder);
+=======
+>>>>>>> 3e3c47e16b36a8448863489b3607dd367a0d3f77
 }

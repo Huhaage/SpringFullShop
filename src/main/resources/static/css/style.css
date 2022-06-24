@@ -471,7 +471,7 @@ li {
 .product-item .product-thumb>img,
 .product-item .product-thumb>img {
   display: block;
-  width: 100%
+  width: 100px;
 }
 
 @media screen and (max-width: 860px) {

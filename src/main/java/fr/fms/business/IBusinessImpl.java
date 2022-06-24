@@ -23,13 +23,11 @@ public class IBusinessImpl implements IBusiness {
 	private Map<Long ,Article> caddy = new HashMap<Long ,Article>(); 
 	private double total;
 	
-	
+	@Autowired
+	private ArticleRepository articleRepository;
 	
 	@Autowired
-	ArticleRepository articleRepository;
-	
-	@Autowired
-	CategoryRepository categoryRepository;
+	private CategoryRepository categoryRepository;
 	
 	@Autowired
 	OrderDetailRepository orderDetailRepository;
@@ -39,30 +37,26 @@ public class IBusinessImpl implements IBusiness {
 	}
 	public List<Article> listCaddy(){
 		return caddy.values().stream().collect(	Collectors.toCollection(ArrayList::new));
-		
 	}
 	 
 	public double totalCaddy() {
-		
 		caddy.values().forEach((a) -> total += a.getPrice() * a.getQuantity()); 
-		return 0;
-		
+		return total;
 	}
 	
 	@Override
-	public List<Article> readAll() {
+	public List<Article> readAllArticles() {
 		return articleRepository.findAll();
 	}
 
 	@Override
-	public Page<Article> readAllByPage(int i) {
+	public Page<Article> readAllArticlesByPage(int i) {
 		return articleRepository.findAll(PageRequest.of(i-1,5));
 	}
 
 	@Override
 	public void addArticle(Article article) {
 		articleRepository.save(article);
-		
 	}
 
 	@Override
@@ -110,26 +104,28 @@ public class IBusinessImpl implements IBusiness {
 		return articleRepository.findByCategoryId(i);	}
 
 	@Override
-	public void addToCaddy(Article article) {
-		if(caddy.containsKey(article.getId())) {
-			
+	public void addToCaddy(Long id) {
+		
+		if(caddy.containsKey(id)) {
+			Article article = caddy.get(id);
 			caddy.get(article.getId()).setQuantity(article.getQuantity()+1);
 			
 			}else{
-				caddy.put(article.getId(), article);
+				caddy.put(id, articleRepository.findById(id).get());
 			}
 		
 	}
 
 	@Override
-	public void removeFromCaddy(Article article) {
-		int quantity = article.getQuantity()-1;
+	public void removeFromCaddy(Long id) {
+		int quantity = caddy.get(id).getQuantity()-1;
 		if(0 < quantity) {
-			caddy.get(article.getId()).setQuantity(article.getQuantity()-1);
+			caddy.get(id).setQuantity(quantity);
 		}
-		else caddy.remove(article.getId());
+		else caddy.remove(id);
 		
 	}
+<<<<<<< HEAD
 	@Override
 	public List<OrderDetail> readAllOderDetail() {
 		return orderDetailRepository.findAll();
@@ -140,4 +136,16 @@ public class IBusinessImpl implements IBusiness {
 		
 	}
 
+=======
+	
+	@Override
+	public List<Category> readAllCategories() {
+		return categoryRepository.findAll();
+	}
+	
+	@Override
+	public Page<Article> readByDescriptionContains(String keyword, int page, int articlesByPage) {
+		return articleRepository.findByDescriptionContains(keyword, PageRequest.of(page, articlesByPage));
+	}
+>>>>>>> 3e3c47e16b36a8448863489b3607dd367a0d3f77
 }
