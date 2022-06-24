@@ -37,7 +37,6 @@ public class CaddyControler {
 	public String addToCaddy(Long id, Model model, @RequestParam(name="page", defaultValue = "0") int page,
 									  @RequestParam(name="keyword", defaultValue = "") String keyword) {
 		
-		
 		Article article = articleRepository.findById(id).get();
 		iBusinessImpl.addToCaddy(article);
 		return "redirect:/articles?page="+page+"&keyword="+keyword;
