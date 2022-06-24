@@ -24,19 +24,19 @@
                 <div class="panel-body p-2">
                     <div class="d-flex justify-content-between">
                         <form th:action="@{/articles}" method="get">
-                        <label for="">Keyword</label>
-                        <input type="text" name="keyword" th:value="${keyword}">
-                        <button type="submit" class="btn btn-success">Search</button>
-                    </form>
-                    <ul class="nav nav-pills">
-                        <li class="nav-item" th:each="page,status:${pages}">
-                            <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
-                                th:href="@{/articles(page=${status.index},keyword=${keyword})}"
-                                th:text="${status.index}"></a>
-                        </li>
-                    </ul>  
+                            <label for="">Keyword</label>
+                            <input type="text" name="keyword" th:value="${keyword}">
+                            <button type="submit" class="btn btn-success">Search</button>
+                        </form>
+                        <ul class="nav nav-pills">
+                            <li class="nav-item" th:each="page,status:${pages}">
+                                <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
+                                    th:href="@{/articles(page=${status.index},keyword=${keyword})}"
+                                    th:text="${status.index}"></a>
+                            </li>
+                        </ul>
                     </div>
-                  
+
                     <!-- //////////////// -->
                     <div class="md-6 d-flex flex-wrap listAdmin">
                         <!-- product -->
@@ -46,20 +46,20 @@
                                     <div class="col-md-5 col-sm-12 col-xs-12">
                                         <div class="product-image">
                                             <img th:src="@{/img/}+${a.imgUrl}" alt="194x228" class="img-article">
-                                          
+
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-sm-12 col-xs-12">
                                         <div class="product-deatil">
                                             <h4 class="name" th:text="${a.brand}"></h4>
-                                            <p class="price-container" >
+                                            <p class="price-container">
                                                 <span th:text="${a.price} + €"> </span>
                                             </p>
                                         </div>
-                                        <div class="description" >
+                                        <div class="description">
                                             <h6 th:text="${a.description}"></h6>
                                         </div>
-                                        <div class="cat-name" >
+                                        <div class="cat-name">
                                             <h6 th:text="${a.Category.description}"></h6>
                                         </div>
                                         <div class="product-info smart-form">

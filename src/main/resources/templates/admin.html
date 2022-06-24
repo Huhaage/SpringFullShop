@@ -20,17 +20,19 @@
                             <p class="text-muted mb-0">C'est de là que commence toutes choses....</p>
                         </div>
                     </div>
-        
+
                     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center justify-content-center px-xl-6 aos-init aos-animate"
                         data-aos="fade-up">
-        
+
                         <div class="col my-3">
                             <!-- ajout lien -->
                             <div class="card border-hover-primary hover-scale" id="adminCard">
                                 <div class="card-body">
-                                     <a th:href="@{/addArticle}"><div class="text-primary mb-5">
-                                 <img th:src="@{/img/add.png}" alt="">
-                                    </div></a>
+                                    <a th:href="@{/addArticle}">
+                                        <div class="text-primary mb-5">
+                                            <img th:src="@{/img/add.png}" alt="">
+                                        </div>
+                                    </a>
                                     <h6 class="font-weight-bold mb-3">Ajouter un article</h6>
                                     <p class="text-muted mb-0">Pour l'ajouter à notre catalogue</p>
                                 </div>
@@ -38,11 +40,13 @@
                         </div>
                         <div class="col my-3">
                             <!-- ajout lien -->
-                         <div class="card border-hover-primary hover-scale" id="adminCard">
+                            <div class="card border-hover-primary hover-scale" id="adminCard">
                                 <div class="card-body">
-                                       <a th:href="@{/adminListArticles}"><div class="text-primary mb-5">
-                                        <img th:src="@{/img/bullet-list.png}" alt="">
-                                    </div></a>
+                                    <a th:href="@{/adminListArticles}">
+                                        <div class="text-primary mb-5">
+                                            <img th:src="@{/img/bullet-list.png}" alt="">
+                                        </div>
+                                    </a>
                                     <h6 class="font-weight-bold mb-3">Listes des articles</h6>
                                     <p class="text-muted mb-0">Ensemble de nos articles</p>
                                 </div>
@@ -51,9 +55,11 @@
                         <div class="col my-3">
                             <div class="card border-hover-primary hover-scale" id="adminCard">
                                 <div class="card-body">
-                                    <div class="text-primary mb-5">
-                                        <img th:src="@{/img/category_list.png}" alt="">
-                                    </div>
+                                    <a th:href="@{/adminListCategories}">
+                                        <div class="text-primary mb-5">
+                                            <img th:src="@{/img/category_list.png}" alt="">
+                                        </div>
+                                    </a>
                                     <h6 class="font-weight-bold mb-3">Listes des categories</h6>
                                     <p class="text-muted mb-0">Emsemble de nos catégories</p>
                                 </div>
@@ -63,8 +69,8 @@
                             <div class="card border-hover-primary hover-scale" id="adminCard">
                                 <div class="card-body">
                                     <div class="text-primary mb-5">
-                                        <img th:src="@{/img/add_category.png}" alt="">
-                                    </div>
+                                        <a th:href="@{/addCategory}"><img th:src="@{/img/add_category.png}" alt="">
+                                    </div></a>
                                     <h6 class="font-weight-bold mb-3">Ajouter une categorie</h6>
                                     <p class="text-muted mb-0">Pour l'ajouter à nos catégories</p>
                                 </div>
