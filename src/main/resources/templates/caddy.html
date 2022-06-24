@@ -38,8 +38,8 @@
 								<tr th:each="a:${listCaddy}">
 									<td>
 										<div class="product-item">
-											<a class="product-thumb" href="#"><img
-												th:src="${a.imgURL}" alt="Product"></a>
+<!-- 											<a class="product-thumb" href="#"><img -->
+<!-- 												th:src="@{/img/}+${a.imgUrl}" alt="Product"></a> -->
 											<div class="product-info">
 												<h6 class="product-title" th:text="${a.brand}">description</h6>
 											</div>
@@ -48,11 +48,11 @@
 											</div>
 										</div>
 									</td>
-									<td class="text-center" t:text="${a.quantity}">qty</td>
+									<td class="text-center" th:text="${a.quantity}">quantity</td>
 									<td class="text-center text-lg text-medium"
 										th:text="${a.price}">price €</td>
 									<td class="text-center"><a class="delete"
-										th:href="/delToCaddy/id" data-original-title="Remove item"><i
+										th:href="@{/delToCaddy(id=a.id)}" data-original-title="Remove item"><i
 											class="fa-solid fa-trash-can"></i></a></td>
 								</tr>
 							</tbody>
