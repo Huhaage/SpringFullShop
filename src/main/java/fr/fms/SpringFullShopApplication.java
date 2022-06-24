@@ -50,34 +50,6 @@ public class SpringFullShopApplication implements CommandLineRunner {
 		// articleRepository.save(new Article(null,"Predator PO7","Acer",2699.99,"portable.jpg",pc,1));
 
 
-//		 Category smartphone = categoryRepository.save(new Category(null,"Smartphone",null));
-//         Category tablet = categoryRepository.save(new Category(null,"Tablet",null)); 
-//         Category pc = categoryRepository.save(new Category(null,"PC",null));
-//		 Category logiciel = categoryRepository.save(new Category(null,"logiciel",null));
-//		
-//		 articleRepository.save(new Article(null,"S8","SamSung",350,"unknown.png",smartphone, 1));
-//		 articleRepository.save(new Article(null,"S10","SamSung",400,"unknown.png",smartphone, 1));
-//		 articleRepository.save(new Article(null,"S11","SamSung",420,"unknown.png",smartphone, 1));
-//		 articleRepository.save(new Article(null,"SE","iPhone",650,"unknown.png",smartphone,1));
-//		 articleRepository.save(new Article(null,"Redmi Go","Xiaomi",200,"unknown.png",smartphone,1));
-//		 articleRepository.save(new Article(null,"Mate X","Huawei",180,"unknown.png",smartphone,1));
-//		 articleRepository.save(new Article(null,"Redmi9A","Xiaomi",150,"unknown.png",smartphone,1));
-//		
-//		 articleRepository.save(new Article(null,"Predator PO3","Acer",1899.99,"unknown.png",pc,1));
-//		 articleRepository.save(new Article(null,"SK15","Skillkorp",1199.99,"unknown.png",pc,1));
-//		 articleRepository.save(new Article(null,"Omen GT21","HP",1599.99,"unknown.png",pc,1));
-//		 articleRepository.save(new Article(null,"SK16","Skillkorp",899.99,"unknown.png",pc,1));
-//		 articleRepository.save(new Article(null,"GT22","HP",4299,"unknown.png",pc,1));
-//		 articleRepository.save(new Article(null,"Predator PO7","Acer",2699.99,"unknown.png",pc,1));
-//
-//		
-//		
-
-
-		//List<Article> articles = articleRepository.findByCategory(categoryRepository.findById((long) 3).get());
-		
-
-
 		// articleRepository.save(new Article(null,"TAB M10","Lenovo",299.99,"tablet.jpg",tablet,1));
 		// articleRepository.save(new Article(null,"Galaxy Tab A7","Samsung",179,"tablet.jpg",tablet,1));
 		// articleRepository.save(new Article(null,"Smart Tab 8","Essentield",129,"tablet.jpg",tablet,1));

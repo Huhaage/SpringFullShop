@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.OrderDetail;
 
 public interface IBusiness {
 	public List<Article> readAll();
@@ -23,4 +24,6 @@ public interface IBusiness {
 	public void updateCategory(Category category);
 	public Category readCategoryById(Long i);
 	public List<Article> readArticleByCategory(Long i);
+	public List<OrderDetail> readAllOderDetail();
+	public void addOrderDetail(OrderDetail oder);
 }

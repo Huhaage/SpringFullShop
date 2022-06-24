@@ -9,12 +9,16 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.OrderDetailRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.OrderDetail;
 
+@Service
 public class IBusinessImpl implements IBusiness {
 	private Map<Long ,Article> caddy = new HashMap<Long ,Article>(); 
 	private double total;
@@ -26,6 +30,9 @@ public class IBusinessImpl implements IBusiness {
 	
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	OrderDetailRepository orderDetailRepository;
 	
 	public Map<Long ,Article> getCaddy(){
 		return caddy;
@@ -121,6 +128,15 @@ public class IBusinessImpl implements IBusiness {
 			caddy.get(article.getId()).setQuantity(article.getQuantity()-1);
 		}
 		else caddy.remove(article.getId());
+		
+	}
+	@Override
+	public List<OrderDetail> readAllOderDetail() {
+		return orderDetailRepository.findAll();
+	}
+	@Override
+	public void addOrderDetail(OrderDetail order) {
+		orderDetailRepository.save(order);
 		
 	}
 
