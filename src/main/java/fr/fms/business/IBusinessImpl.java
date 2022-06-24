@@ -1,6 +1,10 @@
 package fr.fms.business;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,12 +16,31 @@ import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
 public class IBusinessImpl implements IBusiness {
+	private Map<Long ,Article> caddy = new HashMap<Long ,Article>(); 
+	private double total;
+	
+	
 	
 	@Autowired
 	ArticleRepository articleRepository;
 	
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	public Map<Long ,Article> getCaddy(){
+		return caddy;
+	}
+	public List<Article> listCaddy(){
+		return caddy.values().stream().collect(	Collectors.toCollection(ArrayList::new));
+		
+	}
+	 
+	public double totalCaddy() {
+		
+		caddy.values().forEach((a) -> total += a.getPrice() * a.getQuantity()); 
+		return 0;
+		
+	}
 	
 	@Override
 	public List<Article> readAll() {
@@ -78,5 +101,27 @@ public class IBusinessImpl implements IBusiness {
 	@Override
 	public List<Article> readArticleByCategory(Long i) {
 		return articleRepository.findByCategoryId(i);	}
+
+	@Override
+	public void addToCaddy(Article article) {
+		if(caddy.containsKey(article.getId())) {
+			
+			caddy.get(article.getId()).setQuantity(article.getQuantity()+1);
+			
+			}else{
+				caddy.put(article.getId(), article);
+			}
+		
+	}
+
+	@Override
+	public void removeFromCaddy(Article article) {
+		int quantity = article.getQuantity()-1;
+		if(0 < quantity) {
+			caddy.get(article.getId()).setQuantity(article.getQuantity()-1);
+		}
+		else caddy.remove(article.getId());
+		
+	}
 
 }

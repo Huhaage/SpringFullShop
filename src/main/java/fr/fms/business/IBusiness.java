@@ -12,6 +12,8 @@ import fr.fms.entities.Category;
 public interface IBusiness {
 	public List<Article> readAll();
 	public Page<Article> readAllByPage(int i);
+	public void addToCaddy (Article article);
+	public void removeFromCaddy(Article article);
 	public void addArticle(Article article);
 	public void delArticle(Long i);
 	public void updateArticle(Article article);
