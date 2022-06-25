@@ -1,9 +1,5 @@
 package fr.fms.web;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
@@ -15,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
 
-
 @Transactional
 @Controller
 public class CaddyControler {
@@ -25,10 +20,11 @@ public class CaddyControler {
 
 	@GetMapping("/caddy")
 	public String caddy(Model model, HttpSession session) {
-	
-		
+
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		// pour le if
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
 
 		int length = iBusinessImpl.sizeCaddy();
 		session.setAttribute("caddySize", length);
@@ -40,8 +36,7 @@ public class CaddyControler {
 			@RequestParam(name = "keyword", defaultValue = "") String keyword) {
 
 		iBusinessImpl.addToCaddy(id);
-
-		return "redirect:/articles?page=" + page + "&keyword=" + keyword;
+		return "redirect:/articles?page=" + page + "&keywod=" + keyword;
 
 	}
 
@@ -57,17 +52,22 @@ public class CaddyControler {
 		iBusinessImpl.removeFromCaddy(id);
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		
+		// pour le if
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
+
 		int length = iBusinessImpl.sizeCaddy();
 		session.setAttribute("caddySize", length);
 		return "caddy";
 	}
 
 	@GetMapping("/clearCaddy")
-	public String clearCaddy(HttpSession session) {
+	public String clearCaddy(Model model,HttpSession session) {
 		iBusinessImpl.getCaddy().clear();
+		// pour le if
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
+
 		int length = iBusinessImpl.sizeCaddy();
 		session.setAttribute("caddySize", length);
-		return "redirect:/home";
+		return "redirect:/caddy";
 	}
 }

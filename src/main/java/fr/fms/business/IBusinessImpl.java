@@ -36,8 +36,9 @@ public class IBusinessImpl implements IBusiness {
 	}
 	 
 	public double totalCaddy() {
-		caddy.values().forEach((a) -> total += a.getPrice() * a.getQuantity()); 
-		return total;
+		this.total = 0.0;
+		caddy.values().forEach((a) -> this.total += a.getPrice() * a.getQuantity()); 
+		return this.total;
 	}
 	
 	@Override
