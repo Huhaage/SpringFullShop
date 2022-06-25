@@ -4,13 +4,10 @@
 package fr.fms.web;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
-import fr.fms.dao.ArticleRepository;
-import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
@@ -33,11 +28,6 @@ import fr.fms.entities.Category;
 public class CategoryController {
 
     @Autowired
-    private ArticleRepository articleRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
-
-    @Autowired
     IBusinessImpl iBusinessImpl;
 
     // affiche les catégories coté admin
@@ -45,7 +35,8 @@ public class CategoryController {
     public String categories(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "keyword", defaultValue = "1") Long id) {
 
-        Page<Category> categories = categoryRepository.findAll(PageRequest.of(page, 4));
+        // Page<Category> categories = categoryRepository.findAll();
+        Page<Category> categories = iBusinessImpl.readAllCategories(page, 4);
         model.addAttribute("listCategories", categories.getContent());
         model.addAttribute("pages", new int[categories.getTotalPages()]);
         model.addAttribute("currentPage", page);
@@ -59,16 +50,16 @@ public class CategoryController {
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "keyword", defaultValue = "1") Long id) {
 
-        Page<Article> articles = articleRepository.findByCategoryId(id, PageRequest.of(page, 6));
-        Optional<Category> cat = categoryRepository.findById(id);
-        List<Category> categories = categoryRepository.findAll();
+        Page<Article> articles = iBusinessImpl.readArticlesByCategory(id, page, 6);
+        Category cat = iBusinessImpl.readCategoryById(id);
+        List<Category> categories = iBusinessImpl.findAllCategories();
 
         model.addAttribute("listCategoryArticles", articles.getContent());
         model.addAttribute("listCategories", categories);
         model.addAttribute("pages", new int[articles.getTotalPages()]);
         model.addAttribute("currentPage", page);
         model.addAttribute("keyword", id);
-        model.addAttribute("catName", cat.get().getDescription());
+        model.addAttribute("catName", cat.getDescription());
         return "articlesByCategory";
     }
 
@@ -87,7 +78,7 @@ public class CategoryController {
             return "addCategory";
         }
 
-        categoryRepository.save(category);
+       iBusinessImpl.addCategory(category);
         return "redirect:/adminListCategories";
     }
 
@@ -95,7 +86,7 @@ public class CategoryController {
     @GetMapping("/editCategory")
     public String editArticle(Model model, Long id, Category category) {
 
-        Category cat = categoryRepository.findById(id).get();
+        Category cat = iBusinessImpl.readCategoryById(id);
 
         model.addAttribute("category", cat);
         model.addAttribute("idCat", cat.getId());
@@ -110,10 +101,10 @@ public class CategoryController {
         if (bindingResult.hasErrors()) {
             return "editCategory";
         }
-        Optional<Category> cat = categoryRepository.findById(id);
-        Category c = cat.get();
-        if (c != null) {
-            categoryRepository.save(category);
+        Category cat = iBusinessImpl.readCategoryById(id);
+      
+        if (cat != null) {
+           iBusinessImpl.addCategory(category);
             return "redirect:/adminListCategories";
         }
         return "redirect:/adminListCategories";

@@ -1,8 +1,10 @@
 package fr.fms.web;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
@@ -15,8 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
-import fr.fms.dao.ArticleRepository;
-import fr.fms.entities.Article;
 
 @Transactional
 @Controller
@@ -25,12 +25,19 @@ public class CaddyControler {
 	@Autowired
 	IBusinessImpl iBusinessImpl;
 
-	@GetMapping("/caddy") public String caddy(Model model) {
-		//		System.out.println(iBusinessImpl.listCaddy());
-		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
+
+	@GetMapping("/caddy")
+	public String caddy(Model model, HttpSession session) {
+
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		
-		return "caddy"; 
+		// pour le if
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
+
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
+		return "caddy";
+
 	}
 
 	@GetMapping("/addToCaddy")
@@ -39,24 +46,34 @@ public class CaddyControler {
 		iBusinessImpl.addToCaddy(id);	
 		return "redirect:/articles?page="+page+"&keyword="+keyword;
 
-
 	}
 
+	
+
+
 	@GetMapping("/delToCaddy")
-	public String delToCaddy(Model model, Long id,HttpSession session) {
+	public String delToCaddy(Model model, Long id, HttpSession session) {
 		iBusinessImpl.removeFromCaddy(id);
-		int lenth = iBusinessImpl.sizeCaddy();
-		
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		session.setAttribute("caddySize", lenth);
+		// pour le if
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
+
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
+
 		return "caddy";
 	}
 
 	@GetMapping("/clearCaddy")
-	public String clearCaddy() {
+	public String clearCaddy(Model model,HttpSession session) {
 		iBusinessImpl.getCaddy().clear();
+		// pour le if
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
 
-		return "redirect:/home";
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
+		return "redirect:/caddy";
 	}
 
 	// lien de la page order

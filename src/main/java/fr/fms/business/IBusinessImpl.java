@@ -35,8 +35,9 @@ public class IBusinessImpl implements IBusiness {
 	}
 	 
 	public double totalCaddy() {
-		caddy.values().forEach((a) -> total += a.getPrice() * a.getQuantity()); 
-		return total;
+		this.total = 0.0;
+		caddy.values().forEach((a) -> this.total += a.getPrice() * a.getQuantity()); 
+		return this.total;
 	}
 	
 	@Override
@@ -95,8 +96,9 @@ public class IBusinessImpl implements IBusiness {
 	}
 
 	@Override
-	public List<Article> readArticleByCategory(Long i) {
-		return articleRepository.findByCategoryId(i);	}
+	public Page<Article> readArticlesByCategory(Long i,int page, int articlesByPage) {
+		return articleRepository.findByCategoryId(i, PageRequest.of(page, articlesByPage));
+	}
 
 	@Override
 	public void addToCaddy(Long id) {
@@ -108,29 +110,35 @@ public class IBusinessImpl implements IBusiness {
 			}else{
 				caddy.put(id, articleRepository.findById(id).get());
 			}
-		
-	}
-	public  int sizeCaddy() {
-		return caddy.size();
 	}
 
 	@Override
 	public void removeFromCaddy(Long id) {
-		int quantity = caddy.get(id).getQuantity()-1;
-		if(0 < quantity) {
+		int quantity = caddy.get(id).getQuantity() - 1;
+		if (0 < quantity) {
 			caddy.get(id).setQuantity(quantity);
+
 		}
 		else caddy.remove(id);
-	
+
 	}
 	
 	@Override
-	public List<Category> readAllCategories() {
-		return categoryRepository.findAll();
+	public int sizeCaddy() {
+		return caddy.size();
+	}
+	
+	@Override
+	public Page<Category> readAllCategories(int page,int categoriesByPages) {
+		return categoryRepository.findAll(PageRequest.of(page, categoriesByPages));
 	}
 	
 	@Override
 	public Page<Article> readByDescriptionContains(String keyword, int page, int articlesByPage) {
 		return articleRepository.findByDescriptionContains(keyword, PageRequest.of(page, articlesByPage));
+	}
+	@Override
+	public List<Category> findAllCategories() {
+		return categoryRepository.findAll();
 	}
 }

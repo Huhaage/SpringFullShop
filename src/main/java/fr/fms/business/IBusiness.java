@@ -15,12 +15,15 @@ public interface IBusiness {
 	public Article readArticleById(Long i);
 	public Page<Article> readByDescriptionContains(String keyword, int page, int articlesByPage);
 	public Page<Article> readAllArticlesByPage(int i);
-	public List<Article> readArticleByCategory(Long i);
+	public Page<Article> readArticlesByCategory(Long i,int page, int articlesByPage);
 	
 	public void addToCaddy (Long id);
+
+	public int sizeCaddy();
 	public void removeFromCaddy(Long id);
 	
-	public List<Category> readAllCategories();
+	public List<Category> findAllCategories();
+	public Page<Category> readAllCategories(int page,int categoriesByPages);
 	public void addCategory(Category category);
 	public void delCategory(Long i);
 	public void updateCategory(Category category);
