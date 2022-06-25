@@ -110,6 +110,9 @@ public class IBusinessImpl implements IBusiness {
 			}
 		
 	}
+	public  int sizeCaddy() {
+		return caddy.size();
+	}
 
 	@Override
 	public void removeFromCaddy(Long id) {
@@ -118,7 +121,7 @@ public class IBusinessImpl implements IBusiness {
 			caddy.get(id).setQuantity(quantity);
 		}
 		else caddy.remove(id);
-		
+	
 	}
 	
 	@Override

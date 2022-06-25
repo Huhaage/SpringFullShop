@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,26 +25,6 @@ public class CaddyControler {
 	@Autowired
 	IBusinessImpl iBusinessImpl;
 
-<<<<<<< HEAD
-	@GetMapping("/caddy")
-	public String caddy(Model model) {
-		// System.out.println(iBusinessImpl.listCaddy());
-		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
-		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		// model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		// model.addAllAttributes(ListCaddy);
-		System.out.println(iBusinessImpl.totalCaddy());
-		return "caddy";
-	}
-
-	@GetMapping("/addToCaddy")
-	public String addToCaddy(Long id, Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "keyword", defaultValue = "") String keyword) {
-
-		iBusinessImpl.addToCaddy(id);
-
-		return "redirect:/articles?page=" + page + "&keyword=" + keyword;
-=======
 	@GetMapping("/caddy") public String caddy(Model model) {
 		//		System.out.println(iBusinessImpl.listCaddy());
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
@@ -56,14 +38,17 @@ public class CaddyControler {
 			@RequestParam(name="keyword", defaultValue = "") String keyword) {
 		iBusinessImpl.addToCaddy(id);	
 		return "redirect:/articles?page="+page+"&keyword="+keyword;
->>>>>>> christophe
+
 
 	}
 
 	@GetMapping("/delToCaddy")
-	public String delToCaddy(Model model, Long id) {
+	public String delToCaddy(Model model, Long id,HttpSession session) {
 		iBusinessImpl.removeFromCaddy(id);
-		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
+		int lenth = iBusinessImpl.sizeCaddy();
+		
+		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		session.setAttribute("caddySize", lenth);
 		return "caddy";
 	}
 
