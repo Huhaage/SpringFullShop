@@ -33,19 +33,18 @@
 						<div class="or-line"></div>
 						<div class="or">OR</div>
 					</div>
-					<form  >
+					<form th:action="@{/login}" method="post">
 						<div class="loginbox-textbox">
-							<input type="text" class="form-control" placeholder="Email" name="email"
-								formControlName="email" required="">
+							<input type="text" class="form-control" placeholder="Email" name="mail"
+								formControlName="mail">
 							<div id="emailHelp" class="form-text">Ne partagez votre email avec personne.</div>
 						</div>
 						<div class="loginbox-textbox">
-							<input type="password" class="form-control" name="password" placeholder="Password"
-								formControlName="password" required="">
+							<input type="passowrd" class="form-control" name="password" placeholder="Password"
+								formControlName="password">
 						</div>
 						<div class="loginbox-submit">
-							<button type="submit" class="btn btn-success btn-block"
-								id="modal-btn">
+							<button type="submit" class="btn btn-success btn-block" id="modal-btn" value="Log in">
 								<span>Submit</span>
 								<div class="success">
 									<svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
@@ -58,14 +57,18 @@
 							</button>
 						</div>
 					</form>
-					<!-- <div *ngIf="display" class=" alert alert-success col-md-12">
-						Utilisateur connecté.
+					<form th:action="@{/logout}" method="post">
+						<div class="loginbox-textbox">
+							<button class="btn btn-danger" type="submit">Deco</button>
+						</div>
+					</form>
+					<div th:if="${param.error}" class=" alert alert-danger col-md-12">
+						Invalid username and password.
+					</div>
+					<div th:if="${param.logout}" class=" alert alert-success col-md-12">
+						You have been logged out.
 					</div>
 
-					<div *ngIf="problemLogin" class=" alert alert-danger col-md-12">
-						Vérifiez vos identifiants.
-					</div> -->
-				
 				</div>
 			</div>
 		</div>

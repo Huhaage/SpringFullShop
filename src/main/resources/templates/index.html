@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <meta charset="UTF-8">
@@ -30,13 +31,15 @@
 			</li>
 			<li class="nav-item"><a th:href="@{/login}" class="nav-link">Se
 					connecter.</a></li>
+					<li class="nav-item"><a th:href="@{/logout}" class="nav-link">Se
+							déconnecter.</a></li>
 			<li class="nav-item d-flex">
 				<a  class="nav-link" id="linkAdmin" th:href="@{/admin}">ADMIN</a>
 			</li>
 		</ul>
 
 		<!-- avatar -->
-		<div class="col-md-4 welcome">
+		<div class="col-md-4 welcome" sec:authorize="hasRole('USER')">
 			Bienvenue <img th:src="@{img/avatar.png}">
 		</div>
 		<div id="Caddy" class="cart d-flex align-items-center">
