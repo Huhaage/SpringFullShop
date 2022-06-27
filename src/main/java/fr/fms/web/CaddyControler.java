@@ -1,15 +1,8 @@
 package fr.fms.web;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-import javax.websocket.Session;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,8 +42,6 @@ public class CaddyControler {
 	}
 
 	
-
-
 	@GetMapping("/delToCaddy")
 	public String delToCaddy(Model model, Long id, HttpSession session) {
 		iBusinessImpl.removeFromCaddy(id);
@@ -80,6 +71,7 @@ public class CaddyControler {
 	@GetMapping("/order")
 	public String order(Model model) {
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
+		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
 		return "order";
 	}
 }

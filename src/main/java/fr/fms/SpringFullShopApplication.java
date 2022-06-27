@@ -65,13 +65,8 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		 articleRepository.save(new Article(null,"Predator PO7","Acer",2699.99,"unknown.png",pc,1));
 //
 //		
-//		
-
-
-		//List<Article> articles = articleRepository.findByCategory(categoryRepository.findById((long) 3).get());
-		
-
-
+//
+//
 //		 articleRepository.save(new Article(null,"TAB M10","Lenovo",299.99,"tablet.jpg",tablet,1));
 //		 articleRepository.save(new Article(null,"Galaxy Tab A7","Samsung",179,"tablet.jpg",tablet,1));
 //		 articleRepository.save(new Article(null,"Smart Tab 8","Essentield",129,"tablet.jpg",tablet,1));

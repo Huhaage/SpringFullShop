@@ -1,10 +1,14 @@
 package fr.fms.entities;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -43,4 +47,21 @@ public class Article {
 
 	@Min(1)
 	private int quantity=1;
+	
+	@OneToMany(mappedBy="article")
+	private Collection<OrdersItem> ordersItem;
+
+	public Article(Long id, @NotNull @Size(min = 2, max = 50) String description, @NotNull String brand,
+			@DecimalMin("50") double price, @NotNull String imgUrl, Category category, @Min(1) int quantity) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.brand = brand;
+		this.price = price;
+		this.imgUrl = imgUrl;
+		this.category = category;
+		this.quantity = quantity;
+	}
+	
+	
 }
