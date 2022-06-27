@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{index.html}">
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+layout:decorate="~{index.html}">
 
 <head>
 	<meta charset="UTF-8">
@@ -55,11 +57,6 @@
 									</svg>
 								</div>
 							</button>
-						</div>
-					</form>
-					<form th:action="@{/logout}" method="post">
-						<div class="loginbox-textbox">
-							<button class="btn btn-danger" type="submit">Deco</button>
 						</div>
 					</form>
 					<div th:if="${param.error}" class=" alert alert-danger col-md-12">
