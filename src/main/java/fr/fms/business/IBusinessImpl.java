@@ -158,25 +158,22 @@ public class IBusinessImpl implements IBusiness {
 	}
 	@Override
 	public Long newOrder(Long idCustomer) {
-		return idCustomer;
-		
+		Long idOrder = 0L;
+		List<Orders> lastOrder = null;
+		if(customerRepository.findById(idCustomer) != null) {
+			double total = totalCaddy(); 
+			Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
+			orderRepository.save(order);
+			lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findCustomerById(idCustomer));
+		}
+		return lastOrder.get(0).getOrderId();
+
 	}
-//		Long idOrder = 0L;
-//		List<Orders> lastOrder = null;
-//		if(customerRepository.findById(idCustomer) != null) {
-//			double total = totalCaddy(); 
-//			Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
-//			orderRepository.save(order);
-//			lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findCustomerById(idCustomer));
-//		}
-//		return lastOrder.get(0).getOrderId();
-//
-//	}
 
 	@Override
 	public void saveOrder(Long idOrder) {
 		
-//		caddy.values().forEach((a) -> orderItemRepository.save(new OrdersItem(idOrder, a.getId(), a.getQuantity())));	
+		caddy.values().forEach((a) -> orderRepository.save(new OrdersItem(orderRepository.findById(idOrder).get(), a, a.getQuantity())));	
 
 	}
 }
