@@ -1,16 +1,16 @@
-
 package fr.fms.entities;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * @author Stagiaires09
+ * @author CHJCS
  *
  */
 @Entity
@@ -26,20 +26,26 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Customer {
+public class Role {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotNull
-	private String name;
-	@NotNull
-	private String firstName;
-	@NotNull
-	private String address;
-	@NotNull
-	private String phone;
-	@OneToMany(mappedBy="customer")
-	private Collection<Orders> orders;
+	
+	private String role;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "user_role",
+			joinColumns = {@JoinColumn(name = "roleId")},
+			inverseJoinColumns = {@JoinColumn(name = "userId")})
+	private List<User> users;
 
-	@ManyToOne
-	private User user;
+	/**
+	 * @param id
+	 * @param role
+	 */
+	public Role(Long id, String role) {
+		super();
+		this.id = id;
+		this.role = role;
+	}
 }

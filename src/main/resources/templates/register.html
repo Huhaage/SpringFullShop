@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{index.html}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<!-- ------ -->
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-5">
+					<div class="card " id="cardbox">
+						<div class="card-header">Register</div>
+						<div class="card-body">
+
+							<!-- socail media group -->
+							<div class="social-buttons d-flex flex-column">
+								<a class="btn btn-md btn-block btn-fb"><i class="fa-brands fa-facebook"></i>
+									Facebook</a>
+								<a class="btn btn-md btn-block btn-tw"><i class="fa-brands fa-twitter"></i> Twitter</a>
+							</div>
+
+							<div class="login-or">
+								<hr class="hr-or">
+								<span class="span-or">or</span>
+							</div>
+							<div class="form-group">
+								<form th:action="@{/saveCustomer}" method="post" th:object="${customer}">
+									<div class="form-group">
+										<label class="control-label">Nom : </label>
+										<input type="text" name="name"  class="form-control" placeholder="Nom"
+											formControlName="name" th:field="*{name}">
+									</div>
+									<div class="form-group">
+										<label class="control-label">Prénom : </label>
+										<input type="text" name="firstName" class="form-control" placeholder="Prénom"
+											formControlName="firstName" th:field="*{firstName}">
+									</div>
+									<div class="form-group">
+										<label class="control-label">Adresse : </label>
+										<input type="text" name="address" class="form-control" placeholder="Adresse"
+											formControlName="address" th:field="*{address}">
+									</div>
+									<div class="form-group">
+										<label class="control-label">Tel :</label>
+										<input type="text" name="phone" class="form-control"
+											placeholder="Téléphone" formControlName="phone" th:field="*{phone}">
+									</div>
+
+									<!-- Submit -->
+									<div class="form-group">
+										<button  type="submit" class="btn btn-primary">Création du
+											compte</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- <div *ngIf="display" class=" alert alert-success mt-5 col-md-3">
+				Utilisateur enregistré.
+			</div> -->
+		</div>
+
+
+	</div>
+</body>
+
+</html>

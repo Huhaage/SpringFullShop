@@ -10,8 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.RoleRepository;
+import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Role;
+import fr.fms.entities.User;
 
 @Transactional
 @SpringBootApplication
@@ -21,6 +25,12 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	
 	@Autowired
 	ArticleRepository articleRepository;
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
+	RoleRepository roleRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringFullShopApplication.class, args);
@@ -69,9 +79,6 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		 articleRepository.save(new Article(null,"GT22","HP",4299,"unknown.png",pc,1));
 //		 articleRepository.save(new Article(null,"Predator PO7","Acer",2699.99,"unknown.png",pc,1));
 //
-//		
-//
-//
 //		 articleRepository.save(new Article(null,"TAB M10","Lenovo",299.99,"tablet.jpg",tablet,1));
 //		 articleRepository.save(new Article(null,"Galaxy Tab A7","Samsung",179,"tablet.jpg",tablet,1));
 //		 articleRepository.save(new Article(null,"Smart Tab 8","Essentield",129,"tablet.jpg",tablet,1));
@@ -87,8 +94,12 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		 articleRepository.save(new Article(null,"Platinium unlimlited","Nero",99.99,"pinnacle.jpg",logiciel,1));
 //		 articleRepository.save(new Article(null,"Studio 25 ultimate","Pinnacle",129.99,"pinnacle.jpg",logiciel,1));
 //		 articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"pinnacle.jpg",logiciel,1));
-			
-
+//			
+//		roleRepository.save(new Role(null, "USER"));
+//		roleRepository.save(new Role(null, "ADMIN"));
+//		 
+//		userRepository.save(new User(null, "bla@bla.fr", "123", true));
+//		userRepository.save(new User(null, "x@x.fr", "123", true));
 	}
 
 }

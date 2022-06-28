@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Customer;
+import fr.fms.entities.User;
 
 public interface IBusiness {
 	public List<Article> readAllArticles();
@@ -29,4 +31,7 @@ public interface IBusiness {
 	public void delCategory(Long i);
 	public void updateCategory(Category category);
 	public Category readCategoryById(Long i);
+	
+	public List<Customer> readAllCustomerByUser(User user);
+	public Long getUserIdByMail(String mail);
 }
