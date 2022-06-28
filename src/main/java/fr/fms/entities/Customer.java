@@ -35,7 +35,7 @@ public class Customer {
 	@NotNull
 	private String address;
 	@NotNull
-	private int phone;
+	private String phone;
 	@OneToMany(mappedBy="customer")
 	private Collection<Orders> orders;
 	
