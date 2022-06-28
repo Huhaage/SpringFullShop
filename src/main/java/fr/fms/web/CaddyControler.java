@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
+import fr.fms.entities.User;
 
 @Transactional
 @Controller
@@ -70,8 +71,11 @@ public class CaddyControler {
 	// lien de la page order
 	@GetMapping("/order")
 	public String order(Model model) {
+		//User user = new User(null, " ", " ");
+		
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		//model.addAttribute("listAddress", iBusinessImpl.readAllCustomerByUser(user));)
 		return "order";
 	}
 }

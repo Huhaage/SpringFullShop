@@ -19,8 +19,10 @@ import fr.fms.dao.OrdersItemRepository;
 import fr.fms.dao.OrdersRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Customer;
 import fr.fms.entities.Orders;
 import fr.fms.entities.OrdersItem;
+import fr.fms.entities.User;
 
 @Service
 public class IBusinessImpl implements IBusiness {
@@ -178,5 +180,10 @@ public class IBusinessImpl implements IBusiness {
 		
 //		caddy.values().forEach((a) -> orderItemRepository.save(new OrdersItem(idOrder, a.getId(), a.getQuantity())));	
 
+	}
+	
+	@Override
+	public List<Customer> readAllCustomerByUser(User user){
+		return customerRepository.findAllCustomerByUser(user);
 	}
 }

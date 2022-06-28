@@ -28,4 +28,17 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
 	private Collection<Customer> customers;
+
+	/**
+	 * @param id
+	 * @param login
+	 * @param password
+	 */
+	public User(Long id, String login, String password) {
+		this.id = id;
+		this.login = login;
+		this.password = password;
+	}
+	
+	
 }
