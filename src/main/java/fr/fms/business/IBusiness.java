@@ -33,4 +33,5 @@ public interface IBusiness {
 	public Category readCategoryById(Long i);
 	
 	public List<Customer> readAllCustomerByUser(User user);
+	public Long getUserIdByMail(String mail);
 }

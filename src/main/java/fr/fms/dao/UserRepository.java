@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import fr.fms.entities.User;
 
 @Repository
-public interface UsersRepository extends JpaRepository<User,Long> {
-
+public interface UserRepository extends JpaRepository<User,Long> {
+	public Long findUserIdByMail(String mail);
 }

@@ -42,7 +42,4 @@ public class Customer {
 
 	@ManyToOne
 	private User user;
-	
-	@ManyToOne
-	private User user;
 }

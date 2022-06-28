@@ -73,12 +73,16 @@ public class CaddyControler {
 	@GetMapping("/order")
 	public String order(Model model) {
 		//User user = new User(null, " ", " ");
-		 //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
+		Long idUser = iBusinessImpl.getUserIdByMail(mail);
+		
+		System.out.println("id user : " + idUser);
+		System.out.println("mail user : " + mail);
 		
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
 		//model.addAttribute("listAddress", iBusinessImpl.readAllCustomerByUser(user));
-		//model.addAttribute("idUser", user.getId());
+		model.addAttribute("idUser", idUser);
 		return "order";
 	}
 }
