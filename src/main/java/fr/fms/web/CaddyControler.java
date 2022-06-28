@@ -4,6 +4,7 @@ package fr.fms.web;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,10 +73,12 @@ public class CaddyControler {
 	@GetMapping("/order")
 	public String order(Model model) {
 		//User user = new User(null, " ", " ");
+		 //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		//model.addAttribute("listAddress", iBusinessImpl.readAllCustomerByUser(user));)
+		//model.addAttribute("listAddress", iBusinessImpl.readAllCustomerByUser(user));
+		//model.addAttribute("idUser", user.getId());
 		return "order";
 	}
 }
