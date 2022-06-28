@@ -1,8 +1,8 @@
 package fr.fms.web;
 
+
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +18,7 @@ public class CaddyControler {
 	@Autowired
 	IBusinessImpl iBusinessImpl;
 
+
 	@GetMapping("/caddy")
 	public String caddy(Model model, HttpSession session) {
 
@@ -29,24 +30,18 @@ public class CaddyControler {
 		int length = iBusinessImpl.sizeCaddy();
 		session.setAttribute("caddySize", length);
 		return "caddy";
+
 	}
 
 	@GetMapping("/addToCaddy")
-	public String addToCaddy(Long id, Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "keyword", defaultValue = "") String keyword) {
-
-		iBusinessImpl.addToCaddy(id);
-		return "redirect:/articles?page=" + page + "&keywod=" + keyword;
+	public String addToCaddy(Long id, Model model, @RequestParam(name="page", defaultValue = "0") int page,
+			@RequestParam(name="keyword", defaultValue = "") String keyword) {
+		iBusinessImpl.addToCaddy(id);	
+		return "redirect:/articles?page="+page+"&keyword="+keyword;
 
 	}
 
-	// lien de la page order
-	@GetMapping("/order")
-	public String order(Model model) {
-
-		return "order";
-	}
-
+	
 	@GetMapping("/delToCaddy")
 	public String delToCaddy(Model model, Long id, HttpSession session) {
 		iBusinessImpl.removeFromCaddy(id);
@@ -57,6 +52,7 @@ public class CaddyControler {
 
 		int length = iBusinessImpl.sizeCaddy();
 		session.setAttribute("caddySize", length);
+
 		return "caddy";
 	}
 
@@ -69,5 +65,13 @@ public class CaddyControler {
 		int length = iBusinessImpl.sizeCaddy();
 		session.setAttribute("caddySize", length);
 		return "redirect:/caddy";
+	}
+
+	// lien de la page order
+	@GetMapping("/order")
+	public String order(Model model) {
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
+		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		return "order";
 	}
 }

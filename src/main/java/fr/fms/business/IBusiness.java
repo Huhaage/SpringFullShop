@@ -18,9 +18,10 @@ public interface IBusiness {
 	public Page<Article> readArticlesByCategory(Long i,int page, int articlesByPage);
 	
 	public void addToCaddy (Long id);
-
 	public int sizeCaddy();
 	public void removeFromCaddy(Long id);
+	public void saveOrder(Long idOrders);
+	public Long newOrder(Long idCustomer);
 	
 	public List<Category> findAllCategories();
 	public Page<Category> readAllCategories(int page,int categoriesByPages);
