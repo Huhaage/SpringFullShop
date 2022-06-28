@@ -40,6 +40,21 @@ public class Customer {
 	@OneToMany(mappedBy="customer")
 	private Collection<Orders> orders;
 
+	
+	
+	public Customer(Long id, @NotNull String name, @NotNull String firstName, @NotNull String address,
+			@NotNull String phone) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.firstName = firstName;
+		this.address = address;
+		this.phone = phone;
+	}
+	
+	
+
 	@ManyToOne
-	private Users user;
+	private Users users;
+
 }

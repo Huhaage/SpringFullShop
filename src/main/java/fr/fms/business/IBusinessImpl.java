@@ -162,30 +162,30 @@ public class IBusinessImpl implements IBusiness {
 	public List<Category> findAllCategories() {
 		return categoryRepository.findAll();
 	}
+	//créé une commande sans article
 	@Override
 	public Long newOrder(Long idCustomer) {
-		return idCustomer;
 		
-	}
-//		Long idOrder = 0L;
-//		List<Orders> lastOrder = null;
-//		if(customerRepository.findById(idCustomer) != null) {
-//			double total = totalCaddy(); 
-//			Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
-//			orderRepository.save(order);
-//			lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findCustomerById(idCustomer));
-//		}
-//		return lastOrder.get(0).getOrderId();
-//
-//	}
+		Long idOrder = 0L;
+		List<Orders> lastOrder = null;
+		if(customerRepository.findById(idCustomer) != null) {
+			double total = totalCaddy(); 
+			Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
+			orderRepository.save(order);
+			lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findCustomerById(idCustomer));
+		}
+		return lastOrder.get(0).getOrderId();
 
+	}
+	//enregistre les articles avec les ordersitem associés 
 	@Override
 	public void saveOrder(Long idOrder) {
 		
-//		caddy.values().forEach((a) -> orderItemRepository.save(new OrdersItem(idOrder, a.getId(), a.getQuantity())));	
+		caddy.values().forEach((a) -> orderItemRepository.save(new OrdersItem(orderRepository.findById(idOrder).get(), a, a.getQuantity())));	
 
 	}
-	
+
+
 	@Override
 	public List<Customer> readAllCustomerByUser(Users user){
 		return customerRepository.findAllCustomerByUser(user); 
@@ -195,5 +195,6 @@ public class IBusinessImpl implements IBusiness {
 	public Long getUserIdByMail(String mail) {
 		//return userRepository.findUsersIdContainsMail(mail);
 		return null;
+
 	}
 }

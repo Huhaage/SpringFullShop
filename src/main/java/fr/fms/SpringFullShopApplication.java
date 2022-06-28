@@ -10,12 +10,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
-import fr.fms.dao.RoleRepository;
-import fr.fms.dao.UserRepository;
+
+import fr.fms.dao.CustomerRepository;
+import fr.fms.dao.UsersRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
-import fr.fms.entities.Role;
+import fr.fms.entities.Customer;
+
+
 import fr.fms.entities.Users;
+
 
 @Transactional
 @SpringBootApplication
@@ -27,10 +31,12 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	ArticleRepository articleRepository;
 	
 	@Autowired
-	UserRepository userRepository;
+
+	CustomerRepository customerRipository;
 	
 	@Autowired
-	RoleRepository roleRepository;
+	UsersRepository usersRepository;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringFullShopApplication.class, args);
@@ -38,6 +44,11 @@ public class SpringFullShopApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		
+		
+		
+		
 
 //		 Category smartphone = categoryRepository.save(new Category(null,"Smartphone","smartphone.jpg",null));
 //         Category tablet = categoryRepository.save(new Category(null,"Tablet","tablet.jpg",null)); 

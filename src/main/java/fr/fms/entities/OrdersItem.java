@@ -28,8 +28,6 @@ import lombok.ToString;
 @ToString
 @IdClass(OrdersItemId.class)
 public class OrdersItem {
-//	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private Long orderItemId;
 	@Id
 	@ManyToOne
 	private Orders orders;

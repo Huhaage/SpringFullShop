@@ -85,4 +85,19 @@ public class CaddyControler {
 		model.addAttribute("idUser", idUser);
 		return "order";
 	}
+	
+	//payement
+	@GetMapping("/payment")
+	public String payment(Model model) {
+				
+				
+		  Long orderId=iBusinessImpl.newOrder(1L); 
+		   iBusinessImpl.saveOrder(orderId);
+
+
+		return "article";
+	}
+		
+		
+	
 }
