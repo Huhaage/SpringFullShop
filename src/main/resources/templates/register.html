@@ -32,31 +32,31 @@
 								<span class="span-or">or</span>
 							</div>
 							<div class="form-group">
-								<form>
+								<form th:action="@{/saveCustomer}" method="post" th:object="${customer}">
 									<div class="form-group">
 										<label class="control-label">Nom : </label>
 										<input type="text" name="name"  class="form-control" placeholder="Nom"
-											formControlName="name" >
+											formControlName="name" th:field="*{name}">
 									</div>
 									<div class="form-group">
 										<label class="control-label">Prénom : </label>
 										<input type="text" name="firstName" class="form-control" placeholder="Prénom"
-											formControlName="firstName" >
+											formControlName="firstName" th:field="*{firstName}">
 									</div>
 									<div class="form-group">
 										<label class="control-label">Adresse : </label>
 										<input type="text" name="address" class="form-control" placeholder="Adresse"
-											formControlName="address" >
+											formControlName="address" th:field="*{address}">
 									</div>
 									<div class="form-group">
 										<label class="control-label">Tel :</label>
-										<input type="text" name="phoneNumber" class="form-control"
-											placeholder="Téléphone" formControlName="phoneNumber" >
+										<input type="text" name="phone" class="form-control"
+											placeholder="Téléphone" formControlName="phone" th:field="*{phone}">
 									</div>
 
 									<!-- Submit -->
 									<div class="form-group">
-										<button type="submit" class="btn btn-primary">Création du
+										<button  type="submit" class="btn btn-primary">Création du
 											compte</button>
 									</div>
 								</form>

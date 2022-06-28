@@ -4,12 +4,14 @@ package fr.fms.web;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
+import fr.fms.entities.User;
 
 @Transactional
 @Controller
@@ -70,8 +72,17 @@ public class CaddyControler {
 	// lien de la page order
 	@GetMapping("/order")
 	public String order(Model model) {
+		//User user = new User(null, " ", " ");
+		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
+		Long idUser = iBusinessImpl.getUserIdByMail(mail);
+		
+		System.out.println("id user : " + idUser);
+		System.out.println("mail user : " + mail);
+		
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		//model.addAttribute("listAddress", iBusinessImpl.readAllCustomerByUser(user));
+		model.addAttribute("idUser", idUser);
 		return "order";
 	}
 	

@@ -17,10 +17,13 @@ import fr.fms.dao.CategoryRepository;
 import fr.fms.dao.CustomerRepository;
 import fr.fms.dao.OrdersItemRepository;
 import fr.fms.dao.OrdersRepository;
+import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Customer;
 import fr.fms.entities.Orders;
 import fr.fms.entities.OrdersItem;
+import fr.fms.entities.User;
 
 @Service
 public class IBusinessImpl implements IBusiness {
@@ -35,6 +38,9 @@ public class IBusinessImpl implements IBusiness {
 
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private OrdersRepository orderRepository;
@@ -156,6 +162,7 @@ public class IBusinessImpl implements IBusiness {
 	public List<Category> findAllCategories() {
 		return categoryRepository.findAll();
 	}
+	//créé une commande sans article
 	@Override
 	public Long newOrder(Long idCustomer) {
 		
@@ -170,24 +177,24 @@ public class IBusinessImpl implements IBusiness {
 		return lastOrder.get(0).getOrderId();
 
 	}
-
+	//enregistre les articles avec les ordersitem associés 
 	@Override
 	public void saveOrder(Long idOrder) {
 		
 		caddy.values().forEach((a) -> orderItemRepository.save(new OrdersItem(orderRepository.findById(idOrder).get(), a, a.getQuantity())));	
 
 	}
-	public String testPayment(Long idCustomer) {
-		List<Orders> lastOrder = null;
-		double total = totalCaddy(); 
-		Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
-		orderRepository.save(order);
-		
-		lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findCustomerById(idCustomer));
-		OrdersItem orderitest = new OrdersItem(lastOrder.get(0),caddy.get(0),1);
-		orderItemRepository.save(orderitest);
-//		saveOrder(lastOrder.get(0).getOrderId());
-		return "" +lastOrder.get(0).getAmount();
-		
+
+
+	@Override
+	public List<Customer> readAllCustomerByUser(User user){
+		return customerRepository.findAllCustomerByUser(user); 
+	}
+	
+	@Override
+	public Long getUserIdByMail(String mail) {
+		//return userRepository.findUsersIdContainsMail(mail);
+		return null;
+
 	}
 }
