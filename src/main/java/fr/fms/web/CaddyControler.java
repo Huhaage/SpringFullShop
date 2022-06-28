@@ -78,14 +78,13 @@ public class CaddyControler {
 	//payement
 	@GetMapping("/payment")
 	public String payment(Model model) {
-		//System.out.println(iBusinessImpl.testPayment(1L));
-		
+				
 				
 		  Long orderId=iBusinessImpl.newOrder(1L); 
 		   iBusinessImpl.saveOrder(orderId);
-		 
-		
-		return "order";
+
+
+		return "article";
 	}
 		
 		

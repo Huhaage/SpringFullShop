@@ -19,7 +19,13 @@ import lombok.ToString;
 public class User {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private String login;
+
+	@NotNull
+	private String mail;
+
+	@NotNull
 	private String password;
+	
+	@NotNull
+	private Boolean active;
 }
