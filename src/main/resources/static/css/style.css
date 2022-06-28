@@ -14,10 +14,6 @@ li {
   height: 600px;
 }
 
-.btn-theme{
-	background-color: coral;
-}
-
 /* not found 403 ********************** */
 .error {
   background-image: url("/img/403.png");
@@ -1329,6 +1325,21 @@ p {
   text-decoration: underline;
 }
 
-.categorie-card {
+.categorie-card, .address__table {
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }
+
+/******* Choose Address*********/
+.address__table{
+    border: solid 1px rgba(255, 127, 80, 0.75) !important;
+    border-color: green;
+}
+
+ .btn-theme{
+     background-color: coral !important;
+     color: white !important;
+ }
+ 
+ .btn-align-center{
+ 	text-align-last: center;
+ }

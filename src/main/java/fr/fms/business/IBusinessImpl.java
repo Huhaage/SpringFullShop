@@ -138,10 +138,8 @@ public class IBusinessImpl implements IBusiness {
 		int quantity = caddy.get(id).getQuantity() - 1;
 		if (0 < quantity) {
 			caddy.get(id).setQuantity(quantity);
-
 		}
 		else caddy.remove(id);
-
 	}
 
 	@Override
@@ -187,13 +185,14 @@ public class IBusinessImpl implements IBusiness {
 	}
 	
 	@Override
-	public List<Customer> readAllCustomerByUser(User user){
-		return customerRepository.findAllCustomerByUser(user); 
+	public List<Customer> readAllCustomerByUserId(Long idUser){
+		return customerRepository.findAllCustomerByUserId(idUser); 
 	}
 	
 	@Override
-	public Long getUserIdByMail(String mail) {
-		//return userRepository.findUsersIdContainsMail(mail);
-		return null;
+	public Customer getCustomer(Long idCustomer) {
+		return customerRepository.findCustomerById(idCustomer);
 	}
+	
+	
 }

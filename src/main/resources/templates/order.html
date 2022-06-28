@@ -88,6 +88,16 @@
 								</div>
 								<div class="col-lg-6">
 									<h3 class="h6">Billing address</h3>
+									
+										<!-- <address th:object="${customer}">
+	                                        <strong th:text="${user.name}">nom</strong><br>
+	                                        <strong th:text="${user.firstname}">prénom</strong><br>
+	                                        <p th:text="${user.adress}">adresse</p><br>
+	                                        San Francisco, CA 94103<br>
+	                                        <abbr th:text="${user.phone}" title="Phone">P:</abbr> (123)
+	                                        <br>
+	                                        <p th:text="${user.email}">email</p><br>
+                                    	</address> -->
 
 									<!-- <address th:object="${user}">
                                         <strong th:text="${user.name}">nom</strong><br>
@@ -119,32 +129,22 @@
 								class="text-decoration-underline" target="_blank">FF1234567890</a>
 								<i class="bi bi-box-arrow-up-right"></i> </span>
 							<hr>
-							<!--<h3 class="h6">Address</h3>  -->
+							
+							<h3 class="h6">Address</h3> 
 
-
-							<!-- Soit faire un menu déroulant avec une liste des adresses présentes en base et la dernière par défaut -->
-							<!-- Soit faire avec un input + datalist + option et l'user pourra choisir/ajouter une adresse comme ça -->
-
-							<!--      SARA                               <label for="address">Billing address :</label>
-                                    
-                                    <select name="address" id="address" th:each="${}">
-                                    	<option value=""></option>
-                                    </select> -->
-							<p>id User :</p>
-							<p th:text="${idUser}">ID User</p>
-
-
-							<!-- <address th:object="${user}">
-                                <strong th:text="${user.name}">nom</strong><br>
-                                <strong th:text="${user.firstname}">prénom</strong><br>
-                                <p th:text="${user.adress}">adresse</p><br>
+							 <!--  <address th:object="${customer}">
+                                <strong th:text="${customer.name}">nom</strong><br>
+                                <strong th:text="${customer.firstname}">prénom</strong><br>
+                                <p th:text="${customer.adress}">adresse</p><br>
                                 San Francisco, CA 94103<br>
-                                <abbr th:text="${user.phone}" title="Phone">P:</abbr> (123)
+                                <abbr th:text="${customer.phone}" title="Phone">P:</abbr> (123)
                                 <br>
-                                <p th:text="${user.email}">email</p><br>
                             </address> -->
-							<a th:href="@{/register}" class="btn btn-warning"
-								style="max-width: 200px;">Création de compte</a>
+                            
+                            <p>Customer :</p>
+                            <p th:text="${customer}"></p>
+                            
+
 						</div>
 					</div>
 				</div>

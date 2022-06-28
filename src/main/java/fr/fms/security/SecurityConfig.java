@@ -69,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login");
 
-        http.authorizeRequests().antMatchers("/order", "/register").hasRole("USER");
+        //http.authorizeRequests().antMatchers("/order", "/register").hasRole("USER");
         http.authorizeRequests().antMatchers("/admin", "/addArticle", "/save", "/adminListArticles",
                 "/delete", "/updateArticle", "/editArticle", "/adminListCategories", "/addCategory",
                 "/saveCategory", "/editCategory", "/updateCategory").hasRole("ADMIN");

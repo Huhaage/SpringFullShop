@@ -1,6 +1,8 @@
 package fr.fms;
 
 import javax.transaction.Transactional;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,6 @@ import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.dao.RoleRepository;
 import fr.fms.dao.UserRepository;
-import fr.fms.entities.Article;
-import fr.fms.entities.Category;
 import fr.fms.entities.Role;
 import fr.fms.entities.User;
 
@@ -95,6 +95,23 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		 
 //		userRepository.save(new User(null, "bla@bla.fr", "123", true));
 //		userRepository.save(new User(null, "x@x.fr", "123", true));
+		
+		Role roleUser = roleRepository.findById((long) 1).get();
+		Role roleAdmin = roleRepository.findById((long) 2).get();
+		//userRepository.save(saveUser("yyy@yyy.com", "123", true, roleUser));
+	}
+	
+	private static User saveUser(String mail, String password, Boolean active, Role role) {
+        User user = new User();
+        user.setMail(mail);
+        user.setPassword(password);
+        user.setActive(active);
+        
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        user.setRole(roles);
+        
+        return user;
 	}
 
 }

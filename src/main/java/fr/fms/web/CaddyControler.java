@@ -1,6 +1,8 @@
 package fr.fms.web;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
+import fr.fms.entities.Customer;
 import fr.fms.entities.User;
 
 @Transactional
@@ -71,18 +74,24 @@ public class CaddyControler {
 
 	// lien de la page order
 	@GetMapping("/order")
-	public String order(Model model) {
-		//User user = new User(null, " ", " ");
-		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
-		Long idUser = iBusinessImpl.getUserIdByMail(mail);
-		
-		System.out.println("id user : " + idUser);
-		System.out.println("mail user : " + mail);
+	public String order(Model model, @RequestParam(name="idCustomer", defaultValue = "0") Long idCustomer) {
+		//GRACE AU ID CUSTOMER, afficher les détails de la commande dans le champ billing address
+		Customer customer = iBusinessImpl.getCustomer(idCustomer);
+		System.out.println("customer : " + customer);
 		
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		//model.addAttribute("listAddress", iBusinessImpl.readAllCustomerByUser(user));
-		model.addAttribute("idUser", idUser);
+		model.addAttribute("customer", customer);
+		
 		return "order";
 	}
+	
+	@GetMapping("/chooseAddress")
+	public String chooseAddress(Model model) {
+		List<Customer> listAddresses = iBusinessImpl.readAllCustomerByUserId((long) 1);
+		model.addAttribute("listAddresses", listAddresses);
+		
+		return "chooseAddress";
+	}
+	
 }
