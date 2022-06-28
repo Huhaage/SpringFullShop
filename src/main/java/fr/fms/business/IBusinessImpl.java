@@ -17,7 +17,7 @@ import fr.fms.dao.CategoryRepository;
 import fr.fms.dao.CustomerRepository;
 import fr.fms.dao.OrdersItemRepository;
 import fr.fms.dao.OrdersRepository;
-import fr.fms.dao.UserRepository;
+import fr.fms.dao.UsersRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
@@ -40,7 +40,7 @@ public class IBusinessImpl implements IBusiness {
 	private CustomerRepository customerRepository;
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UsersRepository userRepository;
 
 	@Autowired
 	private OrdersRepository orderRepository;
@@ -193,6 +193,7 @@ public class IBusinessImpl implements IBusiness {
 	
 	@Override
 	public Long getUserIdByMail(String mail) {
-		return userRepository.findUserIdByMail(mail);
+		//return userRepository.findUsersIdContainsMail(mail);
+		return null;
 	}
 }
