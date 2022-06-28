@@ -43,4 +43,10 @@ public class UserController {
     public String disconnect() {
         return "redirect:/login";
     }
+
+    // register
+    @GetMapping("/register")
+    public String register(Model model, User user) {
+        return "register";
+    }
 }
