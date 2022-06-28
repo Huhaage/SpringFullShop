@@ -1,9 +1,12 @@
 package fr.fms.entities;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -28,4 +31,7 @@ public class User {
 	
 	@NotNull
 	private Boolean active;
+
+	@OneToMany(mappedBy = "user")
+	private Collection<Customer> customers;
 }
