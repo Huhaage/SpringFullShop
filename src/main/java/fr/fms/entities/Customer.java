@@ -41,5 +41,5 @@ public class Customer {
 	private Collection<Orders> orders;
 
 	@ManyToOne
-	private User user;
+	private Users user;
 }

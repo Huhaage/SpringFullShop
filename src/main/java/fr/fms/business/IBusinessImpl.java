@@ -23,7 +23,7 @@ import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
 import fr.fms.entities.Orders;
 import fr.fms.entities.OrdersItem;
-import fr.fms.entities.User;
+import fr.fms.entities.Users;
 
 @Service
 public class IBusinessImpl implements IBusiness {
@@ -187,7 +187,7 @@ public class IBusinessImpl implements IBusiness {
 	}
 	
 	@Override
-	public List<Customer> readAllCustomerByUser(User user){
+	public List<Customer> readAllCustomerByUser(Users user){
 		return customerRepository.findAllCustomerByUser(user); 
 	}
 	

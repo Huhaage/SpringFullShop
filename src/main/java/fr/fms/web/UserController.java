@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Customer;
-import fr.fms.entities.User;
+import fr.fms.entities.Users;
 
 
 
@@ -33,7 +33,7 @@ public class UserController {
 
 
     @GetMapping("/login")
-    public String login(Model model, User user) {
+    public String login(Model model, Users user) {
         return "login";
     }
     

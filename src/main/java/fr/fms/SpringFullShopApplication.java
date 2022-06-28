@@ -15,7 +15,7 @@ import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Role;
-import fr.fms.entities.User;
+import fr.fms.entities.Users;
 
 @Transactional
 @SpringBootApplication
