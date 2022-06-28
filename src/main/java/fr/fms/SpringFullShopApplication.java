@@ -12,7 +12,7 @@ import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 
 import fr.fms.dao.CustomerRepository;
-import fr.fms.dao.UsersRepository;
+import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
@@ -35,7 +35,7 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	CustomerRepository customerRipository;
 	
 	@Autowired
-	UsersRepository usersRepository;
+	UserRepository userRepository;
 
 
 	public static void main(String[] args) {
