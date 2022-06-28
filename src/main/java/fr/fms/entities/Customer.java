@@ -39,4 +39,16 @@ public class Customer {
 	@OneToMany(mappedBy="customer")
 	private Collection<Orders> orders;
 	
+	
+	public Customer(Long id, @NotNull String name, @NotNull String firstName, @NotNull String address,
+			@NotNull int phone) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.firstName = firstName;
+		this.address = address;
+		this.phone = phone;
+	}
+	
+	
 }

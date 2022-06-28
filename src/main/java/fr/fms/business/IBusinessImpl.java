@@ -158,6 +158,7 @@ public class IBusinessImpl implements IBusiness {
 	}
 	@Override
 	public Long newOrder(Long idCustomer) {
+		
 		Long idOrder = 0L;
 		List<Orders> lastOrder = null;
 		if(customerRepository.findById(idCustomer) != null) {
@@ -173,7 +174,20 @@ public class IBusinessImpl implements IBusiness {
 	@Override
 	public void saveOrder(Long idOrder) {
 		
-		caddy.values().forEach((a) -> orderRepository.save(new OrdersItem(orderRepository.findById(idOrder).get(), a, a.getQuantity())));	
+		caddy.values().forEach((a) -> orderItemRepository.save(new OrdersItem(orderRepository.findById(idOrder).get(), a, a.getQuantity())));	
 
+	}
+	public String testPayment(Long idCustomer) {
+		List<Orders> lastOrder = null;
+		double total = totalCaddy(); 
+		Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
+		orderRepository.save(order);
+		
+		lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findCustomerById(idCustomer));
+		OrdersItem orderitest = new OrdersItem(lastOrder.get(0),caddy.get(0),1);
+		orderItemRepository.save(orderitest);
+//		saveOrder(lastOrder.get(0).getOrderId());
+		return "" +lastOrder.get(0).getAmount();
+		
 	}
 }
