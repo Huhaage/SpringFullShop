@@ -14,6 +14,10 @@ import org.springframework.stereotype.Service;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.CustomerRepository;
+import fr.fms.dao.OrdersItemRepository;
+import fr.fms.dao.OrdersRepository;
+import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
@@ -24,12 +28,16 @@ import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Orders;
 import fr.fms.entities.OrdersItem;
+import fr.fms.entities.Orders;
+import fr.fms.entities.OrdersItem;
+import fr.fms.entities.User;
 
 
 @Service
 public class IBusinessImpl implements IBusiness {
 	private Map<Long ,Article> caddy = new HashMap<Long ,Article>(); 
 	private double total;
+
 
 	
 	@Autowired
@@ -40,6 +48,9 @@ public class IBusinessImpl implements IBusiness {
 
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private OrdersRepository orderRepository;
@@ -55,11 +66,10 @@ public class IBusinessImpl implements IBusiness {
 	}
 
 	public double totalCaddy() {
-		caddy.values().forEach((a) -> total += a.getPrice() * a.getQuantity()); 
-		return total;
-		//this.total = 0.0;
-		//caddy.values().forEach((a) -> this.total += a.getPrice() * a.getQuantity()); 
-		//return this.total;
+		this.total = 0.0;
+		caddy.values().forEach((a) -> this.total += a.getPrice() * a.getQuantity()); 
+		return this.total;
+
 	}
 
 	@Override
@@ -136,11 +146,11 @@ public class IBusinessImpl implements IBusiness {
 		if(caddy.containsKey(id)) {
 			Article article = caddy.get(id);
 			caddy.get(article.getId()).setQuantity(article.getQuantity()+1);
-
-		}else{
-			caddy.put(id, articleRepository.findById(id).get());
+			}
+				else{
+					caddy.put(id, articleRepository.findById(id).get());
+				}
 		}
-	}
 
 	@Override
 	public void removeFromCaddy(Long id) {
@@ -155,15 +165,15 @@ public class IBusinessImpl implements IBusiness {
 	public List<Category> readAllCategories() {
 		return categoryRepository.findAll();		
 	}
-	
-	@Override
-	public Page<Category> readAllCategories(int page,int categoriesByPages) {
-		return categoryRepository.findAll(PageRequest.of(page, categoriesByPages));
-	}
 
 	@Override
 	public int sizeCaddy() {
 		return caddy.size();
+	}
+
+	@Override
+	public Page<Category> readAllCategories(int page,int categoriesByPages) {
+		return categoryRepository.findAll(PageRequest.of(page, categoriesByPages));
 	}
 
 	@Override
@@ -174,32 +184,43 @@ public class IBusinessImpl implements IBusiness {
 	public List<Category> findAllCategories() {
 		return categoryRepository.findAll();
 	}
-	@Override
-	public Long newOrder(Long idCustomer) {
-		return idCustomer;
-		
-	}
-//		Long idOrder = 0L;
-//		List<Orders> lastOrder = null;
-//		if(customerRepository.findById(idCustomer) != null) {
-//			double total = totalCaddy(); 
-//			Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
-//			orderRepository.save(order);
-//			lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findCustomerById(idCustomer));
-//		}
-//		return lastOrder.get(0).getOrderId();
-//
-//	}
 
-	@Override
-	public void saveOrder(Long idOrder) {
-		
-//		caddy.values().forEach((a) -> orderItemRepository.save(new OrdersItem(idOrder, a.getId(), a.getQuantity())));	
 
-	}
 	@Override
 	public void addCustomer(Customer customer) {
 		// TODO Auto-generated method stub
+	}
+	
+	//créé une commande sans article
+	@Override
+	public Long newOrder(Long idCustomer) {
 		
+		Long idOrder = 0L;
+		List<Orders> lastOrder = null;
+		if(customerRepository.findById(idCustomer) != null) {
+			double total = totalCaddy(); 
+			Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
+			orderRepository.save(order);
+			lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findCustomerById(idCustomer));
+		}
+		return lastOrder.get(0).getOrderId();
+
+	}
+	//enregistre les articles avec les ordersitem associés 
+	@Override
+	public void saveOrder(Long idOrder) {	
+		caddy.values().forEach((a) -> orderItemRepository.save(new OrdersItem(orderRepository.findById(idOrder).get(), a, a.getQuantity())));	
+	}
+
+
+	@Override
+	public List<Customer> readAllCustomerByUser(User user){
+		return customerRepository.findAllCustomerByUser(user); 
+	}
+	
+	@Override
+	public Long getUserIdByMail(String mail) {
+		//return userRepository.findUsersIdContainsMail(mail);
+		return null;
 	}
 }

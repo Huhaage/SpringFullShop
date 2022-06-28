@@ -61,6 +61,7 @@ li {
   position: sticky !important;
   top: 0px;
   z-index: 10;
+  height: 80px;
 }
 
 .logo {
@@ -70,6 +71,8 @@ li {
 }
 
 .welcome {
+  display: flex;
+  justify-content: space-between;
   font-size: 30px;
   font-weight: bolder;
   font-style: italic;

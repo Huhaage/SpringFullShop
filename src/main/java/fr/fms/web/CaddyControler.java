@@ -4,6 +4,7 @@ package fr.fms.web;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.entities.Article;
 
+import fr.fms.entities.User;
 
 @Transactional
 @Controller
@@ -32,12 +34,10 @@ public class CaddyControler {
 	}
 
 	@GetMapping("/addToCaddy")
-	public String addToCaddy(Long id, Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "keyword", defaultValue = "") String keyword) {
-
-		iBusinessImpl.addToCaddy(id);
-
-		return "redirect:/articles?page=" + page + "&keyword=" + keyword;
+	public String addToCaddy(Long id, Model model, @RequestParam(name="page", defaultValue = "0") int page,
+			@RequestParam(name="keyword", defaultValue = "") String keyword) {
+		iBusinessImpl.addToCaddy(id);	
+		return "redirect:/articles?page="+page+"&keyword="+keyword;
 	}
 
 	@GetMapping("/caddy")
@@ -52,6 +52,17 @@ public class CaddyControler {
 		session.setAttribute("caddySize", length);
 		return "caddy";
 
+	}
+
+	@GetMapping("/clearCaddy")
+	public String clearCaddy(Model model,HttpSession session) {
+		iBusinessImpl.getCaddy().clear();
+		// pour le if
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
+
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
+		return "redirect:/caddy";
 	}
 
 	
@@ -69,25 +80,33 @@ public class CaddyControler {
 		return "caddy";
 	}
 
-	@GetMapping("/clearCaddy")
-	public String clearCaddy(Model model,HttpSession session) {
-		iBusinessImpl.getCaddy().clear();
-		// pour le if
-		model.addAttribute("size", iBusinessImpl.sizeCaddy());
-
-		int length = iBusinessImpl.sizeCaddy();
-		session.setAttribute("caddySize", length);
-		return "redirect:/caddy";
-	}
-
 	// lien de la page order
 	@GetMapping("/order")
 	public String order(Model model) {
+		//User user = new User(null, " ", " ");
+		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
+		Long idUser = iBusinessImpl.getUserIdByMail(mail);
+		
+		System.out.println("id user : " + idUser);
+		System.out.println("mail user : " + mail);
+		
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		//model.addAttribute("listAddress", iBusinessImpl.readAllCustomerByUser(user));
+		model.addAttribute("idUser", idUser);
 		return "order";
 	}
-
+	
+	//payement
+	@GetMapping("/payment")
+	public String payment(Model model) {
+				
+				
+		  Long orderId=iBusinessImpl.newOrder(1L); 
+		   iBusinessImpl.saveOrder(orderId);
+			return "article";
+		}
+		   
 	@GetMapping("/delToCaddy")
 	public String delToCaddy(Model model, Long id) {
 		iBusinessImpl.removeFromCaddy(id);
@@ -100,6 +119,5 @@ public class CaddyControler {
 		iBusinessImpl.getCaddy().clear();
 
 		return "redirect:/home";
-	}
-	
+	}	
 }

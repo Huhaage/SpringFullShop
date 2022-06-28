@@ -4,7 +4,9 @@
 package fr.fms.web;
 
 import java.util.List;
+
 import javax.validation.Valid;
+
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -17,7 +19,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import fr.fms.business.IBusinessImpl;
+
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
@@ -27,23 +31,29 @@ import fr.fms.entities.Category;
  */
 @Controller
 public class ArticleController {
-
-//IBusinessImpl business = new IBusinessImpl();
 	@Autowired
 	private IBusinessImpl business;
 
 	@GetMapping("/home")
 	public String home() {
 		return "home";}
-	//IIBusinessImplImpl IBusinessImpl = new IIBusinessImplImpl();
 
 	@GetMapping("/")
 	public String accueil() {
 		return "";}
-
+	
+	@Autowired
+	IBusinessImpl iBusinessImpl;
+	
+	@GetMapping("/home")
+	public String home(Model model) {
+		return "home";
+	}
+	
+	@GetMapping("/")
 	public String accueil(HttpSession session) {
-		int length = business.sizeCaddy();
-		session.setAttribute("c}addySize", length);
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
 		return "home";
 	}
 
@@ -77,11 +87,8 @@ public class ArticleController {
 		}
 		business.addArticle(article);
 		List<Category> categories = business.findAllCategories();
-		model.addAttribute("listCategories", categories);
-		return "addArticle";
+		return null;
 	}
-
-
 	// lien vers la page articles
 	@GetMapping("/articles")
 	public String articles(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
@@ -90,21 +97,6 @@ public class ArticleController {
 		List<Category> categories = business.findAllCategories();
 		model.addAttribute("listArticle", articles.getContent()); // insert les articles dans le model
 		return"redirect:/articles";
-	}
-
-	public String articles(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "keyword", defaultValue = "") String kw, HttpSession session) {
-		Page<Article> articles = business.readByDescriptionContains(kw, page, 6); // récup tous les articles
-		List<Category> categories = business.findAllCategories();
-		int length = business.sizeCaddy();
-		session.setAttribute("caddySize", length);
-
-		model.addAttribute("listArticle", articles.getContent()); // insert les articles dans le model
-		model.addAttribute("pages", new int[articles.getTotalPages()]);
-		model.addAttribute("currentPage", page);
-		model.addAttribute("keyword", kw);
-		model.addAttribute("listCategories", categories);
-		return "articles"; // cette méthode retourne au dispacterServlet une vue
 	}
 
 	// lien admin pour afficher la list des articles avec la possibilité de
@@ -121,8 +113,8 @@ public class ArticleController {
 	}
 
 	@GetMapping("/delete")
-	public String delete(Long id, int page, String keyword) {
-		business.delArticle(id);
+	public  String delete(Long id, int page, String keyword) {
+		iBusinessImpl.delArticle(id);
 		return "redirect:/adminListArticles?page=" + page + "&keyword=" + keyword;
 	}
 
@@ -131,9 +123,6 @@ public class ArticleController {
 		if (bindingResult.hasErrors())
 			return "adminListArticles";
 		if (article.getId() != null) {
-			business.updateArticle(article);
-		}
-		if(article.getId() != null) {
 			business.updateArticle(article);
 		}
 		return "redirect:/adminListArticles";
