@@ -22,8 +22,11 @@ import lombok.ToString;
 public class User {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private String login;
+
+	@NotNull
+	private String mail;
+
+	@NotNull
 	private String password;
 	
 	@OneToMany(mappedBy="user")
@@ -34,11 +37,12 @@ public class User {
 	 * @param login
 	 * @param password
 	 */
-	public User(Long id, String login, String password) {
+	public User(Long id, String mail, String password) {
 		this.id = id;
-		this.login = login;
+		this.mail = mail;
 		this.password = password;
 	}
-	
-	
+
+	@NotNull
+	private Boolean active;
 }
