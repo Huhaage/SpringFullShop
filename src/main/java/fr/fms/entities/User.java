@@ -45,4 +45,7 @@ public class User {
 
 	@NotNull
 	private Boolean active;
+
+	@OneToMany(mappedBy = "user")
+	private Collection<Customer> customers;
 }

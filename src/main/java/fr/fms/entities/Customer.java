@@ -39,6 +39,9 @@ public class Customer {
 	private String phone;
 	@OneToMany(mappedBy="customer")
 	private Collection<Orders> orders;
+
+	@ManyToOne
+	private User user;
 	
 	@ManyToOne
 	private User user;
