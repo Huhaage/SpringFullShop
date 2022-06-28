@@ -17,7 +17,7 @@ import fr.fms.dao.CategoryRepository;
 import fr.fms.dao.CustomerRepository;
 import fr.fms.dao.OrdersItemRepository;
 import fr.fms.dao.OrdersRepository;
-import fr.fms.dao.UsersRepository;
+import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
@@ -40,7 +40,7 @@ public class IBusinessImpl implements IBusiness {
 	private CustomerRepository customerRepository;
 	
 	@Autowired
-	private UsersRepository userRepository;
+	private UserRepository userRepository;
 
 	@Autowired
 	private OrdersRepository orderRepository;
@@ -188,7 +188,7 @@ public class IBusinessImpl implements IBusiness {
 	
 	@Override
 	public List<Customer> readAllCustomerByUser(User user){
-		return customerRepository.findAllCustomerByUser(user);
+		return customerRepository.findAllCustomerByUser(user); 
 	}
 	
 	@Override

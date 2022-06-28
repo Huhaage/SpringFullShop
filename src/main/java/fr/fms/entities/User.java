@@ -36,6 +36,16 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private Collection<Customer> customers;
 
+	@NotNull
+	private Boolean active;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "user_role",
+			joinColumns = {@JoinColumn(name = "userId")},
+			inverseJoinColumns = {@JoinColumn(name = "roleId")})
+	private List<Role> role;
+	
 	/**
 	 * @param id
 	 * @param login
@@ -47,13 +57,18 @@ public class User {
 		this.password = password;
 	}
 
-	@NotNull
-	private Boolean active;
+	/**
+	 * @param id
+	 * @param mail
+	 * @param password
+	 * @param active
+	 */
+	public User(Long id, @NotNull String mail, @NotNull String password, @NotNull Boolean active) {
+		this.id = id;
+		this.mail = mail;
+		this.password = password;
+		this.active = active;
+	}
 	
-	@ManyToMany
-	@JoinTable(
-			name = "user_role",
-			joinColumns = {@JoinColumn(name = "userId")},
-			inverseJoinColumns = {@JoinColumn(name = "roleId")})
-	private List<Role> roles;
+	
 }

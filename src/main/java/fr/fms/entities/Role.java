@@ -38,5 +38,14 @@ public class Role {
 			joinColumns = {@JoinColumn(name = "roleId")},
 			inverseJoinColumns = {@JoinColumn(name = "userId")})
 	private List<User> users;
-	
+
+	/**
+	 * @param id
+	 * @param role
+	 */
+	public Role(Long id, String role) {
+		super();
+		this.id = id;
+		this.role = role;
+	}
 }
