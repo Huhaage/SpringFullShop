@@ -5,6 +5,10 @@ package fr.fms.web;
 
 import java.util.List;
 import javax.validation.Valid;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -23,17 +27,23 @@ import fr.fms.entities.Category;
  */
 @Controller
 public class ArticleController {
+
 //IBusinessImpl business = new IBusinessImpl();
 	@Autowired
 	private IBusinessImpl business;
 
 	@GetMapping("/home")
 	public String home() {
-		return "home";
-	}
+		return "home";}
+	//IIBusinessImplImpl IBusinessImpl = new IIBusinessImplImpl();
 
 	@GetMapping("/")
 	public String accueil() {
+		return "";}
+
+	public String accueil(HttpSession session) {
+		int length = business.sizeCaddy();
+		session.setAttribute("c}addySize", length);
 		return "home";
 	}
 
@@ -66,8 +76,11 @@ public class ArticleController {
 			return "addArticle";
 		}
 		business.addArticle(article);
-		return "redirect:/articles";
+		List<Category> categories = business.findAllCategories();
+		model.addAttribute("listCategories", categories);
+		return "addArticle";
 	}
+
 
 	// lien vers la page articles
 	@GetMapping("/articles")
@@ -75,6 +88,17 @@ public class ArticleController {
 			@RequestParam(name = "keyword", defaultValue = "") String kw) {
 		Page<Article> articles = business.readByDescriptionContains(kw, page, 6); // récup tous les articles
 		List<Category> categories = business.findAllCategories();
+		model.addAttribute("listArticle", articles.getContent()); // insert les articles dans le model
+		return"redirect:/articles";
+	}
+
+	public String articles(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "keyword", defaultValue = "") String kw, HttpSession session) {
+		Page<Article> articles = business.readByDescriptionContains(kw, page, 6); // récup tous les articles
+		List<Category> categories = business.findAllCategories();
+		int length = business.sizeCaddy();
+		session.setAttribute("caddySize", length);
+
 		model.addAttribute("listArticle", articles.getContent()); // insert les articles dans le model
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage", page);
@@ -109,10 +133,14 @@ public class ArticleController {
 		if (article.getId() != null) {
 			business.updateArticle(article);
 		}
+		if(article.getId() != null) {
+			business.updateArticle(article);
+		}
 		return "redirect:/adminListArticles";
 	}
 
 	@GetMapping("/editArticle")
+
 	public String editArticle(Model model, @Valid Long id) {
 		Article articleToEdit = business.readArticleById(id);
 		model.addAttribute("articleToEdit", articleToEdit);

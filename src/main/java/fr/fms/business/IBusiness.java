@@ -6,9 +6,10 @@ import org.springframework.data.domain.Page;
 
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
-import fr.fms.entities.OrderDetail;
+import fr.fms.entities.Customer;
 
 public interface IBusiness {
+
 	//pour Article
 	public List<Article> readAllArticles();
 	public void addArticle(Article article);
@@ -18,19 +19,28 @@ public interface IBusiness {
 	public Page<Article> readByDescriptionContains(String keyword, int page, int articlesByPage);
 	public Page<Article> readAllArticlesByPage(int i);
 	public Page<Article> readArticlesByCategory(Long i,int page, int articlesByPage);
+
 	//pour cadi
-	public void addToCaddy (Long id);
+ 	public void addToCaddy (Long id);
 	public void removeFromCaddy(Long id);
 	//pour category
 	public List<Category> readAllCategories();
+
+	public int sizeCaddy();
+	public void saveOrder(Long idOrders);
+	public Long newOrder(Long idCustomer);
+	
+
 	public List<Category> findAllCategories();
 	public Page<Category> readAllCategories(int page,int categoriesByPages);
 	public void addCategory(Category category);
 	public void delCategory(Long i);
 	public void updateCategory(Category category);
 	public Category readCategoryById(Long i);
+	
+	//pour customer
+	public void addCustomer(Customer customer);
+	
 	//pour order
-	public List<OrderDetail> readAllOderDetail();
-	public void addOrderDetail(OrderDetail oder);
 
 }

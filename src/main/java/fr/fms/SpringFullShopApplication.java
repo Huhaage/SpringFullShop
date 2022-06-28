@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import fr.fms.business.IBusiness;
+import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
@@ -21,6 +23,9 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	
 	@Autowired
 	ArticleRepository articleRepository;
+	
+	@Autowired
+	IBusinessImpl business;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringFullShopApplication.class, args);
@@ -65,6 +70,7 @@ public class SpringFullShopApplication implements CommandLineRunner {
 		// articleRepository.save(new Article(null,"Platinium unlimlited","Nero",99.99,"pinnacle.jpg",logiciel,1));
 		// articleRepository.save(new Article(null,"Studio 25 ultimate","Pinnacle",129.99,"pinnacle.jpg",logiciel,1));
 		// articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"pinnacle.jpg",logiciel,1));
-
+		
+		business.readAllOderDetail();
 	}
 }

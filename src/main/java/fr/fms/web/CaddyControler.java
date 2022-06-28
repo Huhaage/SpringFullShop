@@ -1,11 +1,8 @@
 package fr.fms.web;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +13,13 @@ import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.entities.Article;
 
+
 @Transactional
 @Controller
 public class CaddyControler {
 
 	@Autowired
 	IBusinessImpl iBusinessImpl;
-
 	@GetMapping("/caddy")
 	public String caddy(Model model) {
 		// System.out.println(iBusinessImpl.listCaddy());
@@ -41,13 +38,53 @@ public class CaddyControler {
 		iBusinessImpl.addToCaddy(id);
 
 		return "redirect:/articles?page=" + page + "&keyword=" + keyword;
+	}
 
+	@GetMapping("/caddy")
+	public String caddy(Model model, HttpSession session) {
+
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
+		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		// pour le if
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
+
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
+		return "caddy";
+
+	}
+
+	
+	@GetMapping("/delToCaddy")
+	public String delToCaddy(Model model, Long id, HttpSession session) {
+		iBusinessImpl.removeFromCaddy(id);
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy());
+		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		// pour le if
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
+
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
+
+		return "caddy";
+	}
+
+	@GetMapping("/clearCaddy")
+	public String clearCaddy(Model model,HttpSession session) {
+		iBusinessImpl.getCaddy().clear();
+		// pour le if
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
+
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
+		return "redirect:/caddy";
 	}
 
 	// lien de la page order
 	@GetMapping("/order")
 	public String order(Model model) {
-
+		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
+		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
 		return "order";
 	}
 
@@ -64,4 +101,5 @@ public class CaddyControler {
 
 		return "redirect:/home";
 	}
+	
 }
