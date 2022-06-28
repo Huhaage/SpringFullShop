@@ -21,14 +21,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        PasswordEncoder pe = passwordEncoder();
-        auth.inMemoryAuthentication().withUser("Neo@free.fr").password(pe.encode("12345")).roles("ADMIN", "USER");
-        auth.inMemoryAuthentication().withUser("SarahLune@yahoo.fr").password(pe.encode("6789")).roles("USER");
-        auth.inMemoryAuthentication().withUser("Jcd@yahoo.fr").password(pe.encode("101112")).roles("USER");
-        auth.inMemoryAuthentication().withUser("Christoof@yahoo.fr").password(pe.encode("131415")).roles("USER");
-        auth.inMemoryAuthentication().withUser("Huhaage@yahoo.fr").password(pe.encode("161718")).roles("USER");
+        // En dure
 
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder());
+        // PasswordEncoder pe = passwordEncoder();
+
+        // auth.inMemoryAuthentication().withUser("Neo@free.fr").password(pe.encode("12345")).roles("ADMIN",
+        // "USER");
+        // auth.inMemoryAuthentication().withUser("SarahLune@yahoo.fr").password(pe.encode("6789")).roles("USER");
+        // auth.inMemoryAuthentication().withUser("Jcd@yahoo.fr").password(pe.encode("101112")).roles("USER");
+        // auth.inMemoryAuthentication().withUser("Christoof@yahoo.fr").password(pe.encode("131415")).roles("USER");
+        // auth.inMemoryAuthentication().withUser("Huhaage@yahoo.fr").password(pe.encode("161718")).roles("USER");
+
+        // auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder());
+
+
+
+
+        // Depuis bdd
+
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery(
+                        "select mail as principal, password as credentials, active from users where mail=?")
+                .authoritiesByUsernameQuery("select usermail as principal, role as role from users_roles where usermail=?")
+                .rolePrefix("ROLE_")
+                .passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -38,10 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-      
+
         http.formLogin()
 
-          // lien personnalisé   à debug
+                // lien personnalisé à debug
                 .loginPage("/login")
                 .usernameParameter("mail")
                 .passwordParameter("password")
@@ -50,9 +67,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
         http.logout()
                 .logoutUrl("/logout")
-                 .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/login");
 
-        http.authorizeRequests().antMatchers("/order").hasRole("USER");
+        http.authorizeRequests().antMatchers("/order", "/register").hasRole("USER");
         http.authorizeRequests().antMatchers("/admin", "/addArticle", "/save", "/adminListArticles",
                 "/delete", "/updateArticle", "/editArticle", "/adminListCategories", "/addCategory",
                 "/saveCategory", "/editCategory", "/updateCategory").hasRole("ADMIN");
