@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -138,10 +140,8 @@ public class IBusinessImpl implements IBusiness {
 		int quantity = caddy.get(id).getQuantity() - 1;
 		if (0 < quantity) {
 			caddy.get(id).setQuantity(quantity);
-
 		}
 		else caddy.remove(id);
-
 	}
 
 	@Override
@@ -172,7 +172,7 @@ public class IBusinessImpl implements IBusiness {
 			double total = totalCaddy(); 
 			Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
 			orderRepository.save(order);
-			lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findCustomerById(idCustomer));
+			lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findById(idCustomer).get());
 		}
 		return lastOrder.get(0).getOrderId();
 
@@ -185,16 +185,31 @@ public class IBusinessImpl implements IBusiness {
 
 	}
 
-
 	@Override
-	public List<Customer> readAllCustomerByUser(Users user){
-		return customerRepository.findAllCustomerByUser(user); 
+	public List<Customer> readAllCustomerByUserId(Long idUser){
+		return customerRepository.findAllCustomerByUserId(idUser); 
 	}
 	
 	@Override
-	public Long getUserIdByMail(String mail) {
-		//return userRepository.findUsersIdContainsMail(mail);
-		return null;
-
+	public Customer getCustomer(Long idCustomer) {
+		return customerRepository.findById(idCustomer).get();
 	}
+	public void addCustomer(@Valid Customer customer) {
+		customerRepository.save(customer);
+	}
+	
+	@Override
+	public Users getUser(Long idUser) {
+		return userRepository.findById(idUser).get();
+	}
+	
+	@Override
+	public Long getIdUserByMail(String mail) {
+		Users userReceived = userRepository.findByMail(mail);
+		Users user = new Users(userReceived.getId(), userReceived.getMail(), userReceived.getPassword(), userReceived.getActive());
+		
+		return user.getId();
+	}
+	
+	
 }

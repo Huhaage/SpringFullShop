@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 .authoritiesByUsernameQuery(
                                         " SELECT users.mail as username, role.role as role  FROM users"+
         
-        " INNER JOIN user_role ON users.id = user_role.user_id"+ " INNER JOIN role ON user_role.role_id = role.id WHERE users.mail =? ")
+        " INNER JOIN user_role ON users.id = user_role.users_id"+ " INNER JOIN role ON user_role.role_id = role.id WHERE users.mail =? ")
        
        
                                 .rolePrefix("ROLE_")
@@ -66,13 +66,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 .usernameParameter("mail")
                                 .passwordParameter("password")
                                 .defaultSuccessUrl("/home")
-                                .failureUrl("/login")
+                                .failureUrl("/login?error=true")
                                 .permitAll();
                 http.logout()
                                 .logoutUrl("/logout")
                                 .logoutSuccessUrl("/login");
 
-                http.authorizeRequests().antMatchers("/order", "/register").hasRole("USER");
+                http.authorizeRequests().antMatchers("/order", "/register", "/chooseAddress").hasRole("USER");
                 http.authorizeRequests().antMatchers("/admin", "/addArticle", "/save", "/adminListArticles",
                                 "/delete", "/updateArticle", "/editArticle", "/adminListCategories", "/addCategory",
                                 "/saveCategory", "/editCategory", "/updateCategory").hasRole("ADMIN");

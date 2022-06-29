@@ -58,19 +58,8 @@ public class UserController {
     @GetMapping("/register")
     public String register(Model model, Customer customer) {
          String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-       System.out.println(userName);
-        return "register";
+         System.out.println(userName);
+         return "register";
     }
 
-    // ajoute enle customer et retourne la page order
-    @PostMapping("/saveCustomer")
-    public String save(Model model, @Valid Customer customer, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-
-            return "register";
-        }
-
-      //  iBusinessImpl.addArticle(article);
-        return "redirect:/order";
-    }
 }

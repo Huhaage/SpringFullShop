@@ -115,7 +115,7 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/delete")
-	public  String delete(Long id, int page, String keyword) {
+	public String delete(Long id, int page, String keyword) {
 		iBusinessImpl.delArticle(id);
 		
 		return "redirect:/adminListArticles?page=" + page + "&keyword=" + keyword;

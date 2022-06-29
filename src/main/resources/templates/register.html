@@ -36,22 +36,26 @@
 									<div class="form-group">
 										<label class="control-label">Nom : </label>
 										<input type="text" name="name"  class="form-control" placeholder="Nom"
-											formControlName="name" th:field="*{name}">
+											th:field="*{name}"  required>
+										<span th:errors="${customer.name}" ></span>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Prénom : </label>
 										<input type="text" name="firstName" class="form-control" placeholder="Prénom"
-											formControlName="firstName" th:field="*{firstName}">
+											th:field="*{firstName}" required>
+										<span th:errors="${customer.firstName}"></span>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Adresse : </label>
 										<input type="text" name="address" class="form-control" placeholder="Adresse"
-											formControlName="address" th:field="*{address}">
+											th:field="*{address}" required>
+										<span th:errors="${customer.address}"></span>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Tel :</label>
 										<input type="text" name="phone" class="form-control"
-											placeholder="Téléphone" formControlName="phone" th:field="*{phone}">
+											placeholder="Téléphone" th:field="*{phone}" required>
+										<span th:errors="${customer.phone}"></span>
 									</div>
 
 									<!-- Submit -->
