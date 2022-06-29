@@ -19,13 +19,33 @@ li {
 }
 
 /* not found 403 ********************** */
-.error {
+.error403 {
   background-image: url("/img/403.png");
   /* background-position: center; */
   width: 1000px;
   height: 500px;
 }
-
+/* not found 403 ********************** */
+.error404 {
+  background-image: url("/img/NASA-AD-background.png");
+  background-position: center;
+  width: 1400px;
+  height: 500px;
+box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.error404 h1{
+  font-size: 100px;
+  color: blue;
+}
+.error404 span{
+  font-size: 40px;
+  color: blue;
+}
+.error404 h2,h3{
+  color: red;
+  /* position: relative;
+  top: 250px; */
+}
 
 /* ******************************* */
 .img_cart {

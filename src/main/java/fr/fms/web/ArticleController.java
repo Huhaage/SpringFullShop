@@ -47,10 +47,16 @@ public class ArticleController {
 		return "home";
 	}
 
-	// lien vers la page 403 //// test
+	// lien vers la page 403
 	@GetMapping("/403")
-	public String error() {
+	public String error403() {
 		return "403";
+	}
+	
+	// lien vers la page 404
+	@GetMapping("/404")
+	public String error404() {
+		return "404";
 	}
 
 	// lien vers la page admin
@@ -106,13 +112,6 @@ public class ArticleController {
 		model.addAttribute("listCategories", categories);
 		return "articles";
 
-	}
-
-	@ExceptionHandler(value = GlobalException.class)
-	public String globalHandler(Model theModel) {
-
-		theModel.addAttribute("err", "GlobalException");
-		return "403";
 	}
 
 	// lien admin pour afficher la list des articles avec la possibilité de

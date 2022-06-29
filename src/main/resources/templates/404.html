@@ -11,7 +11,14 @@
 
 <body>
 	<div layout:fragment="content">
-		<div class="container error403">
+		<div class="container error404">
+			<div>
+				<h1>404</h1>
+				<span>Il semble que ce que vous recherchiez soit au delà de l'horizon des évenements.</span>
+				<h2 th:text="${url}"></h2>
+				<h3 th:text="${exception.exceptionMsg}"></h3>
+			</div>
+
 		</div>
 	</div>
 </body>
