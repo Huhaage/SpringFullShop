@@ -58,8 +58,8 @@ public class UserController {
     @GetMapping("/register")
     public String register(Model model, Customer customer) {
          String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-       System.out.println(userName);
-        return "register";
+         System.out.println(userName);
+         return "register";
     }
 
 }

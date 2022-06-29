@@ -7,5 +7,5 @@ import fr.fms.entities.Users;
 
 @Repository
 public interface UserRepository extends JpaRepository<Users,Long> {
-
+	public Users findByMail(String mail);
 }

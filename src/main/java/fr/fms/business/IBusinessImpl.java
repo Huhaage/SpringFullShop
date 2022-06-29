@@ -198,5 +198,18 @@ public class IBusinessImpl implements IBusiness {
 		customerRepository.save(customer);
 	}
 	
+	@Override
+	public Users getUser(Long idUser) {
+		return userRepository.findById(idUser).get();
+	}
+	
+	@Override
+	public Long getIdUserByMail(String mail) {
+		Users userReceived = userRepository.findByMail(mail);
+		Users user = new Users(userReceived.getId(), userReceived.getMail(), userReceived.getPassword(), userReceived.getActive());
+		
+		return user.getId();
+	}
+	
 	
 }
