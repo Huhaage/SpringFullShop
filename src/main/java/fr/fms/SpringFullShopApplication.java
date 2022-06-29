@@ -12,12 +12,12 @@ import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 
 import fr.fms.dao.CustomerRepository;
+import fr.fms.dao.RoleRepository;
 import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
-
-
+import fr.fms.entities.Role;
 import fr.fms.entities.Users;
 
 
@@ -35,6 +35,9 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	RoleRepository roleRepository;
 
 
 	public static void main(String[] args) {
@@ -99,12 +102,12 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		 articleRepository.save(new Article(null,"Platinium unlimlited","Nero",99.99,"pinnacle.jpg",logiciel,1));
 //		 articleRepository.save(new Article(null,"Studio 25 ultimate","Pinnacle",129.99,"pinnacle.jpg",logiciel,1));
 //		 articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"pinnacle.jpg",logiciel,1));
-//			
+			
 //		roleRepository.save(new Role(null, "USER"));
 //		roleRepository.save(new Role(null, "ADMIN"));
 //		 
-//		userRepository.save(new User(null, "bla@bla.fr", "123", true));
-//		userRepository.save(new User(null, "x@x.fr", "123", true));
+//		userRepository.save(new Users(null, "bla@bla.fr", "123", true));
+//		userRepository.save(new Users(null, "x@x.fr", "123", true));
 	}
 
 }
