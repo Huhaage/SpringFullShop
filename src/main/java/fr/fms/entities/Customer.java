@@ -55,6 +55,6 @@ public class Customer {
 	
 
 	@ManyToOne
-	private Users users;
+	private Users user;
 
 }
