@@ -31,11 +31,11 @@ SELECT * FROM role;
 -- -----------------------------------------------------------------------------
 
 
-INSERT INTO user_role(user_id, role_id) VALUES('1', '1');
-INSERT INTO user_role(user_id, role_id) VALUES('1', '2');
-INSERT INTO user_role(user_id, role_id) VALUES('2', '2');
-INSERT INTO user_role(user_id, role_id) VALUES('3', '2');
-INSERT INTO user_role(user_id, role_id) VALUES('4', '2');
-INSERT INTO user_role(user_id, role_id) VALUES('5', '2');
+INSERT INTO user_role(users_id, role_id) VALUES('1', '1');
+INSERT INTO user_role(users_id, role_id) VALUES('1', '2');
+INSERT INTO user_role(users_id, role_id) VALUES('2', '2');
+INSERT INTO user_role(users_id, role_id) VALUES('3', '2');
+INSERT INTO user_role(users_id, role_id) VALUES('4', '2');
+INSERT INTO user_role(users_id, role_id) VALUES('5', '2');
 
 SELECT * FROM user_role;
