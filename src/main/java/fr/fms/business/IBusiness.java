@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
-import fr.fms.entities.User;
 
 public interface IBusiness {
 	public List<Article> readAllArticles();
@@ -34,6 +33,5 @@ public interface IBusiness {
 	
 	public List<Customer> readAllCustomerByUserId(Long idUser);
 	public Customer getCustomer(Long idCustomer);
-	
-	//public User getUser(Long id);
+
 }

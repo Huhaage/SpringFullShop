@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +25,7 @@ import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
 import fr.fms.entities.Orders;
 import fr.fms.entities.OrdersItem;
-import fr.fms.entities.User;
+import fr.fms.entities.Users;
 
 @Service
 public class IBusinessImpl implements IBusiness {
@@ -160,30 +162,29 @@ public class IBusinessImpl implements IBusiness {
 	public List<Category> findAllCategories() {
 		return categoryRepository.findAll();
 	}
+	//créé une commande sans article
 	@Override
 	public Long newOrder(Long idCustomer) {
-		return idCustomer;
 		
-	}
-//		Long idOrder = 0L;
-//		List<Orders> lastOrder = null;
-//		if(customerRepository.findById(idCustomer) != null) {
-//			double total = totalCaddy(); 
-//			Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
-//			orderRepository.save(order);
-//			lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findCustomerById(idCustomer));
-//		}
-//		return lastOrder.get(0).getOrderId();
-//
-//	}
+		Long idOrder = 0L;
+		List<Orders> lastOrder = null;
+		if(customerRepository.findById(idCustomer) != null) {
+			double total = totalCaddy(); 
+			Orders order = new Orders(null,customerRepository.findById(idCustomer).get(), new Date(), total);
+			orderRepository.save(order);
+			lastOrder = orderRepository.findAllByCustomerOrderByDateDesc(customerRepository.findById(idCustomer).get());
+		}
+		return lastOrder.get(0).getOrderId();
 
+	}
+	//enregistre les articles avec les ordersitem associés 
 	@Override
 	public void saveOrder(Long idOrder) {
 		
-//		caddy.values().forEach((a) -> orderItemRepository.save(new OrdersItem(idOrder, a.getId(), a.getQuantity())));	
+		caddy.values().forEach((a) -> orderItemRepository.save(new OrdersItem(orderRepository.findById(idOrder).get(), a, a.getQuantity())));	
 
 	}
-	
+
 	@Override
 	public List<Customer> readAllCustomerByUserId(Long idUser){
 		return customerRepository.findAllCustomerByUserId(idUser); 
@@ -192,6 +193,9 @@ public class IBusinessImpl implements IBusiness {
 	@Override
 	public Customer getCustomer(Long idCustomer) {
 		return customerRepository.findById(idCustomer).get();
+	}
+	public void addCustomer(@Valid Customer customer) {
+		customerRepository.save(customer);
 	}
 	
 	

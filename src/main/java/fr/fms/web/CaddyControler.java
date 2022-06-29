@@ -6,17 +6,14 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
-import fr.fms.dao.CustomerRepository;
 import fr.fms.entities.Customer;
-import fr.fms.entities.User;
+
 
 @Transactional
 @Controller
@@ -81,7 +78,6 @@ public class CaddyControler {
 		
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		model.addAttribute("id", id);
 		model.addAttribute("customer", customer);
 		
 		return "order";
@@ -93,6 +89,16 @@ public class CaddyControler {
 		model.addAttribute("listAddresses", listAddresses);
 		
 		return "chooseAddress";
+	}
+
+	//payement
+	@GetMapping("/payment")
+	public String payment(Model model) {		
+		Long orderId=iBusinessImpl.newOrder(1L); 
+		iBusinessImpl.saveOrder(orderId);
+		iBusinessImpl.getCaddy().clear();
+
+		return "redirect:/articles";
 	}
 	
 }

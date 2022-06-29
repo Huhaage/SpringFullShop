@@ -41,18 +41,19 @@ public class Customer {
 	private Collection<Orders> orders;
 
 	@ManyToOne
-	private User user;
-
-	/**
-	 * @param id
-	 * @param name
-	 * @param firstName
-	 * @param address
-	 * @param phone
-	 */
+	private Users user;
+	
 	public Customer(Long id, @NotNull String name, @NotNull String firstName, @NotNull String address,
 			@NotNull String phone) {
 		this.id = id;
+		this.name = name;
+		this.firstName = firstName;
+		this.address = address;
+		this.phone = phone;
+	}
+	
+	public Customer(@NotNull String name, @NotNull String firstName, @NotNull String address,
+			@NotNull String phone) {
 		this.name = name;
 		this.firstName = firstName;
 		this.address = address;

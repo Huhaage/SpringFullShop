@@ -12,10 +12,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+
+import fr.fms.dao.CustomerRepository;
 import fr.fms.dao.RoleRepository;
 import fr.fms.dao.UserRepository;
+import fr.fms.entities.Article;
+import fr.fms.entities.Category;
 import fr.fms.entities.Role;
-import fr.fms.entities.User;
+import fr.fms.entities.Users;
+
 
 @Transactional
 @SpringBootApplication
@@ -27,10 +32,15 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	ArticleRepository articleRepository;
 	
 	@Autowired
+
+	CustomerRepository customerRipository;
+	
+	@Autowired
 	UserRepository userRepository;
 	
 	@Autowired
 	RoleRepository roleRepository;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringFullShopApplication.class, args);
@@ -89,20 +99,23 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		 articleRepository.save(new Article(null,"Platinium unlimlited","Nero",99.99,"pinnacle.jpg",logiciel,1));
 //		 articleRepository.save(new Article(null,"Studio 25 ultimate","Pinnacle",129.99,"pinnacle.jpg",logiciel,1));
 //		 articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"pinnacle.jpg",logiciel,1));
-//			
+			
+		//ATTENTION ROLE ET USER A CREER APRES AVOIR EXECUTER LE FICHIER SQL DANS RESSOURCES_DOC
+		//SINON, LES ID EXCRITES EN DUR DANS LE FICHER SQL NE CORRESPONDRA PLUS AUX BONNES ADRESSES
+		
 //		roleRepository.save(new Role(null, "USER"));
 //		roleRepository.save(new Role(null, "ADMIN"));
 //		 
-//		userRepository.save(new User(null, "bla@bla.fr", "123", true));
-//		userRepository.save(new User(null, "x@x.fr", "123", true));
-		
-		Role roleUser = roleRepository.findById((long) 1).get();
-		Role roleAdmin = roleRepository.findById((long) 2).get();
-		//userRepository.save(saveUser("yyy@yyy.com", "123", true, roleUser));
+//		userRepository.save(new Users(null, "bla@bla.fr", "123", true));
+//		userRepository.save(new Users(null, "x@x.fr", "123", true));
+//		
+//		Role roleUser = roleRepository.findById((long) 1).get();
+//		Role roleAdmin = roleRepository.findById((long) 2).get();
+//		userRepository.save(saveUser("yyy@yyy.com", "123", true, roleUser));
 	}
 	
-	private static User saveUser(String mail, String password, Boolean active, Role role) {
-        User user = new User();
+	private static Users saveUser(String mail, String password, Boolean active, Role role) {
+        Users user = new Users();
         user.setMail(mail);
         user.setPassword(password);
         user.setActive(active);

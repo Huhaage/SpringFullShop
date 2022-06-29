@@ -23,7 +23,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class User {
+public class Users {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -42,7 +42,7 @@ public class User {
 	@ManyToMany
 	@JoinTable(
 			name = "user_role",
-			joinColumns = {@JoinColumn(name = "userId")},
+			joinColumns = {@JoinColumn(name = "usersId")},
 			inverseJoinColumns = {@JoinColumn(name = "roleId")})
 	private List<Role> role;
 	
@@ -51,7 +51,7 @@ public class User {
 	 * @param login
 	 * @param password
 	 */
-	public User(Long id, String mail, String password) {
+	public Users(Long id, String mail, String password) {
 		this.id = id;
 		this.mail = mail;
 		this.password = password;
@@ -63,7 +63,7 @@ public class User {
 	 * @param password
 	 * @param active
 	 */
-	public User(Long id, @NotNull String mail, @NotNull String password, @NotNull Boolean active) {
+	public Users(Long id, @NotNull String mail, @NotNull String password, @NotNull Boolean active) {
 		this.id = id;
 		this.mail = mail;
 		this.password = password;
