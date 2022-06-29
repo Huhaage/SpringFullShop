@@ -30,6 +30,7 @@ public class Role {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	private String role;
 	
 	@ManyToMany
@@ -44,7 +45,6 @@ public class Role {
 	 * @param role
 	 */
 	public Role(Long id, String role) {
-		super();
 		this.id = id;
 		this.role = role;
 	}

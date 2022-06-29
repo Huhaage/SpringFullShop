@@ -1,6 +1,8 @@
 package fr.fms;
 
 import javax.transaction.Transactional;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,9 @@ import fr.fms.dao.RoleRepository;
 import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+
 import fr.fms.entities.Customer;
+
 import fr.fms.entities.Role;
 import fr.fms.entities.Users;
 
@@ -46,11 +50,6 @@ public class SpringFullShopApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-		
-		
-		
-		
 
 //		 Category smartphone = categoryRepository.save(new Category(null,"Smartphone","smartphone.jpg",null));
 //         Category tablet = categoryRepository.save(new Category(null,"Tablet","tablet.jpg",null)); 
@@ -103,11 +102,35 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		 articleRepository.save(new Article(null,"Studio 25 ultimate","Pinnacle",129.99,"pinnacle.jpg",logiciel,1));
 //		 articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"pinnacle.jpg",logiciel,1));
 			
+
+		//ATTENTION ROLE ET USER A CREER APRES AVOIR EXECUTER LE FICHIER SQL DANS RESSOURCES_DOC
+		//SINON, LES ID EXCRITES EN DUR DANS LE FICHER SQL NE CORRESPONDRA PLUS AUX BONNES ADRESSES
+		
+
 //		roleRepository.save(new Role(null, "USER"));
 //		roleRepository.save(new Role(null, "ADMIN"));
 //		 
 //		userRepository.save(new Users(null, "bla@bla.fr", "123", true));
 //		userRepository.save(new Users(null, "x@x.fr", "123", true));
+
+//		
+//		Role roleUser = roleRepository.findById((long) 1).get();
+//		Role roleAdmin = roleRepository.findById((long) 2).get();
+//		userRepository.save(saveUser("yyy@yyy.com", "123", true, roleUser));
+	}
+	
+	private static Users saveUser(String mail, String password, Boolean active, Role role) {
+        Users user = new Users();
+        user.setMail(mail);
+        user.setPassword(password);
+        user.setActive(active);
+        
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        user.setRole(roles);
+        
+        return user;
+
 	}
 
 }

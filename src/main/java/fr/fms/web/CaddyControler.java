@@ -1,17 +1,25 @@
 package fr.fms.web;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
+import fr.fms.entities.Customer;
 import fr.fms.entities.Users;
+
 
 @Transactional
 @Controller
@@ -19,7 +27,6 @@ public class CaddyControler {
 
 	@Autowired
 	IBusinessImpl iBusinessImpl;
-
 
 	@GetMapping("/caddy")
 	public String caddy(Model model, HttpSession session) {
@@ -71,18 +78,14 @@ public class CaddyControler {
 
 	// lien de la page order
 	@GetMapping("/order")
-	public String order(Model model) {
-		//User user = new User(null, " ", " ");
-		String mail = SecurityContextHolder.getContext().getAuthentication().getName();
-		Long idUser = iBusinessImpl.getUserIdByMail(mail);
-		
-		System.out.println("id user : " + idUser);
-		System.out.println("mail user : " + mail);
+	public String order(Model model, @RequestParam(name="id", defaultValue = "0") Long id) {
+		Customer cust = iBusinessImpl.getCustomer((long) id);
+		Customer customer = new Customer(id, cust.getName(), cust.getFirstName(), cust.getAddress(), cust.getPhone());
 		
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
-		//model.addAttribute("listAddress", iBusinessImpl.readAllCustomerByUser(user));
-		model.addAttribute("idUser", idUser);
+		model.addAttribute("customer", customer);
+		
 		return "order";
 	}
 
@@ -96,6 +99,45 @@ public class CaddyControler {
         return "redirect:/articles";
     }
 		
+	@GetMapping("/chooseAddress")
+	public String chooseAddress(Model model) {
+		String mail = SecurityContextHolder.getContext().getAuthentication().getName();	
+		Long idUser = iBusinessImpl.getIdUserByMail(mail);
+				
+		List<Customer> listAddresses = iBusinessImpl.readAllCustomerByUserId((long) idUser);
+				
+		model.addAttribute("listAddresses", listAddresses);
 		
+		return "chooseAddress";
+	}
+
+
+	
+    // ajoute customer et retourne la page du choix des adresses
+    @PostMapping("/saveCustomer")
+    public String saveCustomer(Model model, @Valid Customer customer, BindingResult bindingResult) {
+        System.out.println("customer : " + customer);
+            	
+        String mail = SecurityContextHolder.getContext().getAuthentication().getName();	
+        System.out.println("mail " + mail);
+        
+		Long idUser = iBusinessImpl.getIdUserByMail(mail);
+		System.out.println("id useer : " + idUser);
+        System.out.println("customer : " + customer);
+
+        Users user = iBusinessImpl.getUser(idUser);
+        System.out.println("user : " + user);
+        
+        customer.setUser(user);
+        System.out.println("customer : " + customer);
+
+
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
+        
+        iBusinessImpl.addCustomer(customer);
+        return "redirect:/chooseAddress";
+    }
 	
 }

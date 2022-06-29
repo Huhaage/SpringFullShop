@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{index.html}">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+
+		<div class="container">
+			<h4>Merci de choisir une adresse de livraison :</h4>
+
+			<!-- VOIR POUR AJOUTER UN BOUTON DE SUPPRESSION DE L'ADDRESS ?? -->
+
+			<table class="table table-hover address__table">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Adresse</th>
+						<th>Téléphone</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="a:${listAddresses}">
+						<td th:text="${a.firstName}">Nom</td>
+						<td th:text="${a.name}">Prénom</td>
+						<td th:text="${a.address}">Adresse</td>
+						<td th:text="${a.phone}">06++</td>
+						<td>						
+							<a th:href="@{/order(id=${a.id})}" class="btn btn-theme"
+							style="max-width: 200px;">Choisir</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<p></p>
+
+		<div class="btn-align-center">
+			<a th:href="@{/register}" class="btn btn-warning"
+				style="max-width: 200px;">Créer une adresse</a>
+		</div>
+
+
+	</div>
+</body>
+
+</html>
