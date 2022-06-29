@@ -1343,3 +1343,8 @@ p {
  .btn-align-center{
  	text-align-last: center;
  }
+ 
+ .p-normal{
+ 	margin-bottom: 0;
+ 	color: inherit;
+ }

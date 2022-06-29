@@ -14,8 +14,10 @@
 	<div layout:fragment="content">
 
 		<div class="container">
-			<h4>Merci de choisir une adresse de livraison :</h5>
-		
+			<h4>Merci de choisir une adresse de livraison :</h4>
+
+			<!-- VOIR POUR AJOUTER UN BOUTON DE SUPPRESSION DE L'ADDRESS ?? -->
+
 			<table class="table table-hover address__table">
 				<thead>
 					<tr>
@@ -29,19 +31,20 @@
 
 				<tbody>
 					<tr th:each="a:${listAddresses}">
-						<td th:text="${a.firstName}">JEAN</td>
-						<td th:text="${a.name}">BOND</td>
-						<td th:text="${a.address}">ICI</td>
+						<td th:text="${a.firstName}">Nom</td>
+						<td th:text="${a.name}">Prénom</td>
+						<td th:text="${a.address}">Adresse</td>
 						<td th:text="${a.phone}">06++</td>
-						<td>
-							<form th:action="@{/order(idCustomer=${a.id})}" method="get">
-								<button type="submit" class="btn btn-theme">Choisir</button>
-							</form>
+						<td>						
+							<a th:href="@{/order(id=${a.id})}" class="btn btn-theme"
+							style="max-width: 200px;">Choisir</a>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+		
+		<p></p>
 
 		<div class="btn-align-center">
 			<a th:href="@{/register}" class="btn btn-warning"

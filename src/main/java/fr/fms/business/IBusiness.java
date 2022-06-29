@@ -34,4 +34,6 @@ public interface IBusiness {
 	
 	public List<Customer> readAllCustomerByUserId(Long idUser);
 	public Customer getCustomer(Long idCustomer);
+	
+	//public User getUser(Long id);
 }

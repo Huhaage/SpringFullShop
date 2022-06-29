@@ -42,4 +42,20 @@ public class Customer {
 
 	@ManyToOne
 	private User user;
+
+	/**
+	 * @param id
+	 * @param name
+	 * @param firstName
+	 * @param address
+	 * @param phone
+	 */
+	public Customer(Long id, @NotNull String name, @NotNull String firstName, @NotNull String address,
+			@NotNull String phone) {
+		this.id = id;
+		this.name = name;
+		this.firstName = firstName;
+		this.address = address;
+		this.phone = phone;
+	}
 }

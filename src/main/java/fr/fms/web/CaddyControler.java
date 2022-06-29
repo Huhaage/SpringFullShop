@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
+import fr.fms.dao.CustomerRepository;
 import fr.fms.entities.Customer;
 import fr.fms.entities.User;
 
@@ -22,7 +24,6 @@ public class CaddyControler {
 
 	@Autowired
 	IBusinessImpl iBusinessImpl;
-
 
 	@GetMapping("/caddy")
 	public String caddy(Model model, HttpSession session) {
@@ -74,13 +75,13 @@ public class CaddyControler {
 
 	// lien de la page order
 	@GetMapping("/order")
-	public String order(Model model, @RequestParam(name="idCustomer", defaultValue = "0") Long idCustomer) {
-		//GRACE AU ID CUSTOMER, afficher les détails de la commande dans le champ billing address
-		Customer customer = iBusinessImpl.getCustomer(idCustomer);
-		System.out.println("customer : " + customer);
+	public String order(Model model, @RequestParam(name="id", defaultValue = "0") Long id) {
+		Customer cust = iBusinessImpl.getCustomer((long) id);
+		Customer customer = new Customer(id, cust.getName(), cust.getFirstName(), cust.getAddress(), cust.getPhone());
 		
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
+		model.addAttribute("id", id);
 		model.addAttribute("customer", customer);
 		
 		return "order";

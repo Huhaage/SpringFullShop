@@ -191,7 +191,7 @@ public class IBusinessImpl implements IBusiness {
 	
 	@Override
 	public Customer getCustomer(Long idCustomer) {
-		return customerRepository.findCustomerById(idCustomer);
+		return customerRepository.findById(idCustomer).get();
 	}
 	
 	
