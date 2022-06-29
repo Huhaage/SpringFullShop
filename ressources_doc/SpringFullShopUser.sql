@@ -8,11 +8,11 @@ USE Springfullshop;
 -- - Construction de la table des users                              ---
 -- -----------------------------------------------------------------------------
 
-INSERT INTO user(mail, password, active) VALUES( 'Neo@free.fr',	'$2a$12$/YP2ojX0Wyau9vAf/SDKouiwXjgbtSGuPkmtUZwcPkqlfJZyMxuY.',1 );
-INSERT INTO user(mail, password, active) VALUES('SarahLune@yahoo.fr',	'$2a$12$iqh83MITMAoCm2ClTNRWmO6RNyxh6pct0jiWEJfKEcgixlcTbz/R2',1 );
-INSERT INTO user(mail, password, active) VALUES('Jcd@yahoo.fr',	'$2a$12$PH3aXWZVDeOv/2Um1uR.RO3WIbef8i0RFfatk2FZ5jp046P5Y52HC',1 );
-INSERT INTO user(mail, password, active) VALUES('Christoof@yahoo.fr',	'$2a$12$PvZ8YzeD8yTllRW4ByiBDOG/3m/8VbyyHDFwh5Spii66jPHwej0KC',1 );
-INSERT INTO user(mail, password, active) VALUES('Huhaage@yahoo.fr',	'$2a$12$OXiUDm/wn3sMEU66Kk/kUekqT/HTUPemtsDTPOEJkRXNAIkA02RHO',1 );
+INSERT INTO users(mail, password, active) VALUES( 'Neo@free.fr',	'$2a$12$/YP2ojX0Wyau9vAf/SDKouiwXjgbtSGuPkmtUZwcPkqlfJZyMxuY.',1 );
+INSERT INTO users(mail, password, active) VALUES('SarahLune@yahoo.fr',	'$2a$12$iqh83MITMAoCm2ClTNRWmO6RNyxh6pct0jiWEJfKEcgixlcTbz/R2',1 );
+INSERT INTO users(mail, password, active) VALUES('Jcd@yahoo.fr',	'$2a$12$PH3aXWZVDeOv/2Um1uR.RO3WIbef8i0RFfatk2FZ5jp046P5Y52HC',1 );
+INSERT INTO users(mail, password, active) VALUES('Christoof@yahoo.fr',	'$2a$12$PvZ8YzeD8yTllRW4ByiBDOG/3m/8VbyyHDFwh5Spii66jPHwej0KC',1 );
+INSERT INTO users(mail, password, active) VALUES('Huhaage@yahoo.fr',	'$2a$12$OXiUDm/wn3sMEU66Kk/kUekqT/HTUPemtsDTPOEJkRXNAIkA02RHO',1 );
 
 SELECT * FROM user;
 
