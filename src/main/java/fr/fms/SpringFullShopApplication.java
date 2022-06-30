@@ -38,7 +38,7 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	ArticleRepository articleRepository;
 	
 	@Autowired
-	CustomerRepository customerRipository;
+	CustomerRepository customerRepository;
 	
 	@Autowired
 	UserRepository userRepository;
