@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Customer;
 import fr.fms.entities.Users;
+import fr.fms.services.GlobalException;
 
 
 @Transactional
@@ -78,7 +79,7 @@ public class CaddyControler {
 
 	// lien de la page order
 	@GetMapping("/order")
-	public String order(Model model, @RequestParam(name="id", defaultValue = "0") Long id) {
+	public String order(Model model, @RequestParam(name = "id", defaultValue = "0") Long id) {
 		Customer cust = iBusinessImpl.getCustomer((long) id);
 		Customer customer = new Customer(id, cust.getName(), cust.getFirstName(), cust.getAddress(), cust.getPhone());
 		
@@ -95,7 +96,6 @@ public class CaddyControler {
 		Long idUser = iBusinessImpl.getIdUserByMail(mail);
 				
 		List<Customer> listAddresses = iBusinessImpl.readAllCustomerByUserId((long) idUser);
-				
 		model.addAttribute("listAddresses", listAddresses);
 		
 		return "chooseAddress";
@@ -103,38 +103,34 @@ public class CaddyControler {
 
 	//payement
 	@GetMapping("/payment")
-	public String payment(Model model) {		
-		Long orderId=iBusinessImpl.newOrder(1L); 
+	public String payment(Model model) {
+		Long orderId = iBusinessImpl.newOrder(1L);
 		iBusinessImpl.saveOrder(orderId);
 		iBusinessImpl.getCaddy().clear();
 
 		return "redirect:/articles";
 	}
 	
+	
+	// register
+	@GetMapping("/register")
+	public String register(Model model, Customer customer) {
+		return "register";
+	}
+
     // ajoute customer et retourne la page du choix des adresses
     @PostMapping("/saveCustomer")
-    public String saveCustomer(Model model, @Valid Customer customer, BindingResult bindingResult) {
-        System.out.println("customer : " + customer);
+	public String saveCustomer(Model model, @Valid Customer customer, BindingResult bindingResult) {
+	
             	
         String mail = SecurityContextHolder.getContext().getAuthentication().getName();	
-        System.out.println("mail " + mail);
-        
 		Long idUser = iBusinessImpl.getIdUserByMail(mail);
-		System.out.println("id useer : " + idUser);
-        System.out.println("customer : " + customer);
-
-        Users user = iBusinessImpl.getUser(idUser);
-        System.out.println("user : " + user);
-        
-        customer.setUser(user);
-        System.out.println("customer : " + customer);
-
-
-        if (bindingResult.hasErrors()) {
-            return "register";
-        }
-        
-        iBusinessImpl.addCustomer(customer);
+		Users user = iBusinessImpl.getUser(idUser);
+		Users newUser = new Users(user.getId(), user.getMail());
+		
+        customer.setUser(newUser);
+      
+       iBusinessImpl.addCustomer(customer);
         return "redirect:/chooseAddress";
     }
 	

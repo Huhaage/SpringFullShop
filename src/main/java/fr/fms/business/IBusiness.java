@@ -33,7 +33,10 @@ public interface IBusiness {
 	public Category readCategoryById(Long i);
 	
 	public List<Customer> readAllCustomerByUserId(Long idUser);
+
 	public Customer getCustomer(Long idCustomer);
+
+	public void addCustomer(Customer customer);
 
 	public Users getUser(Long idUser);
 	public Long getIdUserByMail(String mail);

@@ -36,7 +36,6 @@ public class Customer {
 	@NotNull
 	private String address;
 	@NotNull
-	@Size(min=10, max=20)
 	private String phone;
 	@OneToMany(mappedBy="customer")
 	private Collection<Orders> orders;

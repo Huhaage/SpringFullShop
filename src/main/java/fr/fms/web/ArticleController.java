@@ -120,7 +120,9 @@ public class ArticleController {
 	public String articlesAdmin(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "keyword", defaultValue = "") String kw) {
 		Page<Article> articles = iBusinessImpl.readByDescriptionContains(kw, page, 6); // récup tous les articles
-
+		if (articles.isEmpty()) {
+			throw new GlobalException("Aucune données");
+		}
 		model.addAttribute("listArticle", articles.getContent()); // insert les articles dans le model
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage", page);
@@ -151,6 +153,9 @@ public class ArticleController {
 	@GetMapping("/editArticle")
 	public String editArticle(Model model, @Valid Long id) {
 		Article articleToEdit = iBusinessImpl.readArticleById(id);
+		if (articleToEdit==null) {
+			throw new GlobalException("Article inexistant");
+		}
 		model.addAttribute("articleToEdit", articleToEdit);
 
 		List<Category> categories = iBusinessImpl.findAllCategories();

@@ -70,5 +70,13 @@ public class Users {
 		this.active = active;
 	}
 	
+	/**
+	 * @param id
+	 * @param mail
+	 */
+	public Users(Long id, @NotNull String mail) {
+		this.id = id;
+		this.mail = mail;
+	}
 	
 }
