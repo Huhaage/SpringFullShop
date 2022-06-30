@@ -46,8 +46,10 @@ public class CaddyControler {
 
 	@GetMapping("/addToCaddy")
 	public String addToCaddy(Long id, Model model, @RequestParam(name="page", defaultValue = "0") int page,
-			@RequestParam(name="keyword", defaultValue = "") String keyword) {
-		iBusinessImpl.addToCaddy(id);	
+			@RequestParam(name="keyword", defaultValue = "") String keyword) throws InterruptedException {
+		iBusinessImpl.addToCaddy(id);
+		Thread.sleep(2000);
+		
 		return "redirect:/articles?page="+page+"&keyword="+keyword;
 
 	}

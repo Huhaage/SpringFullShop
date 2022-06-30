@@ -23,7 +23,7 @@ function remClick() {
     cartButtons.forEach(button => {
         setTimeout(() => {
             button.classList.remove('clicked')
-        }, 3000);
+        }, 2000);
 
     })
 }
