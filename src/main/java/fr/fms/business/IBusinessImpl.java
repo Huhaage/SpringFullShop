@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -217,6 +215,12 @@ public class IBusinessImpl implements IBusiness {
 				userReceived.getActive());
 
 		return user.getId();
+	}
+
+	@Override
+	public Page<Orders> readAllOrders(int page, int ordersByPages) {
+		
+		return orderRepository.findAll(PageRequest.of(page, ordersByPages));
 	}
 
 }

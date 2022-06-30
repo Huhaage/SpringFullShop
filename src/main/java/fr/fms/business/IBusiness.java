@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
+import fr.fms.entities.Orders;
 import fr.fms.entities.Users;
 
 public interface IBusiness {
@@ -23,7 +24,10 @@ public interface IBusiness {
 	public int sizeCaddy();
 	public void removeFromCaddy(Long id);
 	public void saveOrder(Long idOrders);
+
 	public Long newOrder(Long idCustomer);
+	
+	public Page<Orders> readAllOrders(int page, int ordersByPages);
 	
 	public List<Category> findAllCategories();
 	public Page<Category> readAllCategories(int page,int categoriesByPages);
