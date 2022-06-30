@@ -119,18 +119,18 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		userRepository.save(saveUser("yyy@yyy.com", "123", true, roleUser));
 	}
 	
-	private static Users saveUser(String mail, String password, Boolean active, Role role) {
-        Users user = new Users();
-        user.setMail(mail);
-        user.setPassword(password);
-        user.setActive(active);
-        
-        List<Role> roles = new ArrayList<>();
-        roles.add(role);
-        user.setRole(roles);
-        
-        return user;
-
-	}
+//	private static Users saveUser(String mail, String password, Boolean active, Role role) {
+//        Users user = new Users();
+//        user.setMail(mail);
+//        user.setPassword(password);
+//        user.setActive(active);
+//        
+//        List<Role> roles = new ArrayList<>();
+//        roles.add(role);
+//        user.setRole(roles);
+//        
+//        return user;
+//
+//	}
 
 }
