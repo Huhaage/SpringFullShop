@@ -38,14 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 auth.jdbcAuthentication()
                                 .dataSource(dataSource)
-                                  .usersByUsernameQuery(
-                                                  "select mail, password as credentials, active from users where mail=?")
+                                 .usersByUsernameQuery(
+                                                "select mail, password as credentials, active from users where mail=?")
 
                                 .authoritiesByUsernameQuery(
-                                        " SELECT users.mail as username, role.role as role  FROM users"+
-        
-        " INNER JOIN user_role ON users.id = user_role.users_id"+ " INNER JOIN role ON user_role.role_id = role.id WHERE users.mail =? ")
-       
+                                        		" SELECT users.mail as username, role.role as role  FROM users"+        
+                                        		" INNER JOIN user_role ON users.id = user_role.users_id"+ 
+                                        		" INNER JOIN role ON user_role.role_id = role.id WHERE users.mail =? ")
+
        
                                 .rolePrefix("ROLE_")
                                 .passwordEncoder(passwordEncoder());

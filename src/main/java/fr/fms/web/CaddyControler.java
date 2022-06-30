@@ -89,7 +89,17 @@ public class CaddyControler {
 		
 		return "order";
 	}
-	
+
+    //payement
+    @GetMapping("/payment")
+    public String payment(Model model) {        
+        Long orderId=iBusinessImpl.newOrder(1L); 
+        iBusinessImpl.saveOrder(orderId);
+        iBusinessImpl.getCaddy().clear();
+
+        return "redirect:/articles";
+    }
+		
 	@GetMapping("/chooseAddress")
 	public String chooseAddress(Model model) {
 		String mail = SecurityContextHolder.getContext().getAuthentication().getName();	
@@ -101,17 +111,6 @@ public class CaddyControler {
 		return "chooseAddress";
 	}
 
-	//payement
-	@GetMapping("/payment")
-	public String payment(Model model) {
-		Long orderId = iBusinessImpl.newOrder(1L);
-		iBusinessImpl.saveOrder(orderId);
-		iBusinessImpl.getCaddy().clear();
-
-		return "redirect:/articles";
-	}
-	
-	
 	// register
 	@GetMapping("/register")
 	public String register(Model model, Customer customer) {

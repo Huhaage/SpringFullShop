@@ -55,9 +55,14 @@
 
 									</tr>
 
+
+                                    <!-- function valider order -->
+                                   
+<!--                                     <address th:object="${user}"> -->
+
 								</tbody>
 								<tfoot>
-									<tr>
+								<!-- 	<tr>
 										<td colspan="2">Shipping</td>
 										<td class="text-end">$20.00</td>
 									</tr>
@@ -68,12 +73,12 @@
 									<tr class="fw-bold">
 										<td colspan="2">TOTAL</td>
 										<td class="text-end" th:text="${totalCaddy}">1000 €</td>
-									</tr>
+									</tr> -->
 								</tfoot>
 							</table>
 						</div>
-					</div>-->
-					<!-- Payment -->
+					</div>
+					<!-- Payment
 					<div class="card mb-4" id="payInfo">
 						<div class="card-body">
 							<div class="row">
@@ -84,7 +89,9 @@
 									<p th:text="${totalCaddy}">Total: 1000 €</p>
 
 									<!-- function valider order -->
+
 									 <a class="btn btn-success" th:href="@{/payment}" style="max-width: 200px;" >Pay</a>
+
 								</div>
 								<div class="col-lg-6">
 									<h3 class="h6">Billing address</h3>
