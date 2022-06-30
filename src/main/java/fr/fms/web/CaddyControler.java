@@ -86,6 +86,8 @@ public class CaddyControler {
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
 		model.addAttribute("customer", customer);
+
+		model.addAttribute("size", iBusinessImpl.sizeCaddy());
 		
 		return "order";
 	}
