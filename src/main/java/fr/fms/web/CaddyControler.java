@@ -1,6 +1,7 @@
 package fr.fms.web;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -86,7 +87,7 @@ public class CaddyControler {
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
 		model.addAttribute("customer", customer);
-
+		model.addAttribute("localDateTime", LocalDateTime.now());
 		model.addAttribute("size", iBusinessImpl.sizeCaddy());
 		
 		return "order";
