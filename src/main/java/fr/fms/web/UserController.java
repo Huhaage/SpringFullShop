@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Customer;
-import fr.fms.entities.User;
+import fr.fms.entities.Users;
 
 
 
@@ -33,7 +33,7 @@ public class UserController {
 
 
     @GetMapping("/login")
-    public String login(Model model, User user) {
+    public String login(Model model, Users user) {
         return "login";
     }
     
@@ -54,23 +54,5 @@ public class UserController {
         return "redirect:/login";
     }
 
-    // register
-    @GetMapping("/register")
-    public String register(Model model, Customer customer) {
-         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-       System.out.println(userName);
-        return "register";
-    }
 
-    // ajoute enle customer et retourne la page order
-    @PostMapping("/saveCustomer")
-    public String save(Model model, @Valid Customer customer, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-
-            return "register";
-        }
-
-      //  iBusinessImpl.addArticle(article);
-        return "redirect:/order";
-    }
 }

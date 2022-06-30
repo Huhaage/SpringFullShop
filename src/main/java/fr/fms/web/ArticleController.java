@@ -24,6 +24,7 @@ import fr.fms.business.IBusinessImpl;
 
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.services.GlobalException;
 
 /**
  * @author CHJCS
@@ -31,14 +32,16 @@ import fr.fms.entities.Category;
  */
 @Controller
 public class ArticleController {
+	// IIBusinessImplImpl IBusinessImpl = new IIBusinessImplImpl();
+
 	@Autowired
-	private IBusinessImpl business;
-	
+	IBusinessImpl iBusinessImpl;
+
 	@GetMapping("/home")
 	public String home(Model model) {
 		return "home";
 	}
-	
+
 	@GetMapping("/")
 	public String accueil(HttpSession session) {
 		int length = business.sizeCaddy();
@@ -46,13 +49,19 @@ public class ArticleController {
 		return "home";
 	}
 
-//lien vers la page 403 //// test
+	// lien vers la page 403
 	@GetMapping("/403")
-	public String error() {
+	public String error403() {
 		return "403";
 	}
+	
+	// lien vers la page 404
+	@GetMapping("/404")
+	public String error404() {
+		return "404";
+	}
 
-// lien vers la page admin
+	// lien vers la page admin
 	@GetMapping("/admin")
 	public String admin() {
 		return "admin";
@@ -78,14 +87,31 @@ public class ArticleController {
 		List<Category> categories = business.findAllCategories();
 		return null;
 	}
+
 	// lien vers la page articles
 	@GetMapping("/articles")
 	public String articles(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "keyword", defaultValue = "") String kw) {
-		Page<Article> articles = business.readByDescriptionContains(kw, page, 6); // récup tous les articles
-		List<Category> categories = business.findAllCategories();
+			@RequestParam(name = "keyword", defaultValue = "") String kw,
+			HttpSession session) {
+
+		Page<Article> articles = iBusinessImpl.readByDescriptionContains(kw,
+				page, 6); // récup tous les articles
+
+		if (articles.isEmpty()) {
+			throw new GlobalException("Aucune données");
+		}
+
+		List<Category> categories = iBusinessImpl.findAllCategories();
+		int length = iBusinessImpl.sizeCaddy();
+		session.setAttribute("caddySize", length);
+
 		model.addAttribute("listArticle", articles.getContent()); // insert les articles dans le model
-		return"redirect:/articles";
+		model.addAttribute("pages", new int[articles.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("keyword", kw);
+		model.addAttribute("listCategories", categories);
+		return "articles";
+
 	}
 
 	// lien admin pour afficher la list des articles avec la possibilité de
@@ -93,17 +119,22 @@ public class ArticleController {
 	@GetMapping("/adminListArticles")
 	public String articlesAdmin(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "keyword", defaultValue = "") String kw) {
-		Page<Article> articles = business.readByDescriptionContains(kw, page, 6); // récup tous les articles
+		Page<Article> articles = iBusinessImpl.readByDescriptionContains(kw, page, 6); // récup tous les articles
+		if (articles.isEmpty()) {
+			throw new GlobalException("Aucune données");
+		}
 		model.addAttribute("listArticle", articles.getContent()); // insert les articles dans le model
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("keyword", kw);
+
 		return "adminListArticles"; // cette méthode retourne au dispacterServlet une vue
 	}
 
 	@GetMapping("/delete")
-	public  String delete(Long id, int page, String keyword) {
-		business.delArticle(id);
+	public String delete(Long id, int page, String keyword) {
+		iBusinessImpl.delArticle(id);
+
 		return "redirect:/adminListArticles?page=" + page + "&keyword=" + keyword;
 	}
 
@@ -111,19 +142,26 @@ public class ArticleController {
 	public String updateArticle(Article article, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "adminListArticles";
+
 		if (article.getId() != null) {
-			business.updateArticle(article);
+			iBusinessImpl.updateArticle(article);
 		}
+
 		return "redirect:/adminListArticles";
 	}
 
 	@GetMapping("/editArticle")
-
 	public String editArticle(Model model, @Valid Long id) {
-		Article articleToEdit = business.readArticleById(id);
+		Article articleToEdit = iBusinessImpl.readArticleById(id);
+		if (articleToEdit==null) {
+			throw new GlobalException("Article inexistant");
+		}
 		model.addAttribute("articleToEdit", articleToEdit);
-		List<Category> categories = business.findAllCategories();
+
+		List<Category> categories = iBusinessImpl.findAllCategories();
 		model.addAttribute("listCategories", categories);
+
 		return "editArticle";
 	}
+
 }

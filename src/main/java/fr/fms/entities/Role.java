@@ -30,21 +30,21 @@ public class Role {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	private String role;
 	
 	@ManyToMany
 	@JoinTable(
 			name = "user_role",
 			joinColumns = {@JoinColumn(name = "roleId")},
-			inverseJoinColumns = {@JoinColumn(name = "userId")})
-	private List<User> users;
+			inverseJoinColumns = {@JoinColumn(name = "usersId")})
+	private List<Users> users;
 
 	/**
 	 * @param id
 	 * @param role
 	 */
 	public Role(Long id, String role) {
-		super();
 		this.id = id;
 		this.role = role;
 	}

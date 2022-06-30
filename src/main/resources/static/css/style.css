@@ -14,18 +14,34 @@ li {
   height: 600px;
 }
 
-.btn-theme{
-	background-color: coral;
-}
-
 /* not found 403 ********************** */
-.error {
+.error403 {
   background-image: url("/img/403.png");
   /* background-position: center; */
   width: 1000px;
   height: 500px;
 }
-
+/* not found 403 ********************** */
+.error404 {
+  background-image: url("/img/NASA-AD-background.png");
+  background-position: center;
+  width: 1400px;
+  height: 500px;
+box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.error404 h1{
+  font-size: 100px;
+  color: blue;
+}
+.error404 span{
+  font-size: 40px;
+  color: blue;
+}
+.error404 h2,h3{
+  color: red;
+  /* position: relative;
+  top: 250px; */
+}
 
 /* ******************************* */
 .img_cart {
@@ -1329,6 +1345,26 @@ p {
   text-decoration: underline;
 }
 
-.categorie-card {
+.categorie-card, .address__table {
   box-shadow: 10px 10px 5px 0px rgba(255, 127, 80, 0.75);
 }
+
+/******* Choose Address*********/
+.address__table{
+    border: solid 1px rgba(255, 127, 80, 0.75) !important;
+    border-color: green;
+}
+
+ .btn-theme{
+     background-color: coral !important;
+     color: white !important;
+ }
+ 
+ .btn-align-center{
+ 	text-align-last: center;
+ }
+ 
+ .p-normal{
+ 	margin-bottom: 0;
+ 	color: inherit;
+ }

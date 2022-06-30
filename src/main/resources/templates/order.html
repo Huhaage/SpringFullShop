@@ -53,12 +53,20 @@
 										<td class="text-end" th:text="${a.price}">price €</td>
 
 									</tr>
+<<<<<<< HEAD
 									<!-- function valider order -->
 									<a class="btn btn-success" th:href="@{/payment}" style="max-width: 200px;">Paid</a>
 						</div>
 						<div class="col-lg-6">
 							<h3 class="h6">Billing address</h3>
 							<!-- <address th:object="${user}">
+=======
+
+
+                                    <!-- function valider order -->
+                                   
+<!--                                     <address th:object="${user}"> -->
+>>>>>>> 812ecae9873d76cffb3a2e28bd734f8c1416fba6
 
 								</tbody>
 								<tfoot>
@@ -78,6 +86,7 @@
 							</table>
 						</div>
 					</div>
+<<<<<<< HEAD
 					<!-- Payment -->
 							<div class="card mb-4" id="payInfo">
 								<div class="card-body">
@@ -153,6 +162,64 @@
 										de compte</a>
 								</div>
 							</div>
+=======
+					<!-- Payment-->
+					<div class="card mb-4" id="payInfo">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-6 payMethod">
+									<h3 class="h6">Payment Method</h3>
+									<p>Visa -1234</p>
+									<br>
+									<p th:text="${totalCaddy}">Total: 1000 €</p>
+
+									<!-- function valider order -->
+
+									 <a class="btn btn-success" th:href="@{/payment}" style="max-width: 200px;" >Pay</a>
+
+								</div>
+								<div class="col-lg-6">
+									<h3 class="h6">Billing address</h3>
+
+									
+									<address th:object="${customer}">
+		                               <span th:text="${customer.name}" class="p-normal">nom</span>
+		                               <span th:text="${customer.firstName}" class="p-normal">prénom</span> <br />
+		                               <p th:text="${customer.address}" class="p-normal">adresse</p>
+		                               <p th:text="${customer.phone}" class="p-normal">P:</p>
+		                           </address>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<!-- Customer Notes -->
+					<div class="card mb-4 " id="customerNotes">
+						<div class="card-body">
+							<h3 class="h6">Customer Notes</h3>
+							<p>En cas d'absence, livrez au relais colis le plus proche.</p>
+						</div>
+					</div>
+					<div class="card mb-4" id="shippingInfo">
+						<!-- Shipping information -->
+						<div class="card-body">
+							<h3 class="h6">Shipping Information</h3>
+							<strong>FedEx</strong> <span><a
+								class="text-decoration-underline" target="_blank">FF1234567890</a>
+								<i class="bi bi-box-arrow-up-right"></i> </span>
+							<hr>
+							
+							<h3 class="h6">Address</h3> 
+
+							<address th:object="${customer}">
+                                <span th:text="${customer.name}" class="p-normal">nom</span>
+                                <span th:text="${customer.firstName}" class="p-normal">prénom</span> <br />
+                                <p th:text="${customer.address}" class="p-normal">adresse</p>
+                                <p th:text="${customer.phone}" class="p-normal">P:</p>
+                            </address>
+>>>>>>> 812ecae9873d76cffb3a2e28bd734f8c1416fba6
 						</div>
 					</div>
 					<!-- <div *ngIf="problemOrder" class=" alert alert-danger mt-5 col-md-3">
@@ -161,6 +228,7 @@
 					<!-- modal -->
 					<!-- modal -->
 
+<<<<<<< HEAD
 
 					<!-- <div id="modal-confirm">
 
@@ -188,6 +256,10 @@
             </div> -->
 				</div>
 			</div>
+=======
+		</div>
+	</div>
+>>>>>>> 812ecae9873d76cffb3a2e28bd734f8c1416fba6
 </body>
 
 </html>
