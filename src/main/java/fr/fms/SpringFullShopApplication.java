@@ -1,21 +1,28 @@
 package fr.fms;
 
 import javax.transaction.Transactional;
+
+import java.security.DrbgParameters.NextBytes;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
 
 import fr.fms.business.IBusiness;
 import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.dao.CustomerRepository;
+import fr.fms.dao.OrdersRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
+import fr.fms.entities.Orders;
+import fr.fms.entities.OrdersItem;
 import fr.fms.dao.RoleRepository;
 import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
@@ -36,12 +43,18 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	IBusinessImpl business;
 	
 	@Autowired
-	CustomerRepository customerRipository;
+	CustomerRepository customerRepository;
 	
 	@Autowired
 	RoleRepository roleRepository;
-
-
+	
+	@Autowired
+	OrdersRepository ordersRepository;
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@Transactional
 	public static void main(String[] args) {
 		SpringApplication.run(SpringFullShopApplication.class, args);
 	}
@@ -105,6 +118,18 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		 
 //		userRepository.save(new User(null, "bla@bla.fr", "123", true));
 //		userRepository.save(new User(null, "x@x.fr", "123", true));
-
+//		
+//		
+//		Customer customer = customerRepository.save(new Customer(null, "ducobu", "toto", "0 ruelle du cancre", "0010002000"));
+//		ordersRepository.save(new Orders(null,customer,new Date(),1350));
+		
+		
+		
+		//for(Orders orders  : business.readAllOrders(0, 6)) System.out.println(new Orders(orders.getOrderId(), orders.getCustomer(), orders.getDate(), orders.getAmount()));
+		for(Orders orders  : business.readAllOrders(0, 6)) {
+			System.out.println("test");
+			Customer customer = orders.getCustomer();
+			System.out.println(orders +""+ customer.getId());
+		}	
 	}
 }

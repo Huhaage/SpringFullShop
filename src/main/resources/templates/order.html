@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{index.html}">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Order</title>
 </head>
 
 <body>
@@ -54,12 +53,12 @@
 										<td class="text-end" th:text="${a.price}">price €</td>
 
 									</tr>
-                                    <!-- function valider order -->
-                                    <a class="btn btn-success" th:href="@{/payment}" style="max-width: 200px;" >Paid</a>
-                                </div>
-                                <div class="col-lg-6">
-                                    <h3 class="h6">Billing address</h3>
-                                    <!-- <address th:object="${user}">
+									<!-- function valider order -->
+									<a class="btn btn-success" th:href="@{/payment}" style="max-width: 200px;">Paid</a>
+						</div>
+						<div class="col-lg-6">
+							<h3 class="h6">Billing address</h3>
+							<!-- <address th:object="${user}">
 
 								</tbody>
 								<tfoot>
@@ -80,22 +79,22 @@
 						</div>
 					</div>
 					<!-- Payment -->
-					<div class="card mb-4" id="payInfo">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-lg-6 payMethod">
-									<h3 class="h6">Payment Method</h3>
-									<p>Visa -1234</p>
-									<br>
-									<p th:text="${totalCaddy}">Total: 1000 €</p>
+							<div class="card mb-4" id="payInfo">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-lg-6 payMethod">
+											<h3 class="h6">Payment Method</h3>
+											<p>Visa -1234</p>
+											<br>
+											<p th:text="${totalCaddy}">Total: 1000 €</p>
 
-									<!-- function valider order -->
-									<button class="btn btn-success" style="max-width: 200px;">Paid</button>
-								</div>
-								<div class="col-lg-6">
-									<h3 class="h6">Billing address</h3>
+											<!-- function valider order -->
+											<button class="btn btn-success" style="max-width: 200px;">Paid</button>
+										</div>
+										<div class="col-lg-6">
+											<h3 class="h6">Billing address</h3>
 
-									<!-- <address th:object="${user}">
+											<!-- <address th:object="${user}">
 
                                         <strong th:text="${user.name}">nom</strong><br>
                                         <strong th:text="${user.firstname}">prénom</strong><br>
@@ -105,43 +104,43 @@
                                         <br>
                                         <p th:text="${user.email}">email</p><br>
                                     </address> -->
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<!-- Customer Notes -->
-					<div class="card mb-4 " id="customerNotes">
-						<div class="card-body">
-							<h3 class="h6">Customer Notes</h3>
-							<p>En cas d'absence, livrez au relais colis le plus proche.</p>
-						</div>
-					</div>
-					<div class="card mb-4" id="shippingInfo">
-						<!-- Shipping information -->
-						<div class="card-body">
-							<h3 class="h6">Shipping Information</h3>
-							<strong>FedEx</strong> <span><a
-								class="text-decoration-underline" target="_blank">FF1234567890</a>
-								<i class="bi bi-box-arrow-up-right"></i> </span>
-							<hr>
-							<!--<h3 class="h6">Address</h3>  -->
+						<div class="col-lg-4">
+							<!-- Customer Notes -->
+							<div class="card mb-4 " id="customerNotes">
+								<div class="card-body">
+									<h3 class="h6">Customer Notes</h3>
+									<p>En cas d'absence, livrez au relais colis le plus proche.</p>
+								</div>
+							</div>
+							<div class="card mb-4" id="shippingInfo">
+								<!-- Shipping information -->
+								<div class="card-body">
+									<h3 class="h6">Shipping Information</h3>
+									<strong>FedEx</strong> <span><a class="text-decoration-underline"
+											target="_blank">FF1234567890</a>
+										<i class="bi bi-box-arrow-up-right"></i> </span>
+									<hr>
+									<!--<h3 class="h6">Address</h3>  -->
 
 
-							<!-- Soit faire un menu déroulant avec une liste des adresses présentes en base et la dernière par défaut -->
-							<!-- Soit faire avec un input + datalist + option et l'user pourra choisir/ajouter une adresse comme ça -->
+									<!-- Soit faire un menu déroulant avec une liste des adresses présentes en base et la dernière par défaut -->
+									<!-- Soit faire avec un input + datalist + option et l'user pourra choisir/ajouter une adresse comme ça -->
 
-							<!--      SARA                               <label for="address">Billing address :</label>
+									<!--      SARA                               <label for="address">Billing address :</label>
                                     
                                     <select name="address" id="address" th:each="${}">
                                     	<option value=""></option>
                                     </select> -->
-							<p>id User :</p>
-							<p th:text="${idUser}">ID User</p>
+									<p>id User :</p>
+									<p th:text="${idUser}">ID User</p>
 
 
-							<!-- <address th:object="${user}">
+									<!-- <address th:object="${user}">
                                 <strong th:text="${user.name}">nom</strong><br>
                                 <strong th:text="${user.firstname}">prénom</strong><br>
                                 <p th:text="${user.adress}">adresse</p><br>
@@ -150,27 +149,27 @@
                                 <br>
                                 <p th:text="${user.email}">email</p><br>
                             </address> -->
-							<a th:href="@{/register}" class="btn btn-warning"
-								style="max-width: 200px;">Création de compte</a>
+									<a th:href="@{/register}" class="btn btn-warning" style="max-width: 200px;">Création
+										de compte</a>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<!-- <div *ngIf="problemOrder" class=" alert alert-danger mt-5 col-md-3">
+					<!-- <div *ngIf="problemOrder" class=" alert alert-danger mt-5 col-md-3">
             Vous avec été déconnécté,reconnectez-vous.
         </div> -->
-            <!-- modal -->
-            <!-- modal -->
+					<!-- modal -->
+					<!-- modal -->
 
 
-            <!-- <div id="modal-confirm">
+					<!-- <div id="modal-confirm">
 
 =======
 			<!-- modal -->
-			<!-- modal -->
+					<!-- modal -->
 
 
-			<!-- <div id="modal-confirm">
+					<!-- <div id="modal-confirm">
 
 >>>>>>> 0af00ffd67adc6d99aa46e580f8ef38981236450
                 <span class="close" title="Close Modal">&times;</span>
@@ -187,8 +186,8 @@
                     </div>
                 </div>
             </div> -->
-        </div>
-    </div>
+				</div>
+			</div>
 </body>
 
 </html>

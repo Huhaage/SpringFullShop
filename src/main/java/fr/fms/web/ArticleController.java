@@ -33,17 +33,6 @@ import fr.fms.entities.Category;
 public class ArticleController {
 	@Autowired
 	private IBusinessImpl business;
-
-	@GetMapping("/home")
-	public String home() {
-		return "home";}
-
-	@GetMapping("/")
-	public String accueil() {
-		return "";}
-	
-	@Autowired
-	IBusinessImpl iBusinessImpl;
 	
 	@GetMapping("/home")
 	public String home(Model model) {
@@ -52,7 +41,7 @@ public class ArticleController {
 	
 	@GetMapping("/")
 	public String accueil(HttpSession session) {
-		int length = iBusinessImpl.sizeCaddy();
+		int length = business.sizeCaddy();
 		session.setAttribute("caddySize", length);
 		return "home";
 	}
@@ -114,7 +103,7 @@ public class ArticleController {
 
 	@GetMapping("/delete")
 	public  String delete(Long id, int page, String keyword) {
-		iBusinessImpl.delArticle(id);
+		business.delArticle(id);
 		return "redirect:/adminListArticles?page=" + page + "&keyword=" + keyword;
 	}
 

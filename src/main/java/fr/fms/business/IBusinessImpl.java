@@ -7,9 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import fr.fms.dao.ArticleRepository;
@@ -222,5 +225,10 @@ public class IBusinessImpl implements IBusiness {
 	public Long getUserIdByMail(String mail) {
 		//return userRepository.findUsersIdContainsMail(mail);
 		return null;
+	}
+	@Override
+	@Transactional
+	public Page<Orders> readAllOrders(int page, int taille) {
+		return orderRepository.findAll(PageRequest.of(page,taille));
 	}
 }

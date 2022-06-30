@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
+import fr.fms.entities.Orders;
 import fr.fms.entities.User;
 
 public interface IBusiness {
@@ -38,9 +39,9 @@ public interface IBusiness {
 	
 	//pour customer
 	public void addCustomer(Customer customer);
-	
-	//pour order
-
 	public List<Customer> readAllCustomerByUser(User user);
 	public Long getUserIdByMail(String mail);
+	
+	//pour order
+	public Page<Orders> readAllOrders(int page, int taille);
 }
