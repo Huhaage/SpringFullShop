@@ -1,6 +1,9 @@
 package fr.fms.web;
 
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -25,9 +28,12 @@ import fr.fms.services.GlobalException;
 @Transactional
 @Controller
 public class CaddyControler {
+	Long idOrder = 0L;
 
 	@Autowired
 	IBusinessImpl iBusinessImpl;
+	
+	
 
 	@GetMapping("/caddy")
 	public String caddy(Model model, HttpSession session) {
@@ -78,18 +84,20 @@ public class CaddyControler {
 		session.setAttribute("caddySize", length);
 		return "redirect:/caddy";
 	}
+	
 
 	// lien de la page order
 	@GetMapping("/order")
 	public String order(Model model, @RequestParam(name = "id", defaultValue = "0") Long id) {
+		
 		Customer cust = iBusinessImpl.getCustomer((long) id);
 		Customer customer = new Customer(id, cust.getName(), cust.getFirstName(), cust.getAddress(), cust.getPhone());
-		
+		idOrder=iBusinessImpl.newOrder(id); 
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
 		model.addAttribute("customer", customer);
-
 		model.addAttribute("size", iBusinessImpl.sizeCaddy());
+		model.addAttribute("orderId", idOrder);
 		
 		return "order";
 	}
@@ -97,8 +105,8 @@ public class CaddyControler {
     //payement
     @GetMapping("/payment")
     public String payment(Model model) {        
-        Long orderId=iBusinessImpl.newOrder(1L); 
-        iBusinessImpl.saveOrder(orderId);
+        
+        iBusinessImpl.saveOrder(idOrder);
         iBusinessImpl.getCaddy().clear();
 
         return "redirect:/articles";

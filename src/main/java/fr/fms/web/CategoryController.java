@@ -79,6 +79,15 @@ public class CategoryController {
 
         return "addCategory";
     }
+    //ajout d'article au caddy depuis la page articlebycategory
+    @GetMapping("/addToCaddyCat")
+	public String addToCaddy(Long id, Model model, @RequestParam(name="page", defaultValue = "0") int page,
+			@RequestParam(name="keyword", defaultValue = "") String keyword) throws InterruptedException {
+		iBusinessImpl.addToCaddy(id);
+		Thread.sleep(2000);
+		
+		return "redirect:/articlesByCategory?page="+page+"&keyword="+keyword;
+    }
 
     // ajoute en base et retourne la page adminClistcategory
     @PostMapping("/saveCategory")
