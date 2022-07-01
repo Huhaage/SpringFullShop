@@ -79,6 +79,16 @@ box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   z-index: 10;
   height: 80px;
 }
+#header a{
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: underline;
+}
+#header a:hover {
+  text-decoration: overline;
+  color: white;
+  
+}
 
 .logo {
   margin-right: 20px;
@@ -98,7 +108,8 @@ box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 #linkAdmin {
   font-weight: bold;
   font-style: italic;
-  text-decoration: underline;
+  margin-left: 30px;
+  color: #037ca5;
 }
 
 
