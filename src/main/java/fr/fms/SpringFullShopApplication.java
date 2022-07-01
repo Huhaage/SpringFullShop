@@ -92,21 +92,21 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		 articleRepository.save(new Article(null,"Predator PO7","Acer",2699.99,"unknown.png",pc,1));
 //
 
-//		 articleRepository.save(new Article(null,"TAB M10","Lenovo",299.99,"tablet.jpg",tablet,1));
-//		 articleRepository.save(new Article(null,"Galaxy Tab A7","Samsung",179,"tablet.jpg",tablet,1));
-//		 articleRepository.save(new Article(null,"Smart Tab 8","Essentield",129,"tablet.jpg",tablet,1));
-//		 articleRepository.save(new Article(null,"TAB M7","Lenovo",119,"tablet.jpg",tablet,1));
-//		 articleRepository.save(new Article(null,"Smart Tab 10","Essentield",149.99,"tablet.jpg",tablet,1));
-//		 articleRepository.save(new Article(null,"Galaxy Tab A8","Samsung",199,"tablet.jpg",tablet,1));
-//		 articleRepository.save(new Article(null,"P11","Lenovo",269,"tablet.jpg",tablet,1));	
-//		
-//		 articleRepository.save(new Article(null,"Home & Student","Office",126,"pinnacle.jpg",logiciel,1));
-//		 articleRepository.save(new Article(null,"Nordvpn","NordVPN",50,"pinnacle.jpg",logiciel,1));
-//		 articleRepository.save(new Article(null,"Platinium 365","Nero",50,"pinnacle.jpg",logiciel,1));
-//		 articleRepository.save(new Article(null,"Studio 24 plus","Pinnacle",126,"pinnacle.jpg",logiciel,1));
-//		 articleRepository.save(new Article(null,"Platinium unlimlited","Nero",99.99,"pinnacle.jpg",logiciel,1));
-//		 articleRepository.save(new Article(null,"Studio 25 ultimate","Pinnacle",129.99,"pinnacle.jpg",logiciel,1));
-//		 articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"pinnacle.jpg",logiciel,1));
+		//  articleRepository.save(new Article(null,"TAB M10","Lenovo",299.99,"tablet.jpg",tablet,1));
+		//  articleRepository.save(new Article(null,"Galaxy Tab A7","Samsung",179,"tablet.jpg",tablet,1));
+		//  articleRepository.save(new Article(null,"Smart Tab 8","Essentield",129,"tablet.jpg",tablet,1));
+		//  articleRepository.save(new Article(null,"TAB M7","Lenovo",119,"tablet.jpg",tablet,1));
+		//  articleRepository.save(new Article(null,"Smart Tab 10","Essentield",149.99,"tablet.jpg",tablet,1));
+		//  articleRepository.save(new Article(null,"Galaxy Tab A8","Samsung",199,"tablet.jpg",tablet,1));
+		//  articleRepository.save(new Article(null,"P11","Lenovo",269,"tablet.jpg",tablet,1));	
+		
+		//  articleRepository.save(new Article(null,"Home & Student","Office",126,"pinnacle.jpg",logiciel,1));
+		//  articleRepository.save(new Article(null,"Nordvpn","NordVPN",50,"pinnacle.jpg",logiciel,1));
+		//  articleRepository.save(new Article(null,"Platinium 365","Nero",50,"pinnacle.jpg",logiciel,1));
+		//  articleRepository.save(new Article(null,"Studio 24 plus","Pinnacle",126,"pinnacle.jpg",logiciel,1));
+		//  articleRepository.save(new Article(null,"Platinium unlimlited","Nero",99.99,"pinnacle.jpg",logiciel,1));
+		//  articleRepository.save(new Article(null,"Studio 25 ultimate","Pinnacle",129.99,"pinnacle.jpg",logiciel,1));
+		//  articleRepository.save(new Article(null,"Personnel","Microsoft 365",126,"pinnacle.jpg",logiciel,1));
 			
 
 		//ATTENTION ROLE ET USER A CREER APRES AVOIR EXECUTER LE FICHIER SQL DANS RESSOURCES_DOC
@@ -115,8 +115,8 @@ public class SpringFullShopApplication implements CommandLineRunner {
 
 
 
-//		roleRepository.save(new Role(null, "USER"));
-//		roleRepository.save(new Role(null, "ADMIN"));
+		// roleRepository.save(new Role(null, "USER"));
+		// roleRepository.save(new Role(null, "ADMIN"));
 //		 
 //		userRepository.save(new Users(null, "bla@bla.fr", "123", true));
 //		userRepository.save(new Users(null, "x@x.fr", "123", true));

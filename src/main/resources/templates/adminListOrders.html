@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{index.html}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container">
+            <div class="categorie-card address__table">
+                <div class="panel-heading  p-2">
+                    <h4 class="panelTitle">Liste des commandes</h4>
+                </div>
+                <div class="panel-body p-2 ">
+                    <table class="table">
+                        <tr>
+                            <th>Id</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Customer Id</th>
+                        </tr>
+                        <tr th:each="c:${listOrders}">
+                            <td th:text="${c.orderId}"></td>
+                            <td th:text="${c.amount}"></td>
+                            <td th:text="${c.date}"></td>
+                            <td th:text="${c.customer.getId()}"></td>
+                            <td>
+                                <!-- Show -->
+                                <a class="" th:href="@{/detailOrder(id=${c.orderId})}">
+                                    <img class="x-show" th:src="@{/img/show.png}"
+                                         alt="edit" />
+                                </a>
+                            </td>
+
+                        </tr>
+                    </table>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item" th:each="page,status:${pages}">
+                            <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
+                                th:href="@{/adminListOrders(page=${status.index},keyword=${keyword})}"
+                                th:text="${status.index}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -61,10 +59,15 @@ public class IBusinessImpl implements IBusiness {
 	@Autowired
 	private OrdersItemRepository orderItemRepository;
 
+<<<<<<< HEAD
 	/**
 	 * Affiche le contenue du caddy
 	 * @return
 	 */
+=======
+
+
+>>>>>>> main
 	public Map<Long, Article> getCaddy() {
 		return caddy;
 	}
@@ -196,7 +199,7 @@ public class IBusinessImpl implements IBusiness {
 	@Override
 	public Long newOrder(Long idCustomer) {
 
-		Long idOrder = 0L;
+		//Long idOrder = 0L;
 		List<Orders> lastOrder = null;
 		if (customerRepository.findById(idCustomer) != null) {
 			double total = totalCaddy();
@@ -243,4 +246,23 @@ public class IBusinessImpl implements IBusiness {
 
 		return user.getId();
 	}
+
+	@Override
+	public Page<Orders> readAllOrders(int page, int ordersByPages) {
+		
+		return orderRepository.findAll(PageRequest.of(page, ordersByPages));
+	}
+
+	@Override
+	public List<OrdersItem> readAllItemsByOrderId(Long id) {
+		
+		return orderItemRepository.findAllOrdersItemsByOrdersOrderId(id);
+	}
+
+	@Override
+	public Orders readOrderByid(Long id) {
+		
+		return orderRepository.findById(id).get();
+	}
+
 }

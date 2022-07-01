@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{index.html}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Caddy</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="container padding-bottom-3x mb-1">
+			<a class="btn btn-outline-primary" th:href="@{/adminListOrders}">Retour liste commandes</a>
+			<h4>Détail de la commande : <span class="catName" th:text="${order}"></span></h4>
+			<div>
+				<!-- Shopping Cart-->
+				<div class="table-responsive shopping-cart">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Products</th>
+								<th class="text-center">Brand</th>
+								<th class="text-center">Description</th>
+								<th class="text-center">Quantity</th>
+								<th class="text-center">Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="oi:${ordersItems}">
+								<td>
+									<div class="product-item">
+										<a class="product-thumb" href="#"><img
+												th:src="@{/img/}+${oi.article.getImgUrl()}" alt="Product"></a>
+									</div>
+								</td>
+								<td class="text-center" th:text="${oi.article.getBrand()}"></td>
+								<td class="text-center" th:text="${oi.article.getDescription()}"></td>
+								<td class="text-center" th:text="${oi.quantity}"></td>
+								<td class="text-center text-lg text-medium" th:text="${oi.article.getPrice()}">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
