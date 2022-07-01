@@ -18,12 +18,5 @@ public class OrderController {
 	@Autowired
 	private IBusinessImpl business;
 	
-	@Transactional
-	@GetMapping("/readOrders")
-	public String readOrders(Model model, @RequestParam(name = "page", defaultValue = "0") int page) {
-		Page<Orders> orders = business.readAllOrders(page, 6);
-		model.addAttribute("listOrders", orders.getContent());
-		return "redirect:/readOrders";	
-	}
 }
  

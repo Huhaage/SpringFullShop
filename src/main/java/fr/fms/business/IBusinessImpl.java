@@ -61,14 +61,27 @@ public class IBusinessImpl implements IBusiness {
 	@Autowired
 	private OrdersItemRepository orderItemRepository;
 
+	/**
+	 * Affiche le contenue du caddy
+	 * @return
+	 */
 	public Map<Long, Article> getCaddy() {
 		return caddy;
 	}
 
+	/**
+	 * Afiche les Article present dans le panier sous forme de Liste
+	 * @return
+	 */
 	public List<Article> listCaddy() {
 		return caddy.values().stream().collect(Collectors.toCollection(ArrayList::new));
 	}
 
+	/**
+	 * Affiche le prix aditionner de tout les article dans le panier
+	 * @return
+	 */
+	
 	public double totalCaddy() {
 		this.total = 0.0;
 		caddy.values().forEach((a) -> this.total += a.getPrice() * a.getQuantity());
@@ -149,6 +162,7 @@ public class IBusinessImpl implements IBusiness {
 		} else {
 			caddy.put(id, articleRepository.findById(id).get());
 		}
+	}
 
 	@Override
 	public void removeFromCaddy(Long id) {
@@ -179,7 +193,6 @@ public class IBusinessImpl implements IBusiness {
 		return categoryRepository.findAll();
 	}
 
-	// créé une commande sans article
 	@Override
 	public Long newOrder(Long idCustomer) {
 
@@ -195,13 +208,11 @@ public class IBusinessImpl implements IBusiness {
 
 	}
 
-	// enregistre les articles avec les ordersitem associés
 	@Override
 	public void saveOrder(Long idOrder) {
 
 		caddy.values().forEach((a) -> orderItemRepository
 				.save(new OrdersItem(orderRepository.findById(idOrder).get(), a, a.getQuantity())));
-
 	}
 
 	@Override
@@ -232,5 +243,4 @@ public class IBusinessImpl implements IBusiness {
 
 		return user.getId();
 	}
-
 }

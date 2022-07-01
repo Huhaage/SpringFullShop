@@ -44,7 +44,7 @@ public class ArticleController {
 
 	@GetMapping("/")
 	public String accueil(HttpSession session) {
-		int length = business.sizeCaddy();
+		int length = iBusinessImpl.sizeCaddy();
 		session.setAttribute("caddySize", length);
 		return "home";
 	}
@@ -70,7 +70,7 @@ public class ArticleController {
 	// lien vers la page ajout article
 	@GetMapping("/addArticle")
 	public String addArticle(Model model, Article article) {
-		List<Category> categories = business.findAllCategories();
+		List<Category> categories = iBusinessImpl.findAllCategories();
 		model.addAttribute("listCategories", categories);
 		return "addArticle";
 	}
@@ -79,12 +79,12 @@ public class ArticleController {
 	@PostMapping("/save")
 	public String save(Model model, @Valid Article article, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			List<Category> categories = business.findAllCategories();
+			List<Category> categories = iBusinessImpl.findAllCategories();
 			model.addAttribute("listCategories", categories);
 			return "addArticle";
 		}
-		business.addArticle(article);
-		List<Category> categories = business.findAllCategories();
+		iBusinessImpl.addArticle(article);
+		List<Category> categories = iBusinessImpl.findAllCategories();
 		return null;
 	}
 

@@ -23,9 +23,8 @@ import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
 import fr.fms.entities.Customer;
-
+import fr.fms.entities.Orders;
 import fr.fms.entities.Role;
-import fr.fms.entities.Users;
 
 
 @Transactional
@@ -45,6 +44,9 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	
 	@Autowired
 	RoleRepository roleRepository;
+	
+	@Autowired
+	IBusinessImpl business;
 
 
 	public static void main(String[] args) {
@@ -123,7 +125,7 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		Role roleUser = roleRepository.findById((long) 1).get();
 //		Role roleAdmin = roleRepository.findById((long) 2).get();
 //		userRepository.save(saveUser("yyy@yyy.com", "123", true, roleUser));
-	}
+
 	
 //	private static Users saveUser(String mail, String password, Boolean active, Role role) {
 //        Users user = new Users();
@@ -139,10 +141,11 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //
 //	}
 //for(Orders orders  : business.readAllOrders(0, 6)) System.out.println(new Orders(orders.getOrderId(), orders.getCustomer(), orders.getDate(), orders.getAmount()));
-		for(Orders orders  : business.readAllOrders(0, 6)) {
-			System.out.println("test");
-			Customer customer = orders.getCustomer();
-			System.out.println(orders +""+ customer.getId());
-		}	
+//		for(Orders orders  : business.readAllOrders(0, 6)) {
+//			System.out.println("test");
+//			Customer customer = orders.getCustomer();
+//			System.out.println(orders +""+ customer.getId());
+//		}	
 
+	}
 }
