@@ -49,11 +49,6 @@
 											<td class="text-end" th:text="${a.price}">price €</td>
 
 										</tr>
-
-
-										<!-- function valider order -->
-
-
 									</tbody>
 									<tfoot>
 										<tr>
@@ -144,22 +139,19 @@
 										<p th:text="${totalCaddy}">Total: 1000 €</p>
 
 										<!-- function valider order -->
-
 										<a class="btn btn-success" th:href="@{/payment}"
 											style="max-width: 200px;">Pay</a>
 
 									</div>
 									<div class="col-lg-6">
 										<h3 class="h6">Billing address</h3>
-
-
 										<address th:object="${customer}">
 											<span th:text="${customer.name}" class="p-normal">nom</span>
 											<span th:text="${customer.firstName}" class="p-normal">prénom</span> <br />
 											<p th:text="${customer.address}" class="p-normal">adresse</p>
 											<p th:text="${customer.phone}" class="p-normal">P:</p>
 										</address>
-
+										<a class="btn btn-outline-primary" th:href="@{/chooseAddress}">Retour liste adresses</a>
 									</div>
 								</div>
 							</div>
