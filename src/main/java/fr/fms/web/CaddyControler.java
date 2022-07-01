@@ -56,10 +56,6 @@ public class CaddyControler {
 		Thread.sleep(2000);
 		
 		return "redirect:/articles?page="+page+"&keyword="+keyword;
-
-		int length = iBusinessImpl.sizeCaddy();
-		session.setAttribute("caddySize", length);
-		return "redirect:/caddy";
 	}
 
 	

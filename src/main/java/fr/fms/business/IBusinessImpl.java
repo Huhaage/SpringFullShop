@@ -59,15 +59,11 @@ public class IBusinessImpl implements IBusiness {
 	@Autowired
 	private OrdersItemRepository orderItemRepository;
 
-<<<<<<< HEAD
+
 	/**
 	 * Affiche le contenue du caddy
 	 * @return
 	 */
-=======
-
-
->>>>>>> main
 	public Map<Long, Article> getCaddy() {
 		return caddy;
 	}
