@@ -59,6 +59,9 @@ public class CategoryController {
             throw new GlobalException("Aucune données");
         }
         Category cat = iBusinessImpl.readCategoryById(id);
+        if (cat==null) {
+            throw new GlobalException("Aucunes categories");
+        }
         List<Category> categories = iBusinessImpl.findAllCategories();
 
         model.addAttribute("listCategoryArticles", articles.getContent());

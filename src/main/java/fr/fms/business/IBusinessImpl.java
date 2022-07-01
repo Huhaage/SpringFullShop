@@ -48,6 +48,8 @@ public class IBusinessImpl implements IBusiness {
 	@Autowired
 	private OrdersItemRepository orderItemRepository;
 
+
+
 	public Map<Long, Article> getCaddy() {
 		return caddy;
 	}
@@ -167,7 +169,7 @@ public class IBusinessImpl implements IBusiness {
 	@Override
 	public Long newOrder(Long idCustomer) {
 
-		Long idOrder = 0L;
+		//Long idOrder = 0L;
 		List<Orders> lastOrder = null;
 		if (customerRepository.findById(idCustomer) != null) {
 			double total = totalCaddy();
@@ -221,6 +223,18 @@ public class IBusinessImpl implements IBusiness {
 	public Page<Orders> readAllOrders(int page, int ordersByPages) {
 		
 		return orderRepository.findAll(PageRequest.of(page, ordersByPages));
+	}
+
+	@Override
+	public List<OrdersItem> readAllItemsByOrderId(Long id) {
+		
+		return orderItemRepository.findAllOrdersItemsByOrdersOrderId(id);
+	}
+
+	@Override
+	public Orders readOrderByid(Long id) {
+		
+		return orderRepository.findById(id).get();
 	}
 
 }

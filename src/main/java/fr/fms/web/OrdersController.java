@@ -19,6 +19,8 @@ import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Orders;
+import fr.fms.entities.OrdersItem;
+import fr.fms.entities.OrdersItemId;
 import fr.fms.services.GlobalException;
 
 /**
@@ -49,20 +51,19 @@ public class OrdersController {
         return "adminListOrders";
     }
 
-
     // // form edition category
-    // @GetMapping("/editCategory")
-    // public String editArticle(Model model, Long id, Category category) {
+    @GetMapping("/detailOrder")
+    public String detailOrder(Model model, Long id, OrdersItem orderItem) {
 
-    //     Category cat = iBusinessImpl.readCategoryById(id);
-    //     if (cat==null) {
-    //         throw new GlobalException("categorie inexistante");
-    //     }
-    //     model.addAttribute("category", cat);
-    //     model.addAttribute("idCat", cat.getId());
-    //     model.addAttribute("imgCat", cat.getImgUrl());
-    //     return "editCategory";
-    // }
+        List<OrdersItem> ordersItems = iBusinessImpl.readAllItemsByOrderId(id);
+        if (ordersItems.isEmpty()) {
+            throw new GlobalException("Aucunes données");
+        }
+        Orders order = iBusinessImpl.readOrderByid(id);
+        model.addAttribute("ordersItems", ordersItems);
+        model.addAttribute("order", order.getOrderId());
 
+        return "detailOrder";
+    }
 
 }
