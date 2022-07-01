@@ -1,6 +1,6 @@
 // console.log('click')
 const cartButtons = document.querySelectorAll('.cart-button');
- 
+
 findButton()
 
 function findButton() {
@@ -26,4 +26,11 @@ function remClick() {
         }, 2000);
 
     })
+}
+
+const idpaid = document.getElementById('paid')
+idpaid.addEventListener('click', paidClick)
+
+function paidClick() {
+    alert('Commande réussie')
 }

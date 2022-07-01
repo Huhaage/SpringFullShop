@@ -28,7 +28,7 @@ import fr.fms.services.GlobalException;
 @Transactional
 @Controller
 public class CaddyControler {
-	Long idOrder = 0L;
+	
 
 	@Autowired
 	IBusinessImpl iBusinessImpl;
@@ -92,21 +92,18 @@ public class CaddyControler {
 		
 		Customer cust = iBusinessImpl.getCustomer((long) id);
 		Customer customer = new Customer(id, cust.getName(), cust.getFirstName(), cust.getAddress(), cust.getPhone());
-		idOrder=iBusinessImpl.newOrder(id); 
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
 		model.addAttribute("customer", customer);
 		model.addAttribute("size", iBusinessImpl.sizeCaddy());
-		model.addAttribute("orderId", idOrder);
-		
 		return "order";
 	}
 
     //payement
     @GetMapping("/payment")
-    public String payment(Model model) {        
+	public String payment(Model model, @RequestParam(name = "id", defaultValue = "0") Long id) {
         
-        iBusinessImpl.saveOrder(idOrder);
+        iBusinessImpl.saveOrder(iBusinessImpl.newOrder(id));
         iBusinessImpl.getCaddy().clear();
 
         return "redirect:/articles";
