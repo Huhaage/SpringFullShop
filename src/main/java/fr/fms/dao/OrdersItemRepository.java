@@ -12,9 +12,7 @@ import fr.fms.entities.OrdersItem;
 
 
 public interface OrdersItemRepository extends JpaRepository<OrdersItem,Long>{
-    public Optional<OrdersItem> findById(Long orderItem);
-    
-
+   
     @Query("SELECT o FROM OrdersItem o WHERE o.orders.orderId= :id")
     public List<OrdersItem> findAllOrdersItemsByOrdersOrderId(@Param("id") Long id );
 

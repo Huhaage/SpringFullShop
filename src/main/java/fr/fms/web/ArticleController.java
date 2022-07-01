@@ -84,8 +84,8 @@ public class ArticleController {
 			return "addArticle";
 		}
 		iBusinessImpl.addArticle(article);
-		List<Category> categories = iBusinessImpl.findAllCategories();
-		return null;
+		
+		return "redirect:/adminListArticles";
 	}
 
 	// lien vers la page articles

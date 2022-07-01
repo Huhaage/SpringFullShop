@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import fr.fms.dao.ArticleRepository;
@@ -22,15 +21,10 @@ import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
-import fr.fms.dao.CustomerRepository;
-import fr.fms.dao.OrdersItemRepository;
-import fr.fms.dao.OrdersRepository;
-import fr.fms.entities.Article;
-import fr.fms.entities.Category;
+
 import fr.fms.entities.Orders;
 import fr.fms.entities.OrdersItem;
-import fr.fms.entities.Orders;
-import fr.fms.entities.OrdersItem;
+
 import fr.fms.entities.Users;
 
 

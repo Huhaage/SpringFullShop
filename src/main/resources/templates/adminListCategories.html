@@ -12,18 +12,10 @@
 <body>
     <div layout:fragment="content">
         <div class="container">
-            <!-- <ul class="d-flex justify-content-between" >
-                <a type="button" class="btn btn-outline-info" th:text="${c.name}" th:each="c:${listCategories}"
-                    th:href="@{/categoryArticles(id=${c.id})}"></a>
-            </ul> -->
-
-
             <div class="">
                 <div class="panel-heading  p-2">
                     <h4 class="panelTitle">Liste des categories</h4>
                 </div>
-
-
                 <div class="md-6 d-flex  listAdmin">
                     <div th:each="c:${listCategories}">
                         <div class=" margin-30px-bottom card-category">
@@ -50,7 +42,6 @@
                 </ul>
             </div>
         </div>
-
 
     </div>
 

@@ -17,7 +17,6 @@ import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 
 import fr.fms.dao.CustomerRepository;
-import fr.fms.dao.RoleRepository;
 import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
@@ -42,8 +41,6 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	@Autowired
 	UserRepository userRepository;
 	
-	@Autowired
-	RoleRepository roleRepository;
 	
 	@Autowired
 	IBusinessImpl business;
@@ -112,11 +109,6 @@ public class SpringFullShopApplication implements CommandLineRunner {
 		//ATTENTION ROLE ET USER A CREER APRES AVOIR EXECUTER LE FICHIER SQL DANS RESSOURCES_DOC
 		//SINON, LES ID EXCRITES EN DUR DANS LE FICHER SQL NE CORRESPONDRA PLUS AUX BONNES ADRESSES
 		
-
-
-
-		// roleRepository.save(new Role(null, "USER"));
-		// roleRepository.save(new Role(null, "ADMIN"));
 //		 
 //		userRepository.save(new Users(null, "bla@bla.fr", "123", true));
 //		userRepository.save(new Users(null, "x@x.fr", "123", true));

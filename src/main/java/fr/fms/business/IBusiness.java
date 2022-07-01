@@ -9,7 +9,6 @@ import fr.fms.entities.Category;
 import fr.fms.entities.Customer;
 import fr.fms.entities.Orders;
 import fr.fms.entities.OrdersItem;
-import fr.fms.entities.OrdersItemId;
 import fr.fms.entities.Users;
 
 public interface IBusiness {

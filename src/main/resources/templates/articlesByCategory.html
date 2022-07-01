@@ -27,8 +27,7 @@
                         </li>
                     </ul>
                 </div>
-                <!-- //////////////// -->
-                <!-- //////////////// -->
+
                 <div class="md-6 d-flex flex-wrap listAdmin">
                     <!-- product -->
                     <div th:each="a:${listCategoryArticles}">
@@ -76,30 +75,6 @@
                         </div>
                     </div>
                     <!-- end product -->
-                </div>
-                <!-- //////////////////// -->
-                <div class="panel-body p-2">
-                    <!-- <table class="table">
-                        <tr>
-                            <th>Id</th>
-                            <th>Brand</th>
-                            <th>Description</th>
-                            <th>Prix</th>
-                        </tr>
-                        <tr th:each="a:${listCategoryArticles}">
-                             <td th:text="${a.id}"></td>
-                            <td th:text="${a.brand}"></td>
-                            <td th:text="${a.description}"></td>
-                            <td th:text="${a.price}"></td>
-
-                        </tr>
-                    </table> -->
-                    <!-- <ul class="nav nav-pills">
-                        <li class="nav-item" th:each="page,status:${pages}">
-                            <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'"
-                                th:href="@{/articlesByCategory(page=${status.index})}" th:text="${status.index}"></a>
-                        </li>
-                    </ul> -->
                 </div>
             </div>
 
