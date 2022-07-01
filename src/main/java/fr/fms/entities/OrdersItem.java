@@ -24,6 +24,7 @@ import lombok.ToString;
 @ToString
 @IdClass(OrdersItemId.class)
 public class OrdersItem {
+
 	@Id
 	@ManyToOne
 	private Orders orders;

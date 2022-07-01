@@ -34,6 +34,4 @@ public class OrdersItemId implements Serializable{
 		OrdersItemId other = (OrdersItemId) obj;
 		return Objects.equals(article, other.article) && Objects.equals(orders, other.orders);
 	}
-	
-
 }

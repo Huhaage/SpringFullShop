@@ -22,7 +22,6 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Orders {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
@@ -39,6 +38,18 @@ public class Orders {
 		this.date = date;
 		this.amount = amount;
 	}
+
+	@Override
+	public String toString() {
+		return "Orders [orderId=" + orderId + ", customer=" + customer + ", date=" + date + ", amount=" + amount + "]";
+	}
+
+
+
+
+
+
+
 		
 		
 }

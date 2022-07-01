@@ -1,9 +1,12 @@
 /**
- * 
- */
+*
+*/
 package fr.fms.web;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.business.IBusinessImpl;
+
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.services.GlobalException;
@@ -66,10 +70,8 @@ public class ArticleController {
 	// lien vers la page ajout article
 	@GetMapping("/addArticle")
 	public String addArticle(Model model, Article article) {
-
 		List<Category> categories = iBusinessImpl.findAllCategories();
 		model.addAttribute("listCategories", categories);
-
 		return "addArticle";
 	}
 
@@ -81,9 +83,9 @@ public class ArticleController {
 			model.addAttribute("listCategories", categories);
 			return "addArticle";
 		}
-
 		iBusinessImpl.addArticle(article);
-		return "redirect:/articles";
+		List<Category> categories = iBusinessImpl.findAllCategories();
+		return null;
 	}
 
 	// lien vers la page articles

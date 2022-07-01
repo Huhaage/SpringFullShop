@@ -1,5 +1,10 @@
 package fr.fms.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import fr.fms.entities.Customer;
+import fr.fms.entities.Orders;
+
 import java.util.List;
 import java.util.Optional;
 

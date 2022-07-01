@@ -56,7 +56,6 @@ public class CaddyControler {
 		Thread.sleep(2000);
 		
 		return "redirect:/articles?page="+page+"&keyword="+keyword;
-
 	}
 
 	

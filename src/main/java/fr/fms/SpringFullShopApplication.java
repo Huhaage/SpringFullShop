@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
 
+import fr.fms.business.IBusiness;
+import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 
@@ -20,9 +23,8 @@ import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 
 import fr.fms.entities.Customer;
-
+import fr.fms.entities.Orders;
 import fr.fms.entities.Role;
-import fr.fms.entities.Users;
 
 
 @Transactional
@@ -35,13 +37,16 @@ public class SpringFullShopApplication implements CommandLineRunner {
 	ArticleRepository articleRepository;
 	
 	@Autowired
-	CustomerRepository customerRipository;
+	CustomerRepository customerRepository;
 	
 	@Autowired
 	UserRepository userRepository;
 	
 	@Autowired
 	RoleRepository roleRepository;
+	
+	@Autowired
+	IBusinessImpl business;
 
 
 	public static void main(String[] args) {
@@ -120,7 +125,7 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //		Role roleUser = roleRepository.findById((long) 1).get();
 //		Role roleAdmin = roleRepository.findById((long) 2).get();
 //		userRepository.save(saveUser("yyy@yyy.com", "123", true, roleUser));
-	}
+
 	
 //	private static Users saveUser(String mail, String password, Boolean active, Role role) {
 //        Users user = new Users();
@@ -135,5 +140,12 @@ public class SpringFullShopApplication implements CommandLineRunner {
 //        return user;
 //
 //	}
+//for(Orders orders  : business.readAllOrders(0, 6)) System.out.println(new Orders(orders.getOrderId(), orders.getCustomer(), orders.getDate(), orders.getAmount()));
+//		for(Orders orders  : business.readAllOrders(0, 6)) {
+//			System.out.println("test");
+//			Customer customer = orders.getCustomer();
+//			System.out.println(orders +""+ customer.getId());
+//		}	
 
+	}
 }
