@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.services.GlobalException;
 
 /**
  * @author CHJCS
@@ -37,6 +38,9 @@ public class CategoryController {
 
         // Page<Category> categories = categoryRepository.findAll();
         Page<Category> categories = iBusinessImpl.readAllCategories(page, 4);
+        if (categories.isEmpty()) {
+            throw new GlobalException("Aucune données");
+        }
         model.addAttribute("listCategories", categories.getContent());
         model.addAttribute("pages", new int[categories.getTotalPages()]);
         model.addAttribute("currentPage", page);
@@ -51,7 +55,13 @@ public class CategoryController {
             @RequestParam(name = "keyword", defaultValue = "1") Long id) {
 
         Page<Article> articles = iBusinessImpl.readArticlesByCategory(id, page, 6);
+        if (articles.isEmpty()) {
+            throw new GlobalException("Aucune données");
+        }
         Category cat = iBusinessImpl.readCategoryById(id);
+        if (cat==null) {
+            throw new GlobalException("Aucunes categories");
+        }
         List<Category> categories = iBusinessImpl.findAllCategories();
 
         model.addAttribute("listCategoryArticles", articles.getContent());
@@ -68,6 +78,15 @@ public class CategoryController {
     public String addCategory(Model model, Category category) {
 
         return "addCategory";
+    }
+    //ajout d'article au caddy depuis la page articlebycategory
+    @GetMapping("/addToCaddyCat")
+	public String addToCaddy(Long id, Model model, @RequestParam(name="page", defaultValue = "0") int page,
+			@RequestParam(name="keyword", defaultValue = "") String keyword) throws InterruptedException {
+		iBusinessImpl.addToCaddy(id);
+		Thread.sleep(2000);
+		
+		return "redirect:/articlesByCategory?page="+page+"&keyword="+keyword;
     }
 
     // ajoute en base et retourne la page adminClistcategory
@@ -87,7 +106,9 @@ public class CategoryController {
     public String editArticle(Model model, Long id, Category category) {
 
         Category cat = iBusinessImpl.readCategoryById(id);
-
+        if (cat==null) {
+            throw new GlobalException("categorie inexistante");
+        }
         model.addAttribute("category", cat);
         model.addAttribute("idCat", cat.getId());
         model.addAttribute("imgCat", cat.getImgUrl());
