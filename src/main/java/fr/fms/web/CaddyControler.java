@@ -90,6 +90,9 @@ public class CaddyControler {
 	public String order(Model model, @RequestParam(name = "id", defaultValue = "0") Long id) {
 		
 		Customer cust = iBusinessImpl.getCustomer((long) id);
+		if (cust==null) {
+			throw new GlobalException("Customer inexistant");
+		}
 		Customer customer = new Customer(id, cust.getName(), cust.getFirstName(), cust.getAddress(), cust.getPhone());
 		model.addAttribute("listCaddy", iBusinessImpl.listCaddy()); 
 		model.addAttribute("totalCaddy", iBusinessImpl.totalCaddy());
@@ -101,8 +104,18 @@ public class CaddyControler {
     //payement
     @GetMapping("/payment")
 	public String payment(Model model, @RequestParam(name = "id", defaultValue = "0") Long id) {
-        
-        iBusinessImpl.saveOrder(iBusinessImpl.newOrder(id));
+
+		// test payment is id en param (issue de l'url est un customer du user en session...)
+        String mail = SecurityContextHolder.getContext().getAuthentication().getName();
+		Long idUser = iBusinessImpl.getIdUserByMail(mail);
+
+		Customer cust = iBusinessImpl.getCustomer((long) id);
+
+		if (cust.getUser().getId() != idUser) {
+			throw new GlobalException("Cette action n'est pas autorisée");
+		} 
+		Long idOrder = iBusinessImpl.newOrder(id);
+        iBusinessImpl.saveOrder(idOrder);
         iBusinessImpl.getCaddy().clear();
 
         return "redirect:/articles";

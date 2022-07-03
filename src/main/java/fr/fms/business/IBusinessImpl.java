@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
 
@@ -197,7 +198,13 @@ public class IBusinessImpl implements IBusiness {
 
 	@Override
 	public Customer getCustomer(Long idCustomer) {
-		return customerRepository.findById(idCustomer).get();
+
+		// test si id foireux passer dans l'url, comme ça pour voir...
+		Optional  <Customer> cust =customerRepository.findById(idCustomer);
+		if (cust.isPresent() ) {
+			return cust.get();
+		}
+		return null;
 	}
 
 	@Override
@@ -233,5 +240,21 @@ public class IBusinessImpl implements IBusiness {
 	//Methods tests
 	public String great() {
 		return "Hello World";
+	}
+
+	@Override
+
+	public List<OrdersItem> readAllItemsByOrderId(Long id) {
+
+		return orderItemRepository.findAllOrdersItemsByOrdersOrderId(id);
+
+	}
+
+	@Override
+
+	public Orders readOrderByid(Long id) {
+
+		return orderRepository.findById(id).get();
+
 	}
 }
