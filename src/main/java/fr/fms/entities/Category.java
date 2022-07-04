@@ -21,6 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Category {
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -32,4 +33,17 @@ public class Category {
 	
 	@OneToMany(mappedBy = "category")
 	private Collection<Article> articles;
+
+	/**
+	 * @param id
+	 * @param description
+	 * @param imgUrl
+	 */
+	public Category(Long id, @NotNull String description, @NotNull String imgUrl) {
+		this.id = id;
+		this.description = description;
+		this.imgUrl = imgUrl;
+	}
+	
+	
 }
