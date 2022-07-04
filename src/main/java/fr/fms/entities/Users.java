@@ -48,7 +48,6 @@ public class Users {
 	
 	/**
 	 * @param id
-	 * @param login
 	 * @param password
 	 */
 	public Users(Long id, String mail, String password) {
