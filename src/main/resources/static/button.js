@@ -28,9 +28,9 @@ function remClick() {
     })
 }
 
-// const idpaid = document.getElementById('paid')
-// idpaid.addEventListener('click', paidClick)
+const idpaid = document.getElementById('paid')
+idpaid.addEventListener('click', paidClick)
 
-// function paidClick() {
-//     alert('Commande réussie')
-// }
+function paidClick() {
+    alert('Commande réussie')
+}
